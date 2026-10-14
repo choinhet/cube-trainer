@@ -1,0 +1,33 @@
+import { IDBFactory } from 'fake-indexeddb';
+import { expect, it } from 'vitest';
+import { LocalRepository } from '../adapters/local-repository';
+it('creates Default once across concurrent initialization and preserves legacy selection and records', async () => {
+  const factory = new IDBFactory();
+  const first = new LocalRepository(factory); const second = new LocalRepository(factory);
+  const fresh = await Promise.all([first.initialize(), second.initialize()]);
+  expect(fresh[0].sessions).toHaveLength(1);
+  expect(fresh[1].currentSessionId).toBe(fresh[0].currentSessionId);
+  expect(fresh[0].sessions[0].name).toBe('Default');
+  const legacy = await first.createSession('Legacy');
+  const result = { id: 'old', sessionId: legacy.id, status: 'completed' as const, startedAt: 1, rawDurationMs: 100, penalty: 'none' as const, timingBasis: 'host-monotonic-receipt' as const };
+  await first.saveTimedResult(result);
+  await first.saveSettings({ reportingTimezone: 'UTC' });
+  first.close();
+  const restored = await first.initialize();
+  expect(restored.currentSessionId).toBe(legacy.id);
+  expect(restored.settings).toEqual({ reportingTimezone: 'UTC', inspection: false, debug: false, mirroredCrossInstructions: true });
+  expect(restored.sessions.filter(value => value.name === 'Default')).toHaveLength(1);
+  expect(await first.listTimedResults()).toEqual([result]);
+  first.close(); second.close();
+});
+it('migrates legacy storage with no Default without changing the selected session', async () => {
+  const repository = new LocalRepository(new IDBFactory());
+  const legacy = await repository.createSession('Before redesign', 1);
+  await repository.saveSettings({ reportingTimezone: 'Europe/London' });
+  await repository.initialize();
+  const data = await repository.load();
+  expect(data.sessions.map(value => value.name)).toEqual(['Before redesign', 'Default']);
+  expect(data.currentSessionId).toBe(legacy.id);
+  expect(data.settings).toEqual({ reportingTimezone: 'Europe/London', inspection: false, debug: false, mirroredCrossInstructions: true });
+  repository.close();
+});

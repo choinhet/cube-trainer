@@ -1,0 +1,70 @@
+// @vitest-environment jsdom
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { afterEach, expect, it } from 'vitest';
+import { IDBFactory } from 'fake-indexeddb';
+import { LiveApp } from './LiveApp';
+import { LocalRepository } from '../adapters/local-repository';
+import { TimedHistory } from '../features/history/TimedHistory';
+import { CrossHistory } from '../features/cross/FreeCrossPractice';
+import { CrossAttempt } from '../domain/cross-attempt';
+import { SOLVED, turn } from '../domain/cube';
+import { GuidanceSteps } from '../components/GuidanceSteps';
+import type { GanCubeEvent } from 'gan-web-bluetooth';
+afterEach(() => { cleanup(); window.location.hash = ''; });
+it('provides home navigation and contextual device/settings dialogs', async () => {
+  let deliver: (event: GanCubeEvent) => void = () => {};
+  render(<LiveApp repository={new LocalRepository(new IDBFactory())} connectCube={async () => ({ deviceName: 'Test cube', events$: { subscribe: observer => { deliver = observer.next; return { unsubscribe: () => {} }; } }, sendCubeCommand: async () => {}, disconnect: async () => {} })} bluetoothAvailable />);
+  await screen.findByRole('link', { name: 'Cube Trainer' });
+  expect(screen.queryByRole('heading', { name: 'Connection' })).toBeNull();
+  expect(screen.queryByRole('button', { name: 'Request state' })).toBeNull();
+  fireEvent.click(screen.getByRole('button', { name: 'Connect Cube' }));
+  await screen.findByRole('button', { name: 'Connected' });
+  expect(screen.queryByRole('button', { name: 'Connect Cube' })).toBeNull();
+  expect(screen.getByRole('button', { name: 'Connected' }).getAttribute('data-connected')).toBe('true');
+  act(() => deliver({ type: 'BATTERY', timestamp: 1, batteryLevel: 82 }));
+  fireEvent.click(screen.getByRole('button', { name: 'Connected' }));
+  expect(screen.getByRole('dialog', { name: 'Device' })).toBeTruthy();
+  expect(screen.getByText('Battery: 82%')).toBeTruthy();
+  expect(screen.getByText(/Test cube/)).toBeTruthy();
+  expect(screen.getByRole('button', { name: 'Reset gyro (U4)' })).toBeTruthy();
+  fireEvent.click(screen.getByRole('button', { name: 'Close' }));
+  fireEvent.click(screen.getByRole('link', { name: 'Settings' }));
+  expect(screen.getByRole('dialog', { name: 'Settings' })).toBeTruthy();
+});
+it('shows every setup move and distinguishes completed/current moves without duplicated sequences', () => {
+  const sequence = Array.from({ length: 60 }, (_, i) => i % 2 ? 'U' : 'R');
+  render(<GuidanceSteps guide={{ sequence, progress: 2, provisional: false, undo: [], remaining: sequence.slice(2) }} status="preparing" />);
+  const moves = within(screen.getByLabelText('Actual setup moves')).getAllByRole('listitem');
+  expect(moves).toHaveLength(60);
+  expect(moves[0].getAttribute('data-completed')).toBe('true');
+  expect(moves[2].getAttribute('aria-current')).toBe('step');
+  expect(screen.queryByText(/Committed progress|Remaining:|Follow the highlighted/)).toBeNull();
+});
+it('uses two-column history with reliable TPS and named sessions, keeping IDs private in details', async () => {
+  const repo = new LocalRepository(new IDBFactory());
+  const session = await repo.createSession('Morning');
+  await repo.saveTimedResult({ id: 'secret-result-id', sessionId: session.id, status: 'completed', startedAt: 1000, rawDurationMs: 2000, penalty: '+2', timingBasis: 'host-monotonic-receipt', rawTurns: [{ move: 'R', serial: 1, hostMs: 0, deviceMs: null }, { move: 'U', serial: 2, hostMs: 2000, deviceMs: null }] });
+  render(<TimedHistory repository={repo} compact />);
+  await screen.findByRole('button', { name: '4.00 (+2)' });
+  expect(screen.getAllByRole('columnheader').map(el => el.textContent)).toEqual(['TPS', 'TIME']);
+  expect(screen.getByText('1.00')).toBeTruthy();
+  fireEvent.click(screen.getByRole('button', { name: '4.00 (+2)' }));
+  expect(screen.getByRole('dialog', { name: 'Solve details' })).toBeTruthy();
+  expect(screen.queryByText(/secret-result-id/)).toBeNull();
+  expect(document.body.textContent).not.toContain(session.id);
+});
+
+it('keeps cross history separate, named and free of internal IDs in its details', async () => {
+  const repository = new LocalRepository(new IDBFactory());
+  const session = await repository.createSession('Cross practice');
+  const attempt = new CrossAttempt('private-attempt', session.id, { caseId: 'private-case', startingState: turn(SOLVED, 'R2'), originalScramble: 'R2', color: 'white', optimum: 1 });
+  attempt.arm();
+  attempt.receive({ move: 'D', serial: 1, hostMs: 10, deviceMs: null }, 1000);
+  const record = attempt.abandon(30)!;
+  render(<CrossHistory compact records={[record]} error={null} repository={repository} sessionNames={{ [session.id]: session.name }} />);
+  expect(screen.getAllByRole('columnheader').map(el => el.textContent)).toEqual(['TPS', 'TIME', 'Moves']);
+  fireEvent.click(screen.getByRole('button', { name: 'abandoned' }));
+  expect(screen.getByRole('dialog', { name: 'Cross details' }).textContent).toContain('Session: Cross practice');
+  expect(document.body.textContent).not.toMatch(/private-attempt|private-case/);
+  expect(document.body.textContent).not.toContain(session.id);
+});

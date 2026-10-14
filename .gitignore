@@ -1,0 +1,7 @@
+ai-prds/
+node_modules/
+dist/
+test-results/
+playwright-report/
+.scratch/
+.implementation-backups/

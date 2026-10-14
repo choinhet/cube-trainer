@@ -1,0 +1,179 @@
+.cube-net {
+    display: grid;
+    grid-template: repeat(3, auto) / repeat(4, 88px);
+    gap: 8px;
+    margin: 20px 0;
+}
+.face > span {
+    font-size: 12px;
+}
+.stickers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+}
+.sticker {
+    display: grid;
+    place-items: center;
+    height: 27px;
+    font-size: 11px;
+    color: #101727;
+    background: #758096;
+    border-radius: 3px;
+    font-weight: 700;
+}
+.face-U {
+    grid-area: 1 / 2;
+}
+.face-R {
+    grid-area: 2 / 3;
+}
+.face-F {
+    grid-area: 2 / 2;
+}
+.face-D {
+    grid-area: 3 / 2;
+}
+.face-L {
+    grid-area: 2 / 1;
+}
+.face-B {
+    grid-area: 2 / 4;
+}
+.color-U {
+    background: #f1f4f8;
+}
+.color-R {
+    background: #f36d72;
+}
+.color-F {
+    background: #6cd6a1;
+}
+.color-D {
+    background: #eedb74;
+}
+.color-L {
+    background: #efaa69;
+}
+.color-B {
+    background: #7baafa;
+}
+@media (max-width: 600px) {
+    main {
+        padding: 20px 12px;
+    }
+    section {
+        padding: 16px;
+    }
+    .fields {
+        grid-template-columns: 1fr;
+    }
+    .cube-net {
+        grid-template-columns: repeat(4, 65px);
+    }
+    .sticker {
+        height: 22px;
+    }
+}
+.cube-view {
+    height: 360px;
+    display: grid;
+    place-items: center;
+    perspective: 900px;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grab;
+    overflow: hidden;
+}
+.cube-view:active {
+    cursor: grabbing;
+}
+.cube-physical {
+    transition: transform 90ms linear;
+}
+.cube-camera,
+.cube-physical {
+    width: 180px;
+    height: 180px;
+    position: relative;
+    transform-style: preserve-3d;
+}
+.cube-layer {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+}
+.cube-turning {
+    animation: face-turn 100ms linear both;
+}
+@keyframes face-turn {
+    from {
+        transform: var(--turn-from);
+    }
+    to {
+        transform: rotate3d(1, 0, 0, 0deg);
+    }
+}
+.cube-tile {
+    position: absolute;
+    left: 63px;
+    top: 63px;
+    width: 54px;
+    height: 54px;
+    border-radius: 6px;
+    display: grid;
+    place-items: center;
+    color: #101727;
+    font-weight: 800;
+    font-size: 20px;
+    background-color: #758096;
+    backface-visibility: hidden;
+    outline: 3px solid #090e16;
+}
+@media (prefers-reduced-motion: reduce) {
+    .cube-physical {
+        transition: none;
+    }
+    .cube-turning {
+        animation-duration: 1ms;
+    }
+}
+.cube-tile.color-U {
+    background: #f1f4f8;
+}
+.cube-tile.color-R {
+    background: #f36d72;
+}
+.cube-tile.color-F {
+    background: #6cd6a1;
+}
+.cube-tile.color-D {
+    background: #eedb74;
+}
+.cube-tile.color-L {
+    background: #efaa69;
+}
+.cube-tile.color-B {
+    background: #7baafa;
+}
+.practice-target {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+}
+.target-face {
+    display: grid;
+    grid-template-columns: repeat(3, 24px);
+    gap: 2px;
+    margin-top: 4px;
+}
+.target-face span {
+    height: 24px;
+    display: grid;
+    place-items: center;
+    color: #111;
+    font-size: 12px;
+    border-radius: 2px;
+}
