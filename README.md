@@ -1,83 +1,120 @@
 # Cube Trainer
 
-A browser-only React/TypeScript application for inspecting a connected GAN cube,
-practicing timed solves, and learning efficient crosses. GAN16 UI is validated in
-Windows Chrome for connection and live viewing. GAN i4, Edge, and integrated
-physical practice acceptance remain assigned to issue 017.
+A browser app for practicing full solves and efficient crosses with a GAN smart
+cube. Physical turns update a live 3D cube, drive scramble guidance, and start
+and stop timing automatically. Sessions and results are saved locally in your
+browser.
 
-## Run
+## Features
 
-Requirements: Node.js 24 and npm, Windows Chrome or Edge, Bluetooth enabled.
+### Solve
+
+- Automatically prepares a new scramble from your cube's current synchronized
+  state, with step-by-step setup and correction guidance.
+- Starts timing on the first solve turn and stops when the cube is solved.
+- Offers optional 15-second inspection, with a +2 penalty until 17 seconds and
+  DNF after that.
+- Saves results automatically and advances to the next scramble. Abandoning an
+  active solve records a DNF; cancelling setup creates no solve result.
+- Shows saved times and turns per second (TPS). Open a result to review its
+  session, date, status, and raw time, toggle +2 or DNF, or delete it.
+
+### Cross Trainer
+
+Practice any of the six cross colors at difficulties from **1 to 8 optimal
+moves**. Each generated case scrambles the whole cube and guides you to its
+starting position from your current cube state.
+
+| Mode             | How it works                                                                                                       |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **Free**         | Solve the cross your own way, with a timer and executed move count. Reveal an optimal solution when you want help. |
+| **Semi-guided**  | Find an optimal route with the algorithm hidden. Mistakes show undo guidance.                                      |
+| **Fully-guided** | Follow a displayed optimal solution. The continuation adapts when you choose another optimal route.                |
+
+Both guided modes accept every optimal route. Compare your executed move count
+with the optimum, retry the same case, or move to the next one. You can switch
+modes during an attempt; history records these attempts as Mixed and remembers
+whether a solution was displayed or revealed.
+
+Copy a case's shareable scramble, or use **Import shared scramble** to paste
+face turn notation such as `R U2 F'` and choose a cross color. Imported
+scrambles use white on top and green in front; their difficulty is calculated
+automatically. The app adapts setup to your connected cube's current position.
+
+Cross history is separate from full solve history and includes the case, mode,
+completion status, executed moves, optimum, and assistance status. Free attempts
+also show time and TPS. See [Cross Trainer details](docs/cross-trainer.md) for
+mode switching, move counting, and instruction orientation.
+
+### Live cube and preferences
+
+- View physical turns and gyro orientation on an interactive 3D cube. Drag to
+  orbit the camera, or use arrow keys while the viewer is focused.
+- Open the connected cube's **Device** panel to check its battery, disconnect,
+  reset the gyro, or confirm a physically solved cube for state synchronization.
+- Create and select named practice sessions with the **Session** picker. A
+  **Default** session is available on first use.
+- Use **Settings** to enable inspection, show face labels, or display cross
+  instructions with the selected cross on the bottom.
+- Enable **Debug** for connection and state diagnostics, downloadable viewer
+  traces, and an exact cross case inspector.
+
+**Insights** currently provides access to saved solve results and their details.
+Progress graphs, averages, and milestones are not available yet.
+
+## Run locally
+
+Use Node.js 24 and npm. Cube connection requires Bluetooth and a browser with
+Web Bluetooth support; use Chrome or Edge on Windows. GAN16 UI connection and
+live viewing have been verified in Windows Chrome. Other device/browser
+combinations may vary.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open http://127.0.0.1:5173/. Localhost is a secure context for Web Bluetooth;
-hosted copies require HTTPS. Click **Connect cube** to open the chooser. A
-cancelled chooser or denied permission permits retry. Only one connection is
-allowed, including while the preceding connection is being torn down.
+Open [Cube Trainer locally](http://127.0.0.1:5173/), keep your cube awake, and
+click **Connect Cube**. Select it in the browser's Bluetooth chooser. If
+prompted, enter the cube's Bluetooth MAC address from the GAN app or device
+label; it is remembered for that device. Localhost supports Web Bluetooth;
+hosted copies require HTTPS.
 
-A validated device report establishes initial synchronization. Unknown state
-stays unknown. If a report is unavailable, physically solve the cube, choose
-**Device**, then **Reset cube state (D4)**, and explicitly confirm. A conflicting unsolved report
-cannot be overwritten. With no serial available, the first live move establishes
-the event baseline; loss before that baseline cannot be detected.
+Once the cube is synchronized, practice prepares automatically. Follow the setup
+moves until **You may start** appears, then begin solving. Setup moves use white
+on top and green in front. Cross guidance includes holding instructions for your
+chosen cross color.
 
-Drag the 3D cube to orbit the camera; hold arrow keys while focused to orbit
-continuously. Gyro orientation remains separate from camera and logical state.
-White is U, yellow D, red R, orange L, green F, and blue B. Center letters define
-notation. Each accepted physical quarter turn updates the cube immediately.
-Tracking recovery requests fresh device state automatically. Recovered turns and
-connection loss preserve an armed attempt and its running timer; reconnecting
-restores tracking without manual synchronization.
+If the app cannot establish the cube state, physically solve every face, open
+**Device**, choose **Reset cube state (D4)**, and confirm that the cube is
+solved.
 
-A persistent **Default** session is ready on first use. Use the compact Session picker to select sessions and **New session** to create one in a dialog. Practice scrambles prepare automatically after connecting and after **Next scramble**. Follow
-the full executable move sequence to its full target from the current synchronized
-state. Setup mistakes show undo guidance. Optional inspection starts at target
-arrival; the next physical turn starts solve timing and solved state stops it.
-Results retain raw duration separately from inspection penalties and save locally. Before the first turn, cancellation creates no result; active abandonment saves DNF. Recovered Bluetooth turns retain their recovery flags and hardware timestamps in the saved trace and use host receipt time for timing. Browser reopening recovers unfinished checkpoints as interrupted records. Failed writes stay visible and retryable. Use one practice page for an active attempt.
-See [timing details](docs/timed-results.md) and [recovery behavior](docs/interruption-recovery.md).
+## Local data and timing
 
-Cross practice generates a full-cube scramble with the selected cross difficulty; the scramble does not expose a minimal cross solution. Choose **Free**, **Semi-guided**, or **Fully-guided**. Guided modes accept every optimal route and show undo guidance after mistakes. Fully-guided mode keeps completed moves visible and switches the displayed continuation when you choose an alternative optimal route. Completed cases stay available for **Retry same case**, **Next case**, and, in Free mode, **Reveal cross solution**. See [cross trainer behavior](docs/cross-trainer.md).
+Sessions, preferences, and practice history are stored in IndexedDB for this
+browser profile and site address. Clearing browser data can remove them. There
+is no account, cloud sync, history export/import, or backup facility. Shared
+scramble import is available in the Cross Trainer.
 
-The **Exact cross case inspector** offers all six colors and exact difficulties
-1–8. It shows full targets, every optimal next move, and a display continuation.
-The inspector itself does not record practice attempts. See
-[solver validation and measured performance](docs/cross-solver.md).
+The app attempts to recover tracking after missed Bluetooth events. Reconnecting
+can restore tracking while a solve timer continues running. Reopening the
+browser records unfinished saved checkpoints as interrupted attempts. If a
+result cannot be saved, the app shows an error and a retry action. Use one
+practice page for an active attempt.
 
-Sessions, settings, and completed results belong to this browser profile and
-site origin in IndexedDB. Clearing browser data can remove them. There is no
-account, application backend, export/import, or backup.
+Timing uses the browser's receipt of cube events, so Bluetooth latency and event
+batching can affect measured times.
 
-Enable **Debug** in **Settings**, then open **Viewer traces** to download viewer traces before
-reloading. Viewer traces remain in memory. Elapsed timing uses host
-`performance.now()` receipt time with uncompensated Bluetooth latency/batching;
-it is not a calibrated hardware-precision guarantee.
+## Project commands
 
-## Diagnostic and physical acceptance
-
-The diagnostic is available on **Debug** after enabling it in **Settings**.
-Use [the diagnostic procedure](docs/device-diagnostic.md) and
-[the viewer checklist](docs/live-viewer.md). Synthetic events and browser tests
-verify software behavior; hardware acceptance requires physical observations.
-
-## Verification
+The app uses React, TypeScript, and Vite and runs entirely in the browser.
 
 ```sh
-npm test
-npm run typecheck
-npm run lint
-npm run test:browser
+npm run build         # Type-check and build production assets
+npm test              # Unit and component tests
+npm run typecheck     # TypeScript checks
+npm run lint          # ESLint checks
+npm run test:browser  # Build and run browser integration tests
 ```
 
-The browser command builds production assets and runs installed Windows Chrome
-integration checks against development and production origins. Unit tests cover
-cube validity, event integrity, guidance, lifecycle, storage, and exact cross
-search. CSS perspective/3D transforms render the cube. Dependencies are pinned in
-package.json and package-lock.json.
-
-## Workspace design
-
-See [design tokens and controls](docs/design-system.md), [source responsibilities](docs/source-boundaries.md), and [actual screen review](docs/design-review/README.md). Issue 022 has a separate human visual acceptance gate; screenshots and passing tests do not establish approval.
+Browser integration tests use installed Windows Chrome.
