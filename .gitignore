@@ -5,3 +5,4 @@ test-results/
 playwright-report/
 .scratch/
 .implementation-backups/
+docs/design-review/
