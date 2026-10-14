@@ -187,7 +187,7 @@ export function CubeView({
   }
   function orbit(): void {
     const keys = heldKeys.current;
-    const x = Number(keys.has("ArrowDown")) - Number(keys.has("ArrowUp"));
+    const x = Number(keys.has("ArrowUp")) - Number(keys.has("ArrowDown"));
     const y = Number(keys.has("ArrowRight")) - Number(keys.has("ArrowLeft"));
     const angle = Math.PI / 200; // 1.8 degrees per 16 ms: a full orbit in 3.2 s.
     setCamera((previous) =>
@@ -262,7 +262,7 @@ export function CubeView({
           const dx = event.clientX - drag.current.start[0], dy = event.clientY - drag.current.start[1];
           if (Math.max(Math.abs(dx), Math.abs(dy)) >= 30) {
             if (Math.abs(dx) >= Math.abs(dy)) quarterTurn(0, Math.sign(dx));
-            else quarterTurn(Math.sign(dy), 0);
+            else quarterTurn(-Math.sign(dy), 0);
           }
         }
         drag.current = null;
@@ -289,7 +289,7 @@ export function CubeView({
         if (locked3dMode) {
           if (event.repeat || heldKeys.current.has(event.key)) return;
           heldKeys.current.add(event.key);
-          quarterTurn(Number(event.key === "ArrowDown") - Number(event.key === "ArrowUp"), Number(event.key === "ArrowRight") - Number(event.key === "ArrowLeft"));
+          quarterTurn(Number(event.key === "ArrowUp") - Number(event.key === "ArrowDown"), Number(event.key === "ArrowRight") - Number(event.key === "ArrowLeft"));
           return;
         }
         heldKeys.current.add(event.key);

@@ -267,6 +267,23 @@ it('turns a locked view once per arrow press and preserves the adjustment across
   fireEvent.keyDown(view, { key: 'ArrowDown' }); fireEvent.keyUp(view, { key: 'ArrowDown' });
   expect(pose.style.transform.slice(9,-1).split(',').map(Number).map(v => Math.round(v))).toEqual([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]);
 });
+it('brings the top toward the viewer for Down and downward drags', () => {
+  const { rerender } = render(<CubeView facelets={SOLVED} orientation={null} locked3dMode />);
+  const view = screen.getByLabelText('Live 3D cube');
+  const topDepth = (label: string) => -Number(screen.getByLabelText(label).style.transform.slice(9, -1).split(',')[6]);
+  fireEvent.keyDown(view, { key: 'ArrowDown' }); fireEvent.keyUp(view, { key: 'ArrowDown' });
+  expect(topDepth('Physical orientation')).toBeCloseTo(1);
+  rerender(<CubeView facelets={SOLVED} orientation={null} locked3dMode viewResetVersion={1} />);
+  for (const [type, y] of [['pointerdown', 30], ['pointermove', 120], ['pointerup', 120]] as const) {
+    const event = new MouseEvent(type, { bubbles: true, clientX: 90, clientY: y, button: 0 });
+    Object.defineProperty(event, 'pointerId', { value: 1 }); fireEvent(view, event);
+  }
+  expect(topDepth('Physical orientation')).toBeCloseTo(1);
+  rerender(<CubeView facelets={SOLVED} orientation={null} />);
+  const before = topDepth('Camera orbit');
+  fireEvent.keyDown(view, { key: 'ArrowDown' }); fireEvent.keyUp(view, { key: 'ArrowDown' });
+  expect(topDepth('Camera orbit')).toBeGreaterThan(before);
+});
 it('commits one dominant-axis locked drag on release, ignoring small gestures, cancellation and other pointers', () => {
   render(<CubeView facelets={SOLVED} orientation={null} locked3dMode />);
   const view = screen.getByLabelText('Live 3D cube'), pose = screen.getByLabelText('Physical orientation');
