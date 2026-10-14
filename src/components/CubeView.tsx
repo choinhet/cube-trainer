@@ -1,3 +1,4 @@
+import { DEFAULT_VIEW_ANGLE } from '../domain/view-preferences';
 import {
   useEffect,
   useLayoutEffect,
@@ -38,7 +39,7 @@ export function CubeView({
   turns = noTurns,
   showFaceLabels = false,
   locked3dMode = false,
-  defaultAngle = 25,
+  defaultAngle = DEFAULT_VIEW_ANGLE,
   viewResetVersion = 0,
 }: {
   facelets: string | null;
@@ -148,16 +149,18 @@ export function CubeView({
       },
     ),
   );
-  const [physical, setPhysical] = useState(() => snapOrientation(ganToRenderer(orientation)));
-  const [manual, setManual] = useState(IDENTITY_ORIENTATION);
   const { x = 0, y = 0, z = 0, w = 1 } = orientation ?? {};
+  const length = Math.hypot(x, y, z, w);
+  const hasOrientation = orientation !== null && Number.isFinite(length) && length > 0;
+  // The default display is identity, but no sensor pose has been observed yet.
+  const [physical, setPhysical] = useState<Quaternion | null>(() => hasOrientation ? snapOrientation(ganToRenderer(orientation)) : null);
+  const [manual, setManual] = useState(IDENTITY_ORIENTATION);
   useLayoutEffect(() => {
-    const length = Math.hypot(x, y, z, w);
-    if (locked3dMode && Number.isFinite(length) && length > 0) setPhysical(previous => snapOrientation(ganToRenderer({ x, y, z, w }), previous));
-  }, [locked3dMode, x, y, z, w]);
+    if (locked3dMode && hasOrientation) setPhysical(previous => snapOrientation(ganToRenderer({ x, y, z, w }), previous));
+  }, [locked3dMode, hasOrientation, x, y, z, w]);
   useLayoutEffect(() => {
     setManual(IDENTITY_ORIENTATION);
-    setPhysical(snapOrientation(ganToRenderer(orientation)));
+    setPhysical(hasOrientation ? snapOrientation(ganToRenderer(orientation)) : null);
     stopOrbit();
     drag.current = null;
   }, [locked3dMode, viewResetVersion]);
@@ -300,7 +303,7 @@ export function CubeView({
         <div
           className="cube-physical"
           aria-label="Physical orientation"
-          style={{ transform: locked3dMode ? quaternionTransform(multiply(manual, physical)) : orientationTransform(orientation) }}
+          style={{ transform: locked3dMode ? quaternionTransform(multiply(manual, physical ?? IDENTITY_ORIENTATION)) : orientationTransform(orientation) }}
         >
           <div className="cube-layer">
             {stickers.map((_, index) => !moving(index) && tile(index))}

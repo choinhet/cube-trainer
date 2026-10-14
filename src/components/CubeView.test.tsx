@@ -304,3 +304,25 @@ it('stops a free orbit when locking and ignores invalid sensor samples without l
   act(() => vi.advanceTimersByTime(200));
   expect(screen.getByLabelText('Camera orbit').style.transform).toBe(free);
 });
+it('initializes from the nearest first gyro pose after mounting and reconnecting, then applies hysteresis', () => {
+  const gyro = (degrees: number) => ({x:0,y:0,z:Math.sin(degrees*Math.PI/360),w:Math.cos(degrees*Math.PI/360)});
+  const {rerender} = render(<CubeView facelets={SOLVED} orientation={null} locked3dMode />);
+  const pose = screen.getByLabelText('Physical orientation');
+  const initial = pose.style.transform;
+  rerender(<CubeView facelets={SOLVED} orientation={{x:0,y:0,z:0,w:0}} locked3dMode />);
+  rerender(<CubeView facelets={SOLVED} orientation={gyro(46)} locked3dMode />);
+  const quarter = pose.style.transform;
+  expect(quarter).not.toBe(initial);
+  rerender(<CubeView facelets={SOLVED} orientation={gyro(41)} locked3dMode />);
+  expect(pose.style.transform).toBe(quarter);
+  rerender(<CubeView facelets={SOLVED} orientation={gyro(39)} locked3dMode />);
+  expect(pose.style.transform).toBe(initial);
+  rerender(<CubeView facelets={SOLVED} orientation={gyro(49)} locked3dMode />);
+  expect(pose.style.transform).toBe(initial);
+  rerender(<CubeView facelets={SOLVED} orientation={gyro(50)} locked3dMode />);
+  expect(pose.style.transform).toBe(quarter);
+  rerender(<CubeView facelets={SOLVED} orientation={null} locked3dMode viewResetVersion={1} />);
+  expect(pose.style.transform).toBe(initial);
+  rerender(<CubeView facelets={SOLVED} orientation={gyro(46)} locked3dMode viewResetVersion={1} />);
+  expect(pose.style.transform).toBe(quarter);
+});
