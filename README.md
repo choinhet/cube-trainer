@@ -50,6 +50,15 @@ mode switching, move counting, and instruction orientation.
 
 - View physical turns and gyro orientation on an interactive 3D cube. Drag to
   orbit the camera, or use arrow keys while the viewer is focused.
+- Enable **Locked 3D mode** in Settings to keep a fixed 24-degree downward
+  tilt while physical rotations snap instantly between all 24 cube orientations.
+  Small gyro movements stay still. **Default angle (degrees)** adjusts front/right
+  visibility from 5 to 85 degrees (25 by default); valid edits apply immediately.
+  Both preferences are saved locally and apply to Solve and Cross Trainer.
+- In locked mode, each arrow press or deliberate drag turns the view by one
+  quarter-turn. Hold/repeat, clicks, and small drags add no extra rotations.
+  Manual viewing adjustments survive gyro updates; **Reset gyro (U4)** or
+  reconnecting clears them. Disable locked mode to restore continuous viewing.
 - Open the connected cube's **Device** panel to check its battery, disconnect,
   reset the gyro, or confirm a physically solved cube for state synchronization.
 - Create and select named practice sessions with the **Session** picker. A

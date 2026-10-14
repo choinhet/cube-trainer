@@ -7,38 +7,8 @@ import {
 } from "react";
 import { FACES, normals, stickers, turn } from "../domain/cube";
 import type { PhysicalTurn } from "../domain/diagnostic";
-export interface Quaternion {
-  x: number;
-  y: number;
-  z: number;
-  w: number;
-}
-/** GAN frame is +X red, +Y blue, +Z white; CSS frame is right/down/front.
- * Quaternion vector components are axial: this reflected basis negates X.
- */
-export function orientationTransform(q: Quaternion | null): string {
-  if (!q) return "matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1)";
-  const length = Math.hypot(q.x, q.y, q.z, q.w);
-  if (!Number.isFinite(length) || length === 0)
-    return orientationTransform(null);
-  return quaternionTransform({
-    x: -q.x / length,
-    y: q.z / length,
-    z: q.y / length,
-    w: q.w / length,
-  });
-}
-function quaternionTransform({ x, y, z, w }: Quaternion): string {
-  return `matrix3d(${[1 - 2 * (y * y + z * z), 2 * (x * y + z * w), 2 * (x * z - y * w), 0, 2 * (x * y - z * w), 1 - 2 * (x * x + z * z), 2 * (y * z + x * w), 0, 2 * (x * z + y * w), 2 * (y * z - x * w), 1 - 2 * (x * x + y * y), 0, 0, 0, 0, 1].join(",")})`;
-}
-function multiply(a: Quaternion, b: Quaternion): Quaternion {
-  return {
-    x: a.w * b.x + a.x * b.w + a.y * b.z - a.z * b.y,
-    y: a.w * b.y - a.x * b.z + a.y * b.w + a.z * b.x,
-    z: a.w * b.z + a.x * b.y - a.y * b.x + a.z * b.w,
-    w: a.w * b.w - a.x * b.x - a.y * b.y - a.z * b.z,
-  };
-}
+import { ganToRenderer, IDENTITY_ORIENTATION, multiply, orientationTransform, quaternionTransform, snapOrientation, type Quaternion } from "../domain/cube-orientation";
+export { orientationTransform, type Quaternion } from "../domain/cube-orientation";
 function sphere(x: number, y: number, rect: DOMRect): [number, number, number] {
   const radius = Math.max(1, Math.min(rect.width, rect.height) / 2);
   const sx = (x - rect.left - rect.width / 2) / radius;
@@ -67,11 +37,17 @@ export function CubeView({
   orientation,
   turns = noTurns,
   showFaceLabels = false,
+  locked3dMode = false,
+  defaultAngle = 25,
+  viewResetVersion = 0,
 }: {
   facelets: string | null;
   orientation: Quaternion | null;
   turns?: PhysicalTurn[];
   showFaceLabels?: boolean;
+  locked3dMode?: boolean;
+  defaultAngle?: number;
+  viewResetVersion?: number;
 }) {
   const seen = useRef({
     count: turns.length,
@@ -172,6 +148,19 @@ export function CubeView({
       },
     ),
   );
+  const [physical, setPhysical] = useState(() => snapOrientation(ganToRenderer(orientation)));
+  const [manual, setManual] = useState(IDENTITY_ORIENTATION);
+  const { x = 0, y = 0, z = 0, w = 1 } = orientation ?? {};
+  useLayoutEffect(() => {
+    const length = Math.hypot(x, y, z, w);
+    if (locked3dMode && Number.isFinite(length) && length > 0) setPhysical(previous => snapOrientation(ganToRenderer({ x, y, z, w }), previous));
+  }, [locked3dMode, x, y, z, w]);
+  useLayoutEffect(() => {
+    setManual(IDENTITY_ORIENTATION);
+    setPhysical(snapOrientation(ganToRenderer(orientation)));
+    stopOrbit();
+    drag.current = null;
+  }, [locked3dMode, viewResetVersion]);
   const heldKeys = useRef(new Set<string>());
   const orbitTimer = useRef<number | null>(null);
   function stopOrbit(): void {
@@ -185,6 +174,10 @@ export function CubeView({
     },
     [],
   );
+  function quarterTurn(x: number, y: number): void {
+    const step = { x: x * Math.SQRT1_2, y: y * Math.SQRT1_2, z: 0, w: Math.SQRT1_2 };
+    setManual(previous => snapOrientation(multiply(step, previous)));
+  }
   function orbit(): void {
     const keys = heldKeys.current;
     const x = Number(keys.has("ArrowDown")) - Number(keys.has("ArrowUp"));
@@ -203,16 +196,17 @@ export function CubeView({
   const drag = useRef<{
     point: [number, number, number];
     pointer: number;
+    start: [number, number];
   } | null>(null);
   return (
     <div
-      className="cube-view"
+      className={`cube-view${locked3dMode ? " cube-view-locked" : ""}`}
       role="img"
       aria-label="Live 3D cube"
       tabIndex={0}
       data-state={facelets ?? "?".repeat(54)}
       onPointerDown={(event) => {
-        if (event.button !== 0) return;
+        if (event.button !== 0 || event.isPrimary === false) return;
         event.preventDefault();
         event.currentTarget.focus();
         event.currentTarget.setPointerCapture?.(event.pointerId);
@@ -223,10 +217,11 @@ export function CubeView({
             event.currentTarget.getBoundingClientRect(),
           ),
           pointer: event.pointerId,
+          start: [event.clientX, event.clientY],
         };
       }}
       onPointerMove={(event) => {
-        if (!drag.current || drag.current.pointer !== event.pointerId) return;
+        if (!drag.current || drag.current.pointer !== event.pointerId || locked3dMode) return;
         const a = drag.current.point,
           b = sphere(
             event.clientX,
@@ -254,14 +249,22 @@ export function CubeView({
           );
         drag.current.point = b;
       }}
-      onPointerUp={() => {
+      onPointerUp={(event) => {
+        if (!drag.current || drag.current.pointer !== event.pointerId) return;
+        if (locked3dMode) {
+          const dx = event.clientX - drag.current.start[0], dy = event.clientY - drag.current.start[1];
+          if (Math.max(Math.abs(dx), Math.abs(dy)) >= 30) {
+            if (Math.abs(dx) >= Math.abs(dy)) quarterTurn(0, Math.sign(dx));
+            else quarterTurn(Math.sign(dy), 0);
+          }
+        }
         drag.current = null;
       }}
-      onPointerCancel={() => {
-        drag.current = null;
+      onPointerCancel={(event) => {
+        if (drag.current?.pointer === event.pointerId) drag.current = null;
       }}
-      onLostPointerCapture={() => {
-        drag.current = null;
+      onLostPointerCapture={(event) => {
+        if (drag.current?.pointer === event.pointerId) drag.current = null;
       }}
       onBlur={stopOrbit}
       onKeyUp={(event) => {
@@ -276,6 +279,12 @@ export function CubeView({
         )
           return;
         event.preventDefault();
+        if (locked3dMode) {
+          if (event.repeat || heldKeys.current.has(event.key)) return;
+          heldKeys.current.add(event.key);
+          quarterTurn(Number(event.key === "ArrowDown") - Number(event.key === "ArrowUp"), Number(event.key === "ArrowRight") - Number(event.key === "ArrowLeft"));
+          return;
+        }
         heldKeys.current.add(event.key);
         if (orbitTimer.current === null) {
           orbit();
@@ -286,12 +295,12 @@ export function CubeView({
       <div
         className="cube-camera"
         aria-label="Camera orbit"
-        style={{ transform: quaternionTransform(camera) }}
+        style={{ transform: locked3dMode ? `rotateX(-24deg) rotateY(-${defaultAngle}deg)` : quaternionTransform(camera) }}
       >
         <div
           className="cube-physical"
           aria-label="Physical orientation"
-          style={{ transform: orientationTransform(orientation) }}
+          style={{ transform: locked3dMode ? quaternionTransform(multiply(manual, physical)) : orientationTransform(orientation) }}
         >
           <div className="cube-layer">
             {stickers.map((_, index) => !moving(index) && tile(index))}
