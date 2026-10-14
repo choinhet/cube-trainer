@@ -3,7 +3,7 @@ import type { Connection } from '../domain/session';
 import type { GanCubeEvent } from 'gan-web-bluetooth';
 import { DiagnosticSession } from '../domain/session';
 import { Diagnostic } from '../domain/diagnostic';
-import type { Quaternion } from '../components/CubeView';
+import type { Quaternion } from '../domain/cube-orientation';
 import { SOLVED, turn } from '../domain/cube';
 import { Guidance, normalizeTurns } from '../domain/guidance';
 import type { PracticeScramble } from '../domain/scramble';
@@ -379,6 +379,7 @@ export class LiveSession extends DiagnosticSession {
     else if (this.diagnostic.snapshot().orientation) this.resetGyro();
   }
   private gyroReference: Quaternion | null = null;
+  viewResetVersion = 0;
   get orientation(): Quaternion | null {
     const q = this.diagnostic.snapshot().orientation;
     const r = this.gyroReference;
@@ -395,6 +396,7 @@ export class LiveSession extends DiagnosticSession {
     const orientation = this.diagnostic.snapshot().orientation;
     if (!orientation) throw new Error('Wait for physical orientation before resetting');
     this.gyroReference = orientation;
+    this.viewResetVersion++;
     this.notify();
   }
   private recoveryTimer: ReturnType<typeof setTimeout> | null = null;
@@ -402,7 +404,7 @@ export class LiveSession extends DiagnosticSession {
     if (this.recoveryTimer !== null) clearTimeout(this.recoveryTimer);
     this.recoveryTimer = null;
   }
-  protected override createDiagnostic(): Diagnostic { this.clearRecoveryTimer(); this.gyroReference = null; this.confirmationPending = false; return new Diagnostic(true); }
+  protected override createDiagnostic(): Diagnostic { this.clearRecoveryTimer(); this.gyroReference = null; this.viewResetVersion++; this.confirmationPending = false; return new Diagnostic(true); }
   readonly timingBasis = 'performance.now() at adapter receipt; Bluetooth latency/batching not compensated';
   get canPractice(): boolean {
     const snapshot = this.diagnostic.snapshot();

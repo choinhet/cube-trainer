@@ -177,3 +177,7 @@
     font-size: 12px;
     border-radius: 2px;
 }
+.cube-view-locked .cube-camera,
+.cube-view-locked .cube-physical {
+    transition: none;
+}

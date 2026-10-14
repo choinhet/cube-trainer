@@ -207,3 +207,28 @@ it('renders automatic timing and makes failed saving visible', async () => {
 });
 
 
+it('uses saved locked viewing preferences on both screens and clears manual rotations on gyro reset and reconnect', async () => {
+  let deliver: (event: GanCubeEvent) => void = () => {};
+  const connection: Connection = { deviceName: 'locked cube', events$: { subscribe: observer => { deliver = observer.next; return { unsubscribe: () => {} }; } }, sendCubeCommand: async () => {}, disconnect: async () => {} };
+  const repository = new LocalRepository(new IDBFactory());
+  await repository.saveSettings({ reportingTimezone: 'UTC', locked3dMode: true, defaultAngle: 65 });
+  render(<LiveApp repository={repository} connectCube={async () => connection} bluetoothAvailable />);
+  await waitFor(() => expect(screen.getByLabelText('Camera orbit').style.transform).toBe('rotateX(-24deg) rotateY(-65deg)'));
+  fireEvent.click(screen.getByRole('button', { name:'Connect Cube' })); await screen.findByRole('button',{name:'Connected'});
+  act(() => deliver({type:'GYRO',timestamp:1,quaternion:{x:0,y:0,z:0,w:1}}));
+  const initial = screen.getByLabelText('Physical orientation').style.transform;
+  const rotate = (): void => { fireEvent.keyDown(screen.getByLabelText('Live 3D cube'),{key:'ArrowRight'}); fireEvent.keyUp(screen.getByLabelText('Live 3D cube'),{key:'ArrowRight'}); };
+  rotate(); expect(screen.getByLabelText('Physical orientation').style.transform).not.toBe(initial);
+  fireEvent.click(screen.getByRole('button',{name:'Connected'}));
+  fireEvent.click(screen.getByRole('button',{name:'Reset gyro (U4)'}));
+  expect(screen.getByLabelText('Physical orientation').style.transform).toBe(initial);
+  fireEvent.click(screen.getByRole('button',{name:'Close'}));
+  fireEvent.click(screen.getByRole('link',{name:'Cross Trainer'}));
+  expect(screen.getByLabelText('Camera orbit').style.transform).toBe('rotateX(-24deg) rotateY(-65deg)');
+  rotate();
+  act(() => deliver({type:'DISCONNECT',timestamp:2}));
+  fireEvent.click(screen.getByRole('button',{name:'Connect Cube'})); await screen.findByRole('button',{name:'Connected'});
+  expect(screen.getByLabelText('Physical orientation').style.transform).toBe(initial);
+  expect((await repository.load()).settings.defaultAngle).toBe(65);
+});
+
