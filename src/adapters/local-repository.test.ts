@@ -5,11 +5,11 @@ import { LocalRepository } from './local-repository';
 it('starts empty and atomically creates and selects an explicit session across reopening', async () => {
   const factory = new IDBFactory();
   const repository = new LocalRepository(factory);
-  expect(await repository.load()).toEqual({ sessions: [], currentSessionId: null, settings: { reportingTimezone: 'America/Sao_Paulo', mirroredCrossInstructions: true } });
+  expect(await repository.load()).toEqual({ sessions: [], currentSessionId: null, settings: { reportingTimezone: 'America/Sao_Paulo', mirroredCrossInstructions: true, locked3dMode: false, defaultAngle: 25 } });
   const session = await repository.createSession(' Evening ', 1234);
   expect(session).toEqual({ id: expect.any(String), name: 'Evening', createdAt: 1234 });
   const reopened = new LocalRepository(factory);
-  expect(await reopened.load()).toEqual({ sessions: [session], currentSessionId: session.id, settings: { reportingTimezone: 'America/Sao_Paulo', mirroredCrossInstructions: true } });
+  expect(await reopened.load()).toEqual({ sessions: [session], currentSessionId: session.id, settings: { reportingTimezone: 'America/Sao_Paulo', mirroredCrossInstructions: true, locked3dMode: false, defaultAngle: 25 } });
   repository.close(); reopened.close();
 });
 
@@ -90,4 +90,29 @@ it('concurrent recovery transactions preserve one canonical interrupted result',
   await first.finalizeTimedAttempt(records[0]); await second.finalizeTimedAttempt(records[0]);
   expect(await first.listTimedResults()).toEqual(records); expect(await first.listCheckpoints()).toEqual([]);
   first.close(); second.close();
+});
+
+it('backfills locked-view defaults for new and existing preferences and persists explicit values', async () => {
+  const factory = new IDBFactory(); const repository = new LocalRepository(factory);
+  expect((await repository.load()).settings).toMatchObject({ locked3dMode: false, defaultAngle: 25 });
+  await repository.saveSettings({ reportingTimezone: 'UTC', debug: true });
+  expect((await repository.load()).settings).toMatchObject({ locked3dMode: false, defaultAngle: 25 });
+  expect((await repository.initialize()).settings).toMatchObject({ reportingTimezone: 'UTC', debug: true, locked3dMode: false, defaultAngle: 25 });
+  await repository.saveSettings({ reportingTimezone: 'UTC', locked3dMode: true, defaultAngle: 85 });
+  repository.close();
+  const reopened = new LocalRepository(factory);
+  expect((await reopened.load()).settings).toMatchObject({ locked3dMode: true, defaultAngle: 85 });
+  reopened.close();
+});
+
+it('rejects invalid angles without changing the last saved preference or notifying subscribers', async () => {
+  const repository = new LocalRepository(new IDBFactory());
+  await repository.saveSettings({ reportingTimezone: 'UTC', locked3dMode: true, defaultAngle: 5 });
+  let changes = 0; repository.subscribe(() => { changes++; });
+  for (const defaultAngle of [4.99, 85.01, NaN, Infinity, -Infinity]) {
+    await expect(repository.saveSettings({ reportingTimezone: 'UTC', defaultAngle })).rejects.toThrow('5 and 85');
+  }
+  expect((await repository.load()).settings).toMatchObject({ locked3dMode: true, defaultAngle: 5 });
+  expect(changes).toBe(0);
+  repository.close();
 });

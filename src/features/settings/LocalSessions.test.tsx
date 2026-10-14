@@ -79,3 +79,49 @@ it('shows restoration errors and retries storage', async () => {
   await screen.findByRole('checkbox', { name: 'Enable Debug' });
   expect(screen.queryByRole('alert')).toBeNull();
 });
+
+it('immediately saves and propagates locked mode and angle, restoring both across reopening', async () => {
+  const repository = new LocalRepository(new IDBFactory()); const onSettings = vi.fn();
+  render(<LocalSessions repository={repository} onReady={() => {}} onSettings={onSettings} />);
+  const mode = await screen.findByRole('checkbox', { name: 'Locked 3D mode' });
+  const angle = screen.getByRole('spinbutton', { name: 'Default angle (degrees)' }) as HTMLInputElement;
+  expect((mode as HTMLInputElement).checked).toBe(false); expect(angle.value).toBe('25');
+  fireEvent.click(mode);
+  await waitFor(() => expect(onSettings).toHaveBeenLastCalledWith(expect.objectContaining({ locked3dMode: true, defaultAngle: 25 })));
+  fireEvent.change(angle, { target: { value: '37.5' } });
+  await waitFor(() => expect(onSettings).toHaveBeenLastCalledWith(expect.objectContaining({ locked3dMode: true, defaultAngle: 37.5 })));
+  expect((await repository.load()).settings).toMatchObject({ locked3dMode: true, defaultAngle: 37.5 });
+  cleanup(); repository.close();
+  render(<LocalSessions repository={repository} onReady={() => {}} onSettings={() => {}} />);
+  expect(((await screen.findByRole('checkbox', { name: 'Locked 3D mode' })) as HTMLInputElement).checked).toBe(true);
+  expect((screen.getByRole('spinbutton') as HTMLInputElement).value).toBe('37.5');
+});
+it('keeps incomplete and invalid angle edits unsaved while other preferences use the last valid angle', async () => {
+  const repository = new LocalRepository(new IDBFactory()); const onSettings = vi.fn();
+  render(<LocalSessions repository={repository} onReady={() => {}} onSettings={onSettings} />);
+  const angle = await screen.findByRole('spinbutton', { name: 'Default angle (degrees)' }) as HTMLInputElement;
+  const save = vi.spyOn(repository, 'saveSettings');
+  for (const value of ['', '4', '86', '1e309']) {
+    fireEvent.change(angle, { target: { value } });
+    expect(save).not.toHaveBeenCalled();
+  }
+  fireEvent.click(screen.getByRole('checkbox', { name: 'Locked 3D mode' }));
+  await waitFor(() => expect(onSettings).toHaveBeenLastCalledWith(expect.objectContaining({ locked3dMode: true, defaultAngle: 25 })));
+  expect((await repository.load()).settings.defaultAngle).toBe(25);
+  fireEvent.change(angle, { target: { value: '5' } });
+  await waitFor(() => expect(onSettings).toHaveBeenLastCalledWith(expect.objectContaining({ defaultAngle: 5 })));
+  fireEvent.change(angle, { target: { value: '85' } });
+  await waitFor(() => expect(onSettings).toHaveBeenLastCalledWith(expect.objectContaining({ defaultAngle: 85 })));
+});
+
+it('restores the saved angle and reports a failed settings write without propagating it', async () => {
+  const repository = new LocalRepository(new IDBFactory()); const onSettings = vi.fn();
+  render(<LocalSessions repository={repository} onReady={() => {}} onSettings={onSettings} />);
+  const angle = await screen.findByRole('spinbutton') as HTMLInputElement;
+  vi.spyOn(repository, 'saveSettings').mockRejectedValueOnce(new Error('Storage blocked'));
+  fireEvent.change(angle, { target: { value: '40' } });
+  expect((await screen.findByRole('alert')).textContent).toContain('Changes were not saved.');
+  expect(angle.value).toBe('25');
+  expect((await repository.load()).settings.defaultAngle).toBe(25);
+  expect(onSettings).toHaveBeenCalledOnce();
+});
