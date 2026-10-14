@@ -1,3 +1,4 @@
+import { DEFAULT_VIEW_ANGLE, MIN_VIEW_ANGLE, MAX_VIEW_ANGLE, isValidViewAngle } from '../../domain/view-preferences';
 import { Button } from '../../components/ui/button';
 import { useEffect, useState } from 'react';
 import { LocalRepository, type LocalData, type Settings } from '../../adapters/local-repository';
@@ -31,11 +32,11 @@ export function LocalSessions({ repository, onReady, onSettings }: { repository:
         setData({ ...data, settings });
         void save(async () => { await repository.saveSettings(settings); onSettings(settings); return { ...data, settings }; });
       }} />{key === 'locked3dMode' ? 'Locked 3D mode' : key === 'debug' ? 'Enable Debug' : key === 'mirroredCrossInstructions' ? 'Mirrored instructions for the cross trainer' : key === 'showFaceLabels' ? 'Show cube face labels (U, F, R, D, L, B)' : 'Use inspection (15 seconds, +2 until 17 seconds, then DNF)'}</label>)}
-        <label>Default angle (degrees)<input type="number" min={5} max={85} step="any" disabled={busy} value={angleDraft ?? String(data.settings.defaultAngle ?? 25)} onChange={event => {
+        <label>Default angle (degrees)<input type="number" min={MIN_VIEW_ANGLE} max={MAX_VIEW_ANGLE} step="any" disabled={busy} value={angleDraft ?? String(data.settings.defaultAngle ?? DEFAULT_VIEW_ANGLE)} onChange={event => {
           const value = event.target.value;
           setAngleDraft(value);
           const defaultAngle = Number(value);
-          if (!value.trim() || !Number.isFinite(defaultAngle) || defaultAngle < 5 || defaultAngle > 85) return;
+          if (!value.trim() || !isValidViewAngle(defaultAngle)) return;
           const settings = { ...data.settings, defaultAngle };
           void save(async () => { await repository.saveSettings(settings); onSettings(settings); return { ...data, settings }; }, () => setAngleDraft(null));
         }} /></label>

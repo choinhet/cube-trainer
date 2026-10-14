@@ -1,3 +1,4 @@
+import { DEFAULT_VIEW_ANGLE } from '../domain/view-preferences';
 import { useEffect, useReducer, useState } from 'react';
 import { App } from '../features/diagnostics/App';
 import { CrossCases } from '../features/diagnostics/CrossCases';
@@ -150,7 +151,7 @@ export function LiveApp({ connectCube, bluetoothAvailable = window.isSecureConte
             {preparation?.guide && !session.cross && timed?.phase !== 'active' && timed?.phase !== 'completed' && timed?.phase !== 'interrupted' && <GuidanceSteps guide={preparation.guide} status={preparation.status} />}
             {session.cross?.phase !== 'setup' && session.cross?.guidance && <CrossTrainingGuidance cross={session.cross} mirrored={settings?.mirroredCrossInstructions !== false} />}
           </div>
-          <CubeView facelets={snapshot.facelets} orientation={session.orientation} turns={snapshot.turns} showFaceLabels={!!settings?.showFaceLabels} locked3dMode={!!settings?.locked3dMode} defaultAngle={settings?.defaultAngle ?? 25} viewResetVersion={session.viewResetVersion} />
+          <CubeView facelets={snapshot.facelets} orientation={session.orientation} turns={snapshot.turns} showFaceLabels={!!settings?.showFaceLabels} locked3dMode={!!settings?.locked3dMode} defaultAngle={settings?.defaultAngle ?? DEFAULT_VIEW_ANGLE} viewResetVersion={session.viewResetVersion} />
           {contentPage === 'solve' && <SolveTiming session={session} />}
           {contentPage === 'cross' && <div ref={setCrossFeedbackTarget} />}
 

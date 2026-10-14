@@ -35,7 +35,7 @@ test('settings checkboxes and dialog close icon align, with spaced insight tabs'
   await page.goto('/');
   await page.getByRole('link', { name: 'Settings', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Settings', exact: true });
-  await expect(dialog.getByRole('checkbox')).toHaveCount(4);
+  await expect(dialog.getByRole('checkbox')).toHaveCount(5);
   const close = dialog.getByRole('button', { name: 'Close', exact: true });
   const geometry = await close.evaluate(button => {
     const rect = button.getBoundingClientRect(), icon = button.querySelector('svg')!.getBoundingClientRect();
@@ -67,4 +67,5 @@ test('cube face labels are optional and the checkbox persists across reopening',
   await checkbox.click();
   await expect.poll(labels).toBe('');
 });
+
 

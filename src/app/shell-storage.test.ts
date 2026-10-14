@@ -15,7 +15,7 @@ it('creates Default once across concurrent initialization and preserves legacy s
   first.close();
   const restored = await first.initialize();
   expect(restored.currentSessionId).toBe(legacy.id);
-  expect(restored.settings).toEqual({ reportingTimezone: 'UTC', inspection: false, debug: false, mirroredCrossInstructions: true });
+  expect(restored.settings).toEqual({ reportingTimezone: 'UTC', inspection: false, debug: false, mirroredCrossInstructions: true, locked3dMode: false, defaultAngle: 25 });
   expect(restored.sessions.filter(value => value.name === 'Default')).toHaveLength(1);
   expect(await first.listTimedResults()).toEqual([result]);
   first.close(); second.close();
@@ -28,6 +28,6 @@ it('migrates legacy storage with no Default without changing the selected sessio
   const data = await repository.load();
   expect(data.sessions.map(value => value.name)).toEqual(['Before redesign', 'Default']);
   expect(data.currentSessionId).toBe(legacy.id);
-  expect(data.settings).toEqual({ reportingTimezone: 'Europe/London', inspection: false, debug: false, mirroredCrossInstructions: true });
+  expect(data.settings).toEqual({ reportingTimezone: 'Europe/London', inspection: false, debug: false, mirroredCrossInstructions: true, locked3dMode: false, defaultAngle: 25 });
   repository.close();
 });

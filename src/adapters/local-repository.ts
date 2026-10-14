@@ -1,9 +1,10 @@
+import { DEFAULT_VIEW_ANGLE, isValidViewAngle } from '../domain/view-preferences';
 import type { AttemptCheckpoint, Penalty, TimedResult } from '../domain/timed-attempt';
 const changeListeners = new WeakMap<IDBFactory, Set<() => void>>();
 export interface PracticeSession { id: string; name: string; createdAt: number }
 export interface Settings { reportingTimezone: string; inspection?: boolean; debug?: boolean; showFaceLabels?: boolean; mirroredCrossInstructions?: boolean; locked3dMode?: boolean; defaultAngle?: number }
 export interface LocalData { sessions: PracticeSession[]; currentSessionId: string | null; settings: Settings }
-export const DEFAULT_SETTINGS: Settings = { reportingTimezone: 'America/Sao_Paulo', mirroredCrossInstructions: true, locked3dMode: false, defaultAngle: 25 };
+export const DEFAULT_SETTINGS: Settings = { reportingTimezone: 'America/Sao_Paulo', mirroredCrossInstructions: true, locked3dMode: false, defaultAngle: DEFAULT_VIEW_ANGLE };
 
 /** Resolve writes only after commit; request success alone is not persistence. */
 export class LocalRepository {
@@ -123,7 +124,7 @@ export class LocalRepository {
   }
 
   async saveSettings(settings: Settings): Promise<void> {
-    if (settings.defaultAngle !== undefined && (!Number.isFinite(settings.defaultAngle) || settings.defaultAngle < 5 || settings.defaultAngle > 85)) throw new Error('Enter a default angle between 5 and 85 degrees.');
+    if (settings.defaultAngle !== undefined && !isValidViewAngle(settings.defaultAngle)) throw new Error('Enter a default angle between 5 and 85 degrees.');
     try { new Intl.DateTimeFormat('en', { timeZone: settings.reportingTimezone }); }
     catch (cause) { throw new Error('Enter a valid IANA reporting timezone.', { cause }); }
     // Reject offset-only values, even on engines that accept them.
