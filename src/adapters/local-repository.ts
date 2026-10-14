@@ -1,9 +1,9 @@
 import type { AttemptCheckpoint, Penalty, TimedResult } from '../domain/timed-attempt';
 const changeListeners = new WeakMap<IDBFactory, Set<() => void>>();
 export interface PracticeSession { id: string; name: string; createdAt: number }
-export interface Settings { reportingTimezone: string; inspection?: boolean; debug?: boolean; showFaceLabels?: boolean; mirroredCrossInstructions?: boolean }
+export interface Settings { reportingTimezone: string; inspection?: boolean; debug?: boolean; showFaceLabels?: boolean; mirroredCrossInstructions?: boolean; locked3dMode?: boolean; defaultAngle?: number }
 export interface LocalData { sessions: PracticeSession[]; currentSessionId: string | null; settings: Settings }
-export const DEFAULT_SETTINGS: Settings = { reportingTimezone: 'America/Sao_Paulo', mirroredCrossInstructions: true };
+export const DEFAULT_SETTINGS: Settings = { reportingTimezone: 'America/Sao_Paulo', mirroredCrossInstructions: true, locked3dMode: false, defaultAngle: 25 };
 
 /** Resolve writes only after commit; request success alone is not persistence. */
 export class LocalRepository {
@@ -69,7 +69,7 @@ export class LocalRepository {
       const sessions = transaction.objectStore('sessions').getAll();
       const current = transaction.objectStore('preferences').get('currentSessionId');
       const settings = transaction.objectStore('preferences').get('settings');
-      return () => ({ sessions: (sessions.result as PracticeSession[]).sort((a, b) => a.createdAt - b.createdAt || a.id.localeCompare(b.id)), currentSessionId: (current.result as string | undefined) ?? null, settings: (settings.result as Settings | undefined) ?? { ...DEFAULT_SETTINGS } });
+      return () => ({ sessions: (sessions.result as PracticeSession[]).sort((a, b) => a.createdAt - b.createdAt || a.id.localeCompare(b.id)), currentSessionId: (current.result as string | undefined) ?? null, settings: { ...DEFAULT_SETTINGS, ...(settings.result as Settings | undefined) } });
     });
   }
 
@@ -123,6 +123,7 @@ export class LocalRepository {
   }
 
   async saveSettings(settings: Settings): Promise<void> {
+    if (settings.defaultAngle !== undefined && (!Number.isFinite(settings.defaultAngle) || settings.defaultAngle < 5 || settings.defaultAngle > 85)) throw new Error('Enter a default angle between 5 and 85 degrees.');
     try { new Intl.DateTimeFormat('en', { timeZone: settings.reportingTimezone }); }
     catch (cause) { throw new Error('Enter a valid IANA reporting timezone.', { cause }); }
     // Reject offset-only values, even on engines that accept them.
@@ -231,4 +232,3 @@ export class LocalRepository {
 
   close(): void { void this.database?.then(db => db.close(), () => {}); this.database = null; }
 }
-
