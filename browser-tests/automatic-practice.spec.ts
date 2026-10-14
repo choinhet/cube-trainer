@@ -67,5 +67,3 @@ test('cube face labels are optional and the checkbox persists across reopening',
   await checkbox.click();
   await expect.poll(labels).toBe('');
 });
-
-
