@@ -84,6 +84,8 @@ it('immediately saves and propagates locked mode and angle, restoring both acros
   const repository = new LocalRepository(new IDBFactory()); const onSettings = vi.fn();
   render(<LocalSessions repository={repository} onReady={() => {}} onSettings={onSettings} />);
   const mode = await screen.findByRole('checkbox', { name: 'Locked 3D mode' });
+  expect(screen.getByRole('group', { name: '3D viewer' }).contains(mode)).toBe(true);
+  expect(screen.getByRole('img', { name: '3D cube preview' })).toBeTruthy();
   const angle = screen.getByRole('spinbutton', { name: 'Default angle (degrees)' }) as HTMLInputElement;
   expect((mode as HTMLInputElement).checked).toBe(false); expect(angle.value).toBe('25');
   fireEvent.click(mode);
@@ -91,6 +93,7 @@ it('immediately saves and propagates locked mode and angle, restoring both acros
   fireEvent.change(angle, { target: { value: '37.5' } });
   await waitFor(() => expect(onSettings).toHaveBeenLastCalledWith(expect.objectContaining({ locked3dMode: true, defaultAngle: 37.5 })));
   expect((await repository.load()).settings).toMatchObject({ locked3dMode: true, defaultAngle: 37.5 });
+  expect(screen.getByLabelText('3D cube preview camera').getAttribute('style')).toContain('rotateY(-37.5deg)');
   cleanup(); repository.close();
   render(<LocalSessions repository={repository} onReady={() => {}} onSettings={() => {}} />);
   expect(((await screen.findByRole('checkbox', { name: 'Locked 3D mode' })) as HTMLInputElement).checked).toBe(true);

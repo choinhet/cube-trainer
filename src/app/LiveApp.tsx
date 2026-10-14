@@ -174,6 +174,6 @@ export function LiveApp({ connectCube, bluetoothAvailable = window.isSecureConte
       </aside>
     </div>
     <Overlay open={deviceOpen} onOpenChange={open => { setDeviceOpen(open); if (!open && session.solvedResetPending) session.cancelSolvedReset(); }} title="Device"><DeviceControls key={session.solvedResetVersion} session={session} bluetoothAvailable={bluetoothAvailable} confirm={confirm} /></Overlay>
-    <Overlay open={page === 'settings'} onOpenChange={open => { if (!open) navigate('solve'); }} title="Settings"><LocalSessions repository={repository} onReady={setSessionReady} onSettings={setSettings} /></Overlay>
+    <Overlay open={page === 'settings'} onOpenChange={open => { if (!open) navigate('solve'); }} title="Settings"><LocalSessions repository={repository} onReady={setSessionReady} onSettings={setSettings} facelets={snapshot.facelets} orientation={session.orientation} /></Overlay>
   </main>;
 }

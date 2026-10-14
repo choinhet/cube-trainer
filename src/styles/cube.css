@@ -179,5 +179,9 @@
 }
 .cube-view-locked .cube-camera,
 .cube-view-locked .cube-physical {
-    transition: none;
+    transition: transform 180ms ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+    .cube-view-locked .cube-camera,
+    .cube-view-locked .cube-physical { transition: none; }
 }

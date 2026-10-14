@@ -51,7 +51,7 @@ mode switching, move counting, and instruction orientation.
 - View physical turns and gyro orientation on an interactive 3D cube. Drag to
   orbit the camera, or use arrow keys while the viewer is focused.
 - Enable **Locked 3D mode** in Settings to keep a fixed 24-degree downward
-  tilt while physical rotations snap instantly between all 24 cube orientations.
+  tilt while physical rotations animate between all 24 cube orientations.
   Small gyro movements stay still. **Default angle (degrees)** adjusts front/right
   visibility from 5 to 85 degrees (25 by default); valid edits apply immediately.
   Both preferences are saved locally and apply to Solve and Cross Trainer.
@@ -64,7 +64,9 @@ mode switching, move counting, and instruction orientation.
 - Create and select named practice sessions with the **Session** picker. A
   **Default** session is available on first use.
 - Use **Settings** to enable inspection, show face labels, or display cross
-  instructions with the selected cross on the bottom.
+  instructions with the selected cross on the bottom. Related settings are in
+  collapsible sections, open by default. The interactive **3D cube preview**
+  shows angle, face-label, and viewing-mode changes inside Settings.
 - Enable **Debug** for connection and state diagnostics, downloadable viewer
   traces, and an exact cross case inspector.
 

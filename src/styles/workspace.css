@@ -211,6 +211,24 @@ select[data-slot="native-select"], .app-shell select[data-slot="native-select"] 
 .settings-options { display: flex; flex-direction: column; gap: 16px; }
 .settings-options label, .workspace-dialog label:has(input[type="checkbox"]) { display: flex; align-items: center; gap: 10px; margin: 0; }
 .settings-options input[type="checkbox"], .workspace-dialog input[type="checkbox"] { flex: 0 0 auto; width: 16px; height: 16px; margin: 0; }
+.workspace-dialog:has(.settings-options) { width: calc(100% - 32px); max-width: 760px; }
+.settings-options details { min-width: 0; margin: 0; padding: 16px; border: 1px solid var(--line); border-radius: 10px; }
+.settings-options summary { cursor: pointer; font-size: 14px; font-weight: 600; }
+.settings-options details[open] > summary { margin-bottom: 16px; }
+.settings-options .viewer-settings { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: center; }
+.viewer-controls { display: flex; flex-direction: column; gap: 16px; }
+.settings-options .angle-control { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
+.settings-options .settings-hint { margin: 0; font-size: 12px; color: var(--muted); }
+.settings-preview { margin: 0; min-width: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--soft); }
+.settings-preview .cube-view { height: 220px; }
+.settings-preview .cube-camera { scale: .72; }
+.settings-preview figcaption { padding: 0 12px 12px; text-align: center; font-size: 12px; color: var(--muted); }
+@media (max-width: 600px) {
+  .settings-options .viewer-settings { grid-template-columns: 1fr; gap: 16px; }
+  .settings-preview { grid-row: 1; }
+  .settings-preview .cube-view { height: 190px; }
+  .settings-options details { padding: 12px; }
+}
 .insights-panel [role="tablist"] { display: inline-flex; gap: 8px; padding: 6px; }
 .insights-panel [role="tab"] { padding: 8px 16px; }
 

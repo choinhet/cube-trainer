@@ -41,6 +41,8 @@ export function CubeView({
   locked3dMode = false,
   defaultAngle = DEFAULT_VIEW_ANGLE,
   viewResetVersion = 0,
+  label = "Live 3D cube",
+  initialCameraAngle = 32,
 }: {
   facelets: string | null;
   orientation: Quaternion | null;
@@ -49,6 +51,8 @@ export function CubeView({
   locked3dMode?: boolean;
   defaultAngle?: number;
   viewResetVersion?: number;
+  label?: string;
+  initialCameraAngle?: number;
 }) {
   const seen = useRef({
     count: turns.length,
@@ -143,9 +147,9 @@ export function CubeView({
       },
       {
         x: 0,
-        y: Math.sin((-16 * Math.PI) / 180),
+        y: Math.sin((-initialCameraAngle * Math.PI) / 360),
         z: 0,
-        w: Math.cos((-16 * Math.PI) / 180),
+        w: Math.cos((-initialCameraAngle * Math.PI) / 360),
       },
     ),
   );
@@ -205,7 +209,7 @@ export function CubeView({
     <div
       className={`cube-view${locked3dMode ? " cube-view-locked" : ""}`}
       role="img"
-      aria-label="Live 3D cube"
+      aria-label={label}
       tabIndex={0}
       data-state={facelets ?? "?".repeat(54)}
       onPointerDown={(event) => {
@@ -297,12 +301,12 @@ export function CubeView({
     >
       <div
         className="cube-camera"
-        aria-label="Camera orbit"
+        aria-label={label === "Live 3D cube" ? "Camera orbit" : `${label} camera`}
         style={{ transform: locked3dMode ? `rotateX(-24deg) rotateY(-${defaultAngle}deg)` : quaternionTransform(camera) }}
       >
         <div
           className="cube-physical"
-          aria-label="Physical orientation"
+          aria-label={label === "Live 3D cube" ? "Physical orientation" : `${label} orientation`}
           style={{ transform: locked3dMode ? quaternionTransform(multiply(manual, physical ?? IDENTITY_ORIENTATION)) : orientationTransform(orientation) }}
         >
           <div className="cube-layer">

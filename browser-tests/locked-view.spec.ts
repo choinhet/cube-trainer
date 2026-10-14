@@ -16,6 +16,45 @@ async function gyro(page: Page, degrees: number): Promise<void> {
   await page.evaluate(d => window.lockedView.gyro({x:0,y:0,z:Math.sin(d*Math.PI/360),w:Math.cos(d*Math.PI/360)}),degrees);
 }
 const screenshots = 'test-results/locked-view';
+test('grouped settings keep a live angle preview visible on desktop and mobile', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Settings', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: 'Settings', exact: true });
+  for (const name of ['3D viewer', 'Solve', 'Cross Trainer', 'Advanced']) {
+    await expect(dialog.getByRole('group', { name, exact: true })).toBeVisible();
+    await expect(dialog.getByRole('group', { name, exact: true })).toHaveAttribute('open', '');
+  }
+  const advanced = dialog.getByRole('group', { name: 'Advanced', exact: true });
+  await advanced.locator('summary').click();
+  await expect(dialog.getByRole('checkbox', { name: 'Enable Debug' })).toBeHidden();
+  await advanced.locator('summary').press('Enter');
+  await expect(dialog.getByRole('checkbox', { name: 'Enable Debug' })).toBeVisible();
+  const angle = dialog.getByRole('spinbutton', { name: 'Default angle (degrees)' });
+  const preview = dialog.getByRole('img', { name: '3D cube preview' });
+  await expect(preview).toBeVisible();
+  await expect(preview).not.toHaveClass(/cube-view-locked/);
+  const originalCamera = await dialog.getByLabel('3D cube preview camera').getAttribute('style');
+  await angle.fill('65');
+  await expect(dialog.getByLabel('3D cube preview camera')).not.toHaveAttribute('style', originalCamera!);
+  await dialog.getByRole('checkbox', { name: 'Locked 3D mode', exact: true }).check();
+  await expect(preview).toHaveClass(/cube-view-locked/);
+  await expect(dialog.getByLabel('3D cube preview camera')).toHaveAttribute('style', 'transform: rotateX(-24deg) rotateY(-65deg);');
+  await angle.fill('90');
+  await expect(dialog.getByLabel('3D cube preview camera')).toHaveAttribute('style', 'transform: rotateX(-24deg) rotateY(-65deg);');
+  for (const width of [1280, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    await angle.scrollIntoViewIfNeeded();
+    const bounds = await preview.boundingBox();
+    const input = await angle.boundingBox();
+    expect(bounds!.y).toBeGreaterThanOrEqual(0);
+    expect(bounds!.y + bounds!.height).toBeLessThan(900);
+    expect(input!.y + input!.height).toBeLessThan(900);
+    expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
+    await page.screenshot({ path: `${screenshots}/settings-preview-${width}.png` });
+  }
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(dialog.getByLabel('3D cube preview orientation')).toHaveCSS('transition-duration', '0s');
+});
 for (const mode of ['Solve', 'Cross Trainer']) {
   test(`${mode} locked viewing controls, gyro lifecycle and logical slice turns`, async ({page}) => {
     await page.setViewportSize({width:1280,height:900});
@@ -35,10 +74,11 @@ for (const mode of ['Solve', 'Cross Trainer']) {
     const initial = await pose.getAttribute('style');
     await gyro(page,49); await expect(pose).toHaveAttribute('style',initial!);
     await gyro(page,50); await expect(pose).not.toHaveAttribute('style',initial!);
+    expect(await pose.evaluate(el => el.getAnimations().some(animation => 'transitionProperty' in animation && animation.transitionProperty === 'transform'))).toBe(true);
     const quarter = await pose.getAttribute('style');
     await gyro(page,41); await expect(pose).toHaveAttribute('style',quarter!);
     await gyro(page,39); await expect(pose).toHaveAttribute('style',initial!);
-    await expect(pose).toHaveCSS('transition-duration','0s');
+    await expect(pose).toHaveCSS('transition-duration','0.18s');
     await view.press('ArrowRight'); const manual = await pose.getAttribute('style');
     await gyro(page,2); await expect(pose).toHaveAttribute('style',manual!);
     await page.getByRole('button',{name:'Connected',exact:true}).click();

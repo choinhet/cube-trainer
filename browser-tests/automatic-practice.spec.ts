@@ -53,7 +53,7 @@ test('settings checkboxes and dialog close icon align, with spaced insight tabs'
 
 test('cube face labels are optional and the checkbox persists across reopening', async ({ page }) => {
   await page.goto('/');
-  const labels = () => page.locator('.cube-tile').evaluateAll(tiles => tiles.map(tile => tile.textContent).join(''));
+  const labels = () => page.getByLabel('Live 3D cube').locator('.cube-tile').evaluateAll(tiles => tiles.map(tile => tile.textContent).join(''));
   await expect(page.getByLabel('Live 3D cube')).toBeVisible();
   expect(await labels()).toBe('');
   await page.getByRole('link', { name: 'Settings', exact: true }).click();
