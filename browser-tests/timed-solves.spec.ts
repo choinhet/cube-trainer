@@ -18,6 +18,8 @@ test('four physical F2L pairs remain accessible after offline saved-history reop
   for (const [index, move] of scramble.entries()) await physical(move, 100 + index * 100);
   for (const [index, move] of solution.entries()) await physical(move, 10000 + index * 100);
   const current = page.getByRole('region', { name: 'CFOP phase timing' });
+  await expect(current.getByRole('button', { name: /F2L pair 1 execution:/ })).toHaveCSS('background-color', 'rgb(121, 214, 187)');
+  await expect(current.getByRole('button', { name: /F2L pair 1 execution:/ })).toHaveCSS('height', '44px');
   await current.getByText('F2L pair details').click();
   await expect(current.getByText('Execution: 0.2 s')).toHaveCount(4);
   await page.getByRole('button', { name: 'Connected', exact: true }).click();

@@ -18,12 +18,16 @@ browser.
   and penalties. Saved physical traces reproduce the breakdown offline.
 - F2L stays grouped in the bar; expand its four pairs to review recognition and
   execution. Darker sections show recognition and lighter sections execution.
+
 - Offers optional 15-second inspection, with a +2 penalty until 17 seconds and
   DNF after that.
 - Saves results automatically and advances to the next scramble. Abandoning an
   active solve records a DNF; cancelling setup creates no solve result.
 - Shows saved times and turns per second (TPS). Open a result to review its
   session, date, status, and raw time, toggle +2 or DNF, or delete it.
+
+See [CFOP timing and offline analysis](docs/cfop-analysis.md) for the timing model,
+supported case identification, and saved-history behavior.
 
 ### Cross Trainer
 
@@ -135,3 +139,4 @@ npm run test:browser  # Build and run browser integration tests
 ```
 
 Browser integration tests use installed Windows Chrome.
+
