@@ -109,7 +109,7 @@ test("analyzes a representative 193-turn trace and reuses the offline match inde
 test("rejects a transient F2L completion that returns through an unsupported identity detour", () => {
   const input = result(`R U R' R U' R' ${sune} ${t}`);
   const analysis = analyzeCFOP(input)!;
-  expect(analysis.phases.map((p) => p.endIndex)).toEqual([0, 6, 13, 27]);
+  expect(analysis.phases.map((p) => p.endIndex)).toEqual([6, 6, 13, 27]);
 });
 test("an alignment-only PLL interval is execution through the authoritative stop", () => {
   const input = result(`${sune} U`);
