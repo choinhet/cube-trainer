@@ -12,6 +12,10 @@ browser.
 - Automatically prepares a new scramble from your cube's current synchronized
   state, with step-by-step setup and correction guidance.
 - Starts timing on the first solve turn and stops when the cube is solved.
+- Shows a compact Cross, F2L, OLL, and PLL timing breakdown after supported
+  CFOP solves and in saved history. Select or focus a phase for details; exact
+  durations also appear as text. Phase totals use raw time, excluding inspection
+  and penalties. Saved physical traces reproduce the breakdown offline.
 - Offers optional 15-second inspection, with a +2 penalty until 17 seconds and
   DNF after that.
 - Saves results automatically and advances to the next scramble. Abandoning an

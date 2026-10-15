@@ -13,6 +13,8 @@ export interface TimedResult {
   facelets?: string | null;
   rawTurns?: AttemptCheckpoint["rawTurns"];
   inspectionElapsedMs?: number;
+  /** Version of durable full-state/physical-trace inputs for offline analysis. */
+  analysisInputVersion?: 1;
 }
 export type AttemptPhase =
   | "setup"
