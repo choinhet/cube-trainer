@@ -31,7 +31,8 @@ export function SolveScramble({ result }: { result: TimedResult }) {
     try { await navigator.clipboard.writeText(scramble); setCopied(true); setError(null); }
     catch { setError('Scramble could not be copied. Check clipboard access and try again.'); }
   }
-  return <div className="solve-scramble" role="group" aria-label={source.equivalent ? 'Equivalent scramble' : 'Original scramble'}><p title={source.equivalent ? 'Equivalent starting position; the original scramble was not saved.' : undefined}>{scramble || 'Solved position'}</p><IconButton className="solve-copy-scramble" label="Copy scramble" title={source.equivalent ? 'Copy equivalent scramble from solved' : 'Copy original scramble'} onClick={() => void copy()}>{copied ? <Check /> : <Copy />}</IconButton>{copied && <span className="sr-only" role="status">Scramble copied</span>}{error && <p className="solve-scramble-error" role="alert">{error}</p>}</div>;
+  return <div className="solve-scramble" role="group" aria-label={source.equivalent ? 'Equivalent scramble' : 'Original scramble'}><p>{scramble || 'Solved position'}</p><IconButton className="solve-copy-scramble" label="Copy scramble" title={source.equivalent ? 'Copy equivalent scramble from solved' : 'Copy original scramble'} onClick={() => void copy()}>{copied ? <Check /> : <Copy />}</IconButton>{source.equivalent && <p className="solve-copy-note">Equivalent starting position; the original scramble was not saved.</p>}{copied && <span className="solve-copy-note" role="status">Scramble copied</span>}{error && <p className="solve-scramble-error" role="alert">{error}</p>}</div>;
 }
+
 
 
