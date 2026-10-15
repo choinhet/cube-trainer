@@ -1,13 +1,13 @@
 import { expect, test } from '@playwright/test';
 test('automatically prepares scrambles and preserves a recovered solve result', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async () => {
     const path = '/browser-tests/timed-harness.tsx';
     const harness = await import(/* @vite-ignore */ path) as typeof import('./timed-harness');
     (window as unknown as { physical: ReturnType<typeof harness.mount> }).physical = harness.mount();
   });
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.getByRole('button', { name: 'Connect Cube', exact: true }).click();
   const guidance = page.getByLabel('Actual setup moves');
   await expect(guidance).toBeVisible();
@@ -20,7 +20,7 @@ test('automatically prepares scrambles and preserves a recovered solve result', 
   await expect(page.getByRole('heading', { name: 'You may start' })).toBeVisible();
   await move("R'", 1000); await move("R'", 2234, true);
   await expect(page.getByRole('region', { name: 'Saved timed results' }).locator('tbody tr')).toHaveCount(1);
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).locator('tbody tr td').first()).toHaveText('1.62');
+  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByRole('cell', { name: '1.62', exact: true })).toBeVisible();
   await expect(page.getByRole('alert')).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Next scramble', exact: true })).toHaveCount(0);
   await expect(guidance).toBeVisible();

@@ -8,6 +8,6 @@ export function GuidanceSteps({ guide, status, crossColor, mirrored = true }: { 
   return <div className={`move-guidance ${correction ? 'correction' : ''}`}>
     {crossColor && <p className="holding-instructions">Hold {correction && mirrored ? bottomCrossHolding(crossColor) : 'white on top, green in front'}.</p>}
     {correction && <p className="correction-label">Undo</p>}
-    <ol className="move-sequence" aria-label={correction ? 'Undo moves' : 'Actual setup moves'}>{moves.map((move, index) => <li key={index} data-completed={!correction && index < guide.progress} aria-current={index === (correction ? 0 : guide.progress) ? 'step' : undefined}><span className="sr-only">{!correction && index < guide.progress ? 'Completed ' : index === (correction ? 0 : guide.progress) ? 'Current ' : ''}</span>{move}</li>)}</ol>
+    <ol className="move-sequence" style={!correction && guide.progress >= guide.sequence.length ? { display: 'none' } : undefined} aria-label={correction ? 'Undo moves' : 'Actual setup moves'}>{moves.map((move, index) => <li key={index} data-completed={!correction && index < guide.progress} aria-current={index === (correction ? 0 : guide.progress) ? 'step' : undefined}><span className="sr-only">{!correction && index < guide.progress ? 'Completed ' : index === (correction ? 0 : guide.progress) ? 'Current ' : ''}</span>{move}</li>)}</ol>
   </div>;
 }

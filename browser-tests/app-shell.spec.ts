@@ -18,7 +18,7 @@ test('fresh storage, gated routes, persistent settings, tabs and viewport fit', 
   await page.goto('/?diagnostic#/debug');
   await expect(page.getByRole('heading', { name: 'Solve', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Debug', exact: true, includeHidden: true })).toHaveCount(0);
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await fit(page);
   await page.getByRole('link', { name: 'Settings', exact: true }).click();
   await expect(page.getByLabel('Enable Debug')).toBeVisible();
@@ -53,7 +53,7 @@ test('fresh storage, gated routes, persistent settings, tabs and viewport fit', 
 });
 test('legacy storage retains selection and disconnected paginated results after reopening', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async () => {
     const path = '/src/adapters/local-repository.ts';
     const { LocalRepository } = await import(/* @vite-ignore */ path) as typeof import('../src/adapters/local-repository');
@@ -64,9 +64,11 @@ test('legacy storage retains selection and disconnected paginated results after 
     repo.close();
   });
   await page.reload();
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByRole('option', { name: 'Legacy' })).toBeAttached();
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByRole('option', { name: 'Legacy' })).toBeAttached();
   const history = page.getByRole('region', { name: 'Saved timed results' });
+  await expect(history.locator('tbody tr')).toHaveCount(5);
+  await history.getByRole('button', { name: 'All results', exact: true }).click();
   const firstPageSize = await history.locator('.history-list tbody tr').count();
   expect(firstPageSize).toBeGreaterThan(5);
   expect(firstPageSize).toBeLessThan(13);
@@ -80,10 +82,10 @@ test('legacy storage retains selection and disconnected paginated results after 
   await page.getByRole('link', { name: 'Settings', exact: true }).click();
   await expect(page.getByLabel('Reporting timezone')).toHaveCount(0);
   await page.getByRole('button', { name: 'Close', exact: true }).click();
-  await expect(history.getByLabel('History session').locator('option:checked')).toHaveText('Legacy');
+  await expect(page.locator('.stage-session').getByLabel('History session').locator('option:checked')).toHaveText('Legacy');
 });
 test('navigation DNF preserves connection and technical disconnect preserves the running attempt', async ({ page }) => {
-  await page.goto('/'); await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/); await mount(page);
+  await page.goto('/'); await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/); await mount(page);
   const app = page.locator('body');
   await app.getByRole('button', { name: 'Connect Cube' }).click();
   await expect(app.getByRole('button', { name: 'Connected', exact: true })).toBeVisible();
@@ -114,7 +116,7 @@ test('navigation DNF preserves connection and technical disconnect preserves the
 });
 test('cross navigation saves abandonment separately and preserves live tracking', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async () => {
     const path = '/browser-tests/cross-practice-harness.tsx';
     const harness = await import(/* @vite-ignore */ path) as typeof import('./cross-practice-harness');
@@ -146,7 +148,7 @@ test('cross navigation saves abandonment separately and preserves live tracking'
 });
 test('long setup steps and solved-cube confirmation fit the minimum desktop viewport', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async () => {
     const path = '/browser-tests/preparation-harness.tsx';
     const scramblePath = '/src/domain/scramble.ts';

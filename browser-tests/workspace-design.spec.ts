@@ -12,7 +12,7 @@ async function fit(page: Page): Promise<void> {
 }
 async function mount(page: Page, mode: 'solve' | 'cross'): Promise<void> {
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async mode => {
     const path = mode === 'solve' ? '/browser-tests/timed-harness.tsx' : '/browser-tests/cross-practice-harness.tsx';
     const harness = await import(/* @vite-ignore */ path) as typeof import('./timed-harness');
@@ -41,7 +41,7 @@ for (const size of [{ width: 1280, height: 900 }, { width: 1920, height: 1080 }]
           await fit(page);
         };
         const history = page.getByRole('region', { name: mode === 'solve' ? 'Saved timed results' : 'Cross practice history' });
-        await expect(history.getByLabel('History session')).toHaveValue(/.+/);
+        await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
         await expect(history.locator('.empty-history')).toBeVisible();
         await capture('disconnected');
         await capture('empty-history');
@@ -131,7 +131,7 @@ test('keyboard dialogs trap focus, restore openers and reflow at 200 percent / 3
 
 test('history actions expose tooltips and visible keyboard focus; both themes have readable tokens', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async () => {
     const path = '/src/adapters/local-repository.ts';
     const { LocalRepository } = await import(/* @vite-ignore */ path) as typeof import('../src/adapters/local-repository');
@@ -143,6 +143,7 @@ test('history actions expose tooltips and visible keyboard focus; both themes ha
   await page.reload();
   const next = page.getByRole('region', { name: 'Saved timed results' }).getByRole('button', { name: 'Next results', exact: true });
   await expect(next).toBeEnabled();
+  await next.scrollIntoViewIfNeeded();
   await next.focus();
   await expect(page.getByRole('tooltip')).toHaveText('Next results');
   expect(await next.evaluate(el => getComputedStyle(el).outlineStyle)).toBe('solid');

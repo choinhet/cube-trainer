@@ -1,0 +1,213 @@
+{
+  "title": "Cube Trainer redesign",
+  "question": "Choose a direction for the whole app. Solve leads; the cube and timer stay central. These are planning sketches, not the finished design.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Competition Stage",
+      "kicker": "THE ROLL",
+      "thesis": "A centered practice canvas with clear color and a continuous phase ribbon.",
+      "palette": [
+        "#172554",
+        "#eff6ff",
+        "#2563eb",
+        "#fb7185",
+        "#34d399"
+      ],
+      "materials": [
+        "Flat color fields",
+        "Open sans typography"
+      ],
+      "viewport": "Compact navigation and session controls frame a centered cube and timer; recent results sit in one shallow row below analysis.",
+      "risk": "The indigo shell must stay quiet enough that cube stickers and state messages remain distinct.",
+      "raised": [
+        {
+          "from": "Split-flap concourse",
+          "raise": "Stable numeric columns; only changed values update."
+        },
+        {
+          "from": "Monochrome product proof",
+          "raise": "Every metric opens its supporting detail nearby."
+        },
+        {
+          "from": "Acetate manual",
+          "raise": "One content plane; no nested containers."
+        },
+        {
+          "from": "Character catalog",
+          "raise": "Meaningful color roles stay consistent across screens."
+        }
+      ],
+      "html": ".impeccable/mocks/decision/assigned.html",
+      "comp": ".impeccable/mocks/decision/assigned.png"
+    },
+    {
+      "id": "model-pick",
+      "label": "Competition Program",
+      "kicker": "IMPECCABLE’S PICK",
+      "thesis": "A bright, spacious practice screen with cobalt structure and crisp results.",
+      "palette": [
+        "#fafaf7",
+        "#17243b",
+        "#2855d9",
+        "#eab54d"
+      ],
+      "materials": [
+        "Paper-light surfaces",
+        "Clear sans and tabular numbers"
+      ],
+      "viewport": "Top navigation, centered cube and timer, a compact phase strip, and a quiet history list at the edge.",
+      "risk": "Familiar and effective; this is closer to a conventional training app.",
+      "html": ".impeccable/mocks/decision/model-pick.html",
+      "comp": ".impeccable/mocks/decision/model-pick.png"
+    },
+    {
+      "id": "challenger-transit",
+      "label": "Phase Lines",
+      "verdict": "competitive",
+      "thesis": "A midnight practice screen whose colored phase ribbon leads directly into analysis.",
+      "palette": [
+        "#12263d",
+        "#eef6ff",
+        "#4b8bff",
+        "#ff715b",
+        "#eebf4a",
+        "#55ba91"
+      ],
+      "materials": [
+        "Deep blue ground",
+        "Humanist sans"
+      ],
+      "viewport": "Standard navigation and session picker lead to the centered cube/timer; a color-coded phase strip selects details below.",
+      "risk": "Phase colors can compete with cube stickers if overused.",
+      "case": "Competitive on clarity: the continuous sequence makes phase selection easy.",
+      "lineage": "Midnight transit diagram",
+      "html": ".impeccable/mocks/decision/challenger-transit.html",
+      "comp": ".impeccable/mocks/decision/challenger-transit.png"
+    },
+    {
+      "id": "challenger-orienteering",
+      "label": "Clear Route",
+      "verdict": "competitive",
+      "thesis": "A light practice screen that makes the current setup move unmistakable.",
+      "palette": [
+        "#fcfcf4",
+        "#283e30",
+        "#7c3ca5",
+        "#d6ae39",
+        "#477eab"
+      ],
+      "materials": [
+        "Light field",
+        "Condensed numeric accents"
+      ],
+      "viewport": "Standard top navigation, centered cube/timer, one emphasized current move in the setup sequence, and analysis below.",
+      "risk": "Route symbolism must remain subordinate to normal cube notation.",
+      "case": "Competitive on identification: different optimal routes remain equally valid.",
+      "lineage": "Orienteering course notation",
+      "html": ".impeccable/mocks/decision/challenger-orienteering.html",
+      "comp": ".impeccable/mocks/decision/challenger-orienteering.png"
+    },
+    {
+      "id": "challenger-splitflap",
+      "label": "Split-flap Concourse",
+      "palette": [
+        "#171717",
+        "#ffffff",
+        "#e5ad42"
+      ],
+      "thesis": "Fixed result rows with live value changes.",
+      "risk": "Character motion distracts from the live solve.",
+      "kept": "Stable numeric columns and selective updates.",
+      "verdict": "declined",
+      "materials": [
+        "Translated to standard web controls"
+      ],
+      "viewport": "Normal practice shell, centered cube and timer, with the source reduced to type, color, density, and one move.",
+      "case": "Declined: weaker audience identification and product clarity than Competition Stage."
+    },
+    {
+      "id": "challenger-monochrome",
+      "label": "Monochrome Product Proof",
+      "palette": [
+        "#fafafa",
+        "#18181b",
+        "#2563eb"
+      ],
+      "thesis": "Each result is paired with the evidence behind it.",
+      "risk": "Too little color repeats the current complaint.",
+      "kept": "Metrics and their evidence stay close.",
+      "verdict": "declined",
+      "materials": [
+        "Translated to standard web controls"
+      ],
+      "viewport": "Normal practice shell, centered cube and timer, with the source reduced to type, color, density, and one move.",
+      "case": "Declined: weaker audience identification and product clarity than Competition Stage."
+    },
+    {
+      "id": "challenger-acetate",
+      "label": "Tabbed Reference Manual",
+      "palette": [
+        "#f5f2df",
+        "#147b78",
+        "#e5bd36"
+      ],
+      "thesis": "Practice and settings separate into clear sections.",
+      "risk": "Layered sheets would repeat the nested-box problem.",
+      "kept": "One clear content plane.",
+      "verdict": "declined",
+      "materials": [
+        "Translated to standard web controls"
+      ],
+      "viewport": "Normal practice shell, centered cube and timer, with the source reduced to type, color, density, and one move.",
+      "case": "Declined: weaker audience identification and product clarity than Competition Stage."
+    },
+    {
+      "id": "challenger-catalog",
+      "label": "Character Catalog",
+      "palette": [
+        "#f5e5ef",
+        "#8265a7",
+        "#ee8298"
+      ],
+      "thesis": "Consistent colors distinguish related case information.",
+      "risk": "Mascot and roster emphasis distracts from practice.",
+      "kept": "Consistent meaningful color across surfaces.",
+      "verdict": "declined",
+      "materials": [
+        "Translated to standard web controls"
+      ],
+      "viewport": "Normal practice shell, centered cube and timer, with the source reduced to type, color, density, and one move.",
+      "case": "Declined: weaker audience identification and product clarity than Competition Stage."
+    }
+  ],
+  "reroll": {
+    "registers": [
+      "safer",
+      "bolder"
+    ]
+  },
+  "buildPath": {
+    "value": "code",
+    "toggle": true
+  },
+  "canon": true,
+  "canonCard": {
+    "label": "Category Standard",
+    "thesis": "A conventional timer app with careful spacing and clear, restrained color.",
+    "palette": [
+      "#f8fafc",
+      "#172033",
+      "#2563eb"
+    ],
+    "materials": [
+      "Neutral surfaces",
+      "Standard sans"
+    ],
+    "viewport": "Top tabs, a centered cube/timer, compact controls, and a flat history table.",
+    "risk": "Deliberately familiar; less distinctive.",
+    "html": ".impeccable/mocks/decision/canon.html",
+    "comp": ".impeccable/mocks/decision/canon.png"
+  },
+  "steer": true
+}

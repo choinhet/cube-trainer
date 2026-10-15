@@ -2,14 +2,14 @@ import { expect, test, type Page } from '@playwright/test';
 
 async function prepare(page: Page, failure: 'checkpoint' | 'finalize' | null = null) {
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async failure => {
     const path = '/browser-tests/timed-harness.tsx';
     const harness = await import(/* @vite-ignore */ path) as typeof import('./timed-harness');
     (window as unknown as { physical: ReturnType<typeof harness.mount> }).physical = harness.mount(failure);
   }, failure);
   const app = page.locator('body');
-  await app.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session').selectOption({ label: 'New session' });
+  await app.locator('.stage-session').getByLabel('History session').selectOption({ label: 'New session' });
   await app.getByLabel('New session name').fill('Recovery session');
   await app.getByRole('button', { name: 'Create session' }).click();
   await expect(page.getByRole('dialog', { name: 'New session', exact: true })).toHaveCount(0);

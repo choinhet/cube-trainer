@@ -4,7 +4,7 @@ type Harness = ReturnType<typeof mount>;
 declare global { interface Window { lockedView: Harness } }
 async function mountApp(page: Page): Promise<void> {
   await page.goto('/');
-  await expect(page.getByRole('region',{name:'Saved timed results'}).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async () => {
     const path = '/browser-tests/locked-view-harness.tsx';
     const harness = await import(/* @vite-ignore */ path) as typeof import('./locked-view-harness');

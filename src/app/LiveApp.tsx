@@ -39,6 +39,7 @@ export function LiveApp({ connectCube, bluetoothAvailable = window.isSecureConte
   const [deviceOpen, setDeviceOpen] = useState(false);
   const [crossFeedbackTarget, setCrossFeedbackTarget] = useState<HTMLElement | null>(null);
   const [crossHistoryTarget, setCrossHistoryTarget] = useState<HTMLElement | null>(null);
+  const [sessionTarget, setSessionTarget] = useState<HTMLElement | null>(null);
   const page = ['solve', 'cross', 'insights', 'settings'].includes(route) || (route === 'debug' && settings?.debug) ? route : 'solve';
   const contentPage = page === 'settings' ? 'solve' : page;
   const nextScramble = useExerciseQueue(generateScramble ?? requestPracticeScramble, contentPage === 'solve' && page !== 'settings' && sessionReady);
@@ -127,12 +128,19 @@ export function LiveApp({ connectCube, bluetoothAvailable = window.isSecureConte
     <header className="app-header">
       <a className="brand" href="#/solve" aria-label="Cube Trainer" onClick={event => { event.preventDefault(); navigate('solve'); }}><span className="brand-mark"><Box size={20} aria-hidden="true" /></span>Cube Trainer</a>
       <nav aria-label="Pages">{[['solve', 'Solve', Box], ['cross', 'Cross Trainer', Crosshair], ['insights', 'Insights', ChartNoAxesColumnIncreasing], ...(settings?.debug ? [['debug', 'Debug', Box]] : [])].map(([key, label, Icon]) => { const Glyph = Icon as typeof Box; return <a key={String(key)} href={`#/${key}`} aria-current={page === key ? 'page' : undefined} onClick={event => { event.preventDefault(); navigate(String(key)); }}><Glyph size={16} aria-hidden="true" />{String(label)}</a>; })}</nav>
-      <div className="header-actions"><Button variant="ghost" asChild><a href="#/settings" aria-current={page === 'settings' ? 'page' : undefined} onClick={event => { event.preventDefault(); navigate('settings'); }}><SettingsIcon aria-hidden="true" />Settings</a></Button></div>
-      <h1 className="sr-only">{({ solve: 'Solve', cross: 'Cross Trainer', insights: 'Insights', settings: 'Settings', debug: 'Debug' })[page]}</h1>
+      <div className="header-actions">
+        <Button className="cube-connection" variant="outline" data-connected={session.status === 'connected'} disabled={session.status === 'connecting' || (session.status === 'disconnected' && (!bluetoothAvailable || !session.canConnect))} onClick={() => {
+          if (session.status === 'connected') { openDevice(); void session.request('REQUEST_BATTERY'); }
+          else { setError(null); void session.connect(); }
+        }}><Bluetooth aria-hidden="true" />{session.status === 'connected' ? 'Connected' : session.status === 'connecting' ? 'Connecting...' : 'Connect Cube'}</Button>
+        <Button variant="ghost" asChild><a href="#/settings" aria-current={page === 'settings' ? 'page' : undefined} onClick={event => { event.preventDefault(); navigate('settings'); }}><SettingsIcon aria-hidden="true" />Settings</a></Button>
+      </div>
     </header>
-    <div className="workspace">
-      {(contentPage === 'solve' || contentPage === 'insights') && <aside><TimedHistory repository={repository} refreshKey={savedAttempt ?? undefined} compact /></aside>}
-      {contentPage === 'cross' && <aside ref={setCrossHistoryTarget} />}
+    <div className="stage-toolbar"><h1>{({ solve: 'Solve', cross: 'Cross Trainer', insights: 'Insights', debug: 'Debug' })[contentPage]}</h1><div className="stage-session" ref={setSessionTarget} /></div>
+    <div className="workspace" data-page={contentPage}>
+      <aside className="controls-sidebar" aria-label="Tab controls">
+        <div hidden={contentPage !== 'cross'} className="cross-controls"><FreeCrossPractice enabled={contentPage === 'cross' && !deviceOpen} session={session} repository={repository} sessionReady={sessionReady && recoveryReady} generate={generateCross} solve={solveSetup} compact historyTarget={crossHistoryTarget} feedbackTarget={crossFeedbackTarget} sessionTarget={contentPage === 'cross' ? sessionTarget : undefined} mirrored={settings?.mirroredCrossInstructions !== false} /></div>
+      </aside>
       <div className="page-content">
         {contentPage === 'insights' && <section aria-label="Insights" className="insights-panel"><Tabs defaultValue="Overview"><TabsList aria-label="Insights views" variant="line">{['Overview', 'Graphs', 'Results'].map(tab => <TabsTrigger value={tab} key={tab}>{tab}</TabsTrigger>)}</TabsList>{['Overview', 'Graphs', 'Results'].map(tab => <TabsContent value={tab} key={tab}><h2>{tab}</h2><p className="insights-empty-state">{tab === 'Graphs' ? 'Progress graphs are not available yet.' : tab === 'Overview' ? 'Review your saved timed results. Averages and milestones are not available yet.' : 'Select a result to review and edit its saved details.'}</p></TabsContent>)}</Tabs></section>}
         {settings?.debug && <div hidden={page !== 'debug'} className="debug-page" data-step={debugStep}>
@@ -146,6 +154,7 @@ export function LiveApp({ connectCube, bluetoothAvailable = window.isSecureConte
 
         {(contentPage === 'solve' || contentPage === 'cross') && <section className="practice-workspace" data-phase={contentPage === 'cross' ? session.cross?.phase : timed?.phase} aria-label={contentPage === 'cross' ? 'Cross workspace' : 'Solve workspace'}>
           <div className="practice-sequence">
+            {session.status === 'disconnected' && <p className="connection-prompt">Connect your cube to start practicing.</p>}
             {contentPage === 'cross' && session.cross && <SharedCrossScramble caseData={session.cross.case}>
               {session.cross.phase === 'setup' && preparation?.guide ? <GuidanceSteps guide={preparation.guide} status={preparation.status} crossColor={session.cross.case.color} mirrored={settings?.mirroredCrossInstructions !== false} /> : undefined}
             </SharedCrossScramble>}
@@ -162,24 +171,15 @@ export function LiveApp({ connectCube, bluetoothAvailable = window.isSecureConte
           <CubeView facelets={snapshot.facelets} orientation={session.orientation} turns={snapshot.turns} showFaceLabels={!!settings?.showFaceLabels} locked3dMode={!!settings?.locked3dMode} defaultAngle={settings?.defaultAngle ?? DEFAULT_VIEW_ANGLE} viewResetVersion={session.viewResetVersion} />
           {contentPage === 'solve' && <SolveTiming session={session} />}
           {contentPage === 'cross' && <div className="cross-feedback-slot" ref={setCrossFeedbackTarget} />}
-
-        </section>}
-      </div>
-      <aside className="controls-sidebar" aria-label="Tab controls">
-        <section className="controls-panel" aria-label="Cube controls">
-          <h2>Cube</h2>
-          <Button className="cube-connection" variant="outline" data-connected={session.status === 'connected'} disabled={session.status === 'connecting' || (session.status === 'disconnected' && (!bluetoothAvailable || !session.canConnect))} onClick={() => {
-            if (session.status === 'connected') { openDevice(); void session.request('REQUEST_BATTERY'); }
-            else { setError(null); void session.connect(); }
-          }}><Bluetooth aria-hidden="true" />{session.status === 'connected' ? 'Connected' : session.status === 'connecting' ? 'Connecting...' : 'Connect Cube'}</Button>
-
           <div className="practice-actions">
             {contentPage === 'solve' && preparation && timed && ['active', 'completed', 'interrupted'].includes(timed.phase) && <Button variant="ghost" disabled={timed.saveState === 'pending' || (timed.saveState === 'failed' && !!timed.result)} onClick={() => session.cancelPreparation()}>{timed.phase === 'active' ? 'Abandon solve (DNF)' : 'Next scramble'}</Button>}
             {contentPage === 'solve' && !preparation && timed?.result && <Button disabled={timed.saveState !== 'saved'} onClick={() => session.cancelPreparation()}>Next scramble</Button>}
           </div>
-        </section>
-        <div hidden={contentPage !== 'cross'} className="cross-controls"><FreeCrossPractice enabled={contentPage === 'cross' && !deviceOpen} session={session} repository={repository} sessionReady={sessionReady && recoveryReady} generate={generateCross} solve={solveSetup} compact historyTarget={crossHistoryTarget} feedbackTarget={crossFeedbackTarget} mirrored={settings?.mirroredCrossInstructions !== false} /></div>
-      </aside>
+
+        </section>}
+      </div>
+      {(contentPage === 'solve' || contentPage === 'insights') && <aside className="stage-history"><TimedHistory repository={repository} refreshKey={savedAttempt ?? undefined} compact sessionTarget={sessionTarget} /></aside>}
+      <aside hidden={contentPage !== 'cross'} className="stage-history" ref={setCrossHistoryTarget} />
     </div>
     <Overlay open={deviceOpen} onOpenChange={open => { setDeviceOpen(open); if (!open && session.solvedResetPending) session.cancelSolvedReset(); }} title="Device" size="small"><DeviceControls key={session.solvedResetVersion} session={session} bluetoothAvailable={bluetoothAvailable} confirm={confirm} /></Overlay>
     <Overlay open={page === 'settings'} onOpenChange={open => { if (!open) navigate('solve'); }} title="Settings" size="wide"><LocalSessions repository={repository} onReady={setSessionReady} onSettings={setSettings} facelets={snapshot.facelets} orientation={session.orientation} /></Overlay>

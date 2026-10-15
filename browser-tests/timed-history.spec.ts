@@ -7,7 +7,7 @@ async function mount(page: Page, failure: 'edit' | 'delete' | null = null): Prom
   }, failure);
 }
 test('disconnected history preserves penalty edits, DNF exclusion and deletion across reopening', async ({ page }) => {
-  await page.goto('/'); await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/); await mount(page);
+  await page.goto('/'); await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/); await mount(page);
   const history = page.locator('body').getByRole('region', { name: 'Saved timed results' });
   await expect(history.getByRole('listitem')).toHaveCount(3);
   const first = history.getByRole('listitem').first();
@@ -61,7 +61,7 @@ for (const failure of ['edit', 'delete'] as const) {
 
 test('permission cancellation leaves integrated history available', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async () => {
     const path = '/browser-tests/history-harness.tsx';
     const harness = await import(/* @vite-ignore */ path) as typeof import('./history-harness');

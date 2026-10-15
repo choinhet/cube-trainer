@@ -2,11 +2,12 @@ import { ActionBar, FieldRow } from '../../components/ModalPatterns';
 import { Button } from '../../components/ui/button';
 import { Overlay } from '../../components/Overlay';
 import { NativeSelect } from '../../components/ui/native-select';
+import { createPortal } from 'react-dom';
 import { useEffect, useId, useReducer, useRef, useState } from 'react';
 import type { LocalData, LocalRepository } from '../../adapters/local-repository';
 const NEW_SESSION = '__new_session__';
 
-export function SessionPicker({ repository }: { repository: LocalRepository }) {
+export function SessionPicker({ repository, target }: { repository: LocalRepository; target?: HTMLElement | null }) {
   const formId = useId();
   const picker = useRef<HTMLSelectElement | null>(null);
   const submitting = useRef(false);
@@ -26,7 +27,7 @@ export function SessionPicker({ repository }: { repository: LocalRepository }) {
     catch (cause) { setError(`Session was not created: ${String(cause)}`); }
     finally { submitting.current = false; setBusy(false); }
   }
-  return <>
+  const content = <>
     <label className="session-picker">Session
       <NativeSelect ref={picker} aria-label="History session" value={data?.currentSessionId ?? ''} onChange={event => {
         if (event.target.value === NEW_SESSION) {
@@ -49,4 +50,5 @@ export function SessionPicker({ repository }: { repository: LocalRepository }) {
     </Overlay>
     {error && !creating && <p role="alert">{error}</p>}
   </>;
+  return target ? createPortal(content, target) : content;
 }

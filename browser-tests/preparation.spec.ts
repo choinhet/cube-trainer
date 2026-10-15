@@ -5,14 +5,14 @@ test('real worker generates a random-state scramble and the browser guides corre
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async () => {
     const path = '/browser-tests/preparation-harness.tsx';
     const harness = await import(/* @vite-ignore */ path) as typeof import('./preparation-harness');
     (window as unknown as { physical: (move: string) => void }).physical = harness.mount();
   });
   const app = page.locator('body');
-  await app.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session').selectOption({ label: 'New session' });
+  await app.locator('.stage-session').getByLabel('History session').selectOption({ label: 'New session' });
   await app.getByLabel('New session name').fill('Scramble practice');
   await app.getByRole('button', { name: 'Create session' }).click();
   await expect(page.getByRole('dialog', { name: 'New session', exact: true })).toHaveCount(0);

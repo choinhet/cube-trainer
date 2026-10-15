@@ -1,0 +1,607 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-15T19:17:49.1495102Z",
+  "title": "Design System: Cube Trainer",
+  "extensions": {
+    "shadows": [
+      {
+        "name": "phase-card",
+        "value": "0 8px 28px #0d20452b",
+        "purpose": "Floating phase detail."
+      },
+      {
+        "name": "dialog",
+        "value": "0 20px 64px #08183240",
+        "purpose": "Modal overlay separation."
+      }
+    ],
+    "breakpoints": [
+      {
+        "value": "1100px",
+        "name": "header-wrap"
+      },
+      {
+        "value": "640px",
+        "name": "narrow"
+      },
+      {
+        "value": "360px",
+        "name": "compact-brand"
+      }
+    ],
+    "motion": [
+      {
+        "name": "control-state",
+        "value": "140ms ease-out",
+        "purpose": "Background and color transitions; reduced motion removes durations."
+      }
+    ],
+    "typographyMeta": {
+      "display": {
+        "purpose": "Dominant tabular solve measurement.",
+        "displayName": "Timer"
+      }
+    },
+    "colorMeta": {
+      "canvas": {
+        "displayName": "canvas",
+        "tonalRamp": [
+          "oklch(from #eff6ff 15% c h)",
+          "oklch(from #eff6ff 27% c h)",
+          "oklch(from #eff6ff 38% c h)",
+          "oklch(from #eff6ff 49% c h)",
+          "oklch(from #eff6ff 61% c h)",
+          "oklch(from #eff6ff 72% c h)",
+          "oklch(from #eff6ff 84% c h)",
+          "oklch(from #eff6ff 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "surface": {
+        "displayName": "surface",
+        "tonalRamp": [
+          "oklch(from #ffffff 15% c h)",
+          "oklch(from #ffffff 27% c h)",
+          "oklch(from #ffffff 38% c h)",
+          "oklch(from #ffffff 49% c h)",
+          "oklch(from #ffffff 61% c h)",
+          "oklch(from #ffffff 72% c h)",
+          "oklch(from #ffffff 84% c h)",
+          "oklch(from #ffffff 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "text": {
+        "displayName": "text",
+        "tonalRamp": [
+          "oklch(from #172554 15% c h)",
+          "oklch(from #172554 27% c h)",
+          "oklch(from #172554 38% c h)",
+          "oklch(from #172554 49% c h)",
+          "oklch(from #172554 61% c h)",
+          "oklch(from #172554 72% c h)",
+          "oklch(from #172554 84% c h)",
+          "oklch(from #172554 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "muted": {
+        "displayName": "muted",
+        "tonalRamp": [
+          "oklch(from #526381 15% c h)",
+          "oklch(from #526381 27% c h)",
+          "oklch(from #526381 38% c h)",
+          "oklch(from #526381 49% c h)",
+          "oklch(from #526381 61% c h)",
+          "oklch(from #526381 72% c h)",
+          "oklch(from #526381 84% c h)",
+          "oklch(from #526381 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "accent": {
+        "displayName": "accent",
+        "tonalRamp": [
+          "oklch(from #2456d9 15% c h)",
+          "oklch(from #2456d9 27% c h)",
+          "oklch(from #2456d9 38% c h)",
+          "oklch(from #2456d9 49% c h)",
+          "oklch(from #2456d9 61% c h)",
+          "oklch(from #2456d9 72% c h)",
+          "oklch(from #2456d9 84% c h)",
+          "oklch(from #2456d9 95% c h)"
+        ],
+        "role": "primary"
+      },
+      "accent-text": {
+        "displayName": "accent text",
+        "tonalRamp": [
+          "oklch(from #ffffff 15% c h)",
+          "oklch(from #ffffff 27% c h)",
+          "oklch(from #ffffff 38% c h)",
+          "oklch(from #ffffff 49% c h)",
+          "oklch(from #ffffff 61% c h)",
+          "oklch(from #ffffff 72% c h)",
+          "oklch(from #ffffff 84% c h)",
+          "oklch(from #ffffff 95% c h)"
+        ],
+        "role": "primary"
+      },
+      "soft": {
+        "displayName": "soft",
+        "tonalRamp": [
+          "oklch(from #e2ecfb 15% c h)",
+          "oklch(from #e2ecfb 27% c h)",
+          "oklch(from #e2ecfb 38% c h)",
+          "oklch(from #e2ecfb 49% c h)",
+          "oklch(from #e2ecfb 61% c h)",
+          "oklch(from #e2ecfb 72% c h)",
+          "oklch(from #e2ecfb 84% c h)",
+          "oklch(from #e2ecfb 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "line": {
+        "displayName": "line",
+        "tonalRamp": [
+          "oklch(from #c9d7ec 15% c h)",
+          "oklch(from #c9d7ec 27% c h)",
+          "oklch(from #c9d7ec 38% c h)",
+          "oklch(from #c9d7ec 49% c h)",
+          "oklch(from #c9d7ec 61% c h)",
+          "oklch(from #c9d7ec 72% c h)",
+          "oklch(from #c9d7ec 84% c h)",
+          "oklch(from #c9d7ec 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "danger": {
+        "displayName": "danger",
+        "tonalRamp": [
+          "oklch(from #b32441 15% c h)",
+          "oklch(from #b32441 27% c h)",
+          "oklch(from #b32441 38% c h)",
+          "oklch(from #b32441 49% c h)",
+          "oklch(from #b32441 61% c h)",
+          "oklch(from #b32441 72% c h)",
+          "oklch(from #b32441 84% c h)",
+          "oklch(from #b32441 95% c h)"
+        ],
+        "role": "secondary"
+      },
+      "shell": {
+        "displayName": "shell",
+        "tonalRamp": [
+          "oklch(from #172554 15% c h)",
+          "oklch(from #172554 27% c h)",
+          "oklch(from #172554 38% c h)",
+          "oklch(from #172554 49% c h)",
+          "oklch(from #172554 61% c h)",
+          "oklch(from #172554 72% c h)",
+          "oklch(from #172554 84% c h)",
+          "oklch(from #172554 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "shell-text": {
+        "displayName": "shell text",
+        "tonalRamp": [
+          "oklch(from #eff6ff 15% c h)",
+          "oklch(from #eff6ff 27% c h)",
+          "oklch(from #eff6ff 38% c h)",
+          "oklch(from #eff6ff 49% c h)",
+          "oklch(from #eff6ff 61% c h)",
+          "oklch(from #eff6ff 72% c h)",
+          "oklch(from #eff6ff 84% c h)",
+          "oklch(from #eff6ff 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "shell-muted": {
+        "displayName": "shell muted",
+        "tonalRamp": [
+          "oklch(from #c1d0ee 15% c h)",
+          "oklch(from #c1d0ee 27% c h)",
+          "oklch(from #c1d0ee 38% c h)",
+          "oklch(from #c1d0ee 49% c h)",
+          "oklch(from #c1d0ee 61% c h)",
+          "oklch(from #c1d0ee 72% c h)",
+          "oklch(from #c1d0ee 84% c h)",
+          "oklch(from #c1d0ee 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "success": {
+        "displayName": "success",
+        "tonalRamp": [
+          "oklch(from #167252 15% c h)",
+          "oklch(from #167252 27% c h)",
+          "oklch(from #167252 38% c h)",
+          "oklch(from #167252 49% c h)",
+          "oklch(from #167252 61% c h)",
+          "oklch(from #167252 72% c h)",
+          "oklch(from #167252 84% c h)",
+          "oklch(from #167252 95% c h)"
+        ],
+        "role": "secondary"
+      },
+      "success-surface": {
+        "displayName": "success surface",
+        "tonalRamp": [
+          "oklch(from #d9f4e9 15% c h)",
+          "oklch(from #d9f4e9 27% c h)",
+          "oklch(from #d9f4e9 38% c h)",
+          "oklch(from #d9f4e9 49% c h)",
+          "oklch(from #d9f4e9 61% c h)",
+          "oklch(from #d9f4e9 72% c h)",
+          "oklch(from #d9f4e9 84% c h)",
+          "oklch(from #d9f4e9 95% c h)"
+        ],
+        "role": "secondary"
+      },
+      "phase-cross": {
+        "displayName": "phase cross",
+        "tonalRamp": [
+          "oklch(from #4775e8 15% c h)",
+          "oklch(from #4775e8 27% c h)",
+          "oklch(from #4775e8 38% c h)",
+          "oklch(from #4775e8 49% c h)",
+          "oklch(from #4775e8 61% c h)",
+          "oklch(from #4775e8 72% c h)",
+          "oklch(from #4775e8 84% c h)",
+          "oklch(from #4775e8 95% c h)"
+        ],
+        "role": "secondary"
+      },
+      "phase-f2l": {
+        "displayName": "phase f2l",
+        "tonalRamp": [
+          "oklch(from #ef8093 15% c h)",
+          "oklch(from #ef8093 27% c h)",
+          "oklch(from #ef8093 38% c h)",
+          "oklch(from #ef8093 49% c h)",
+          "oklch(from #ef8093 61% c h)",
+          "oklch(from #ef8093 72% c h)",
+          "oklch(from #ef8093 84% c h)",
+          "oklch(from #ef8093 95% c h)"
+        ],
+        "role": "secondary"
+      },
+      "phase-oll": {
+        "displayName": "phase oll",
+        "tonalRamp": [
+          "oklch(from #dfb63c 15% c h)",
+          "oklch(from #dfb63c 27% c h)",
+          "oklch(from #dfb63c 38% c h)",
+          "oklch(from #dfb63c 49% c h)",
+          "oklch(from #dfb63c 61% c h)",
+          "oklch(from #dfb63c 72% c h)",
+          "oklch(from #dfb63c 84% c h)",
+          "oklch(from #dfb63c 95% c h)"
+        ],
+        "role": "secondary"
+      },
+      "phase-pll": {
+        "displayName": "phase pll",
+        "tonalRamp": [
+          "oklch(from #39a78a 15% c h)",
+          "oklch(from #39a78a 27% c h)",
+          "oklch(from #39a78a 38% c h)",
+          "oklch(from #39a78a 49% c h)",
+          "oklch(from #39a78a 61% c h)",
+          "oklch(from #39a78a 72% c h)",
+          "oklch(from #39a78a 84% c h)",
+          "oklch(from #39a78a 95% c h)"
+        ],
+        "role": "secondary"
+      },
+      "dark-canvas": {
+        "displayName": "dark canvas",
+        "tonalRamp": [
+          "oklch(from #101c37 15% c h)",
+          "oklch(from #101c37 27% c h)",
+          "oklch(from #101c37 38% c h)",
+          "oklch(from #101c37 49% c h)",
+          "oklch(from #101c37 61% c h)",
+          "oklch(from #101c37 72% c h)",
+          "oklch(from #101c37 84% c h)",
+          "oklch(from #101c37 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "dark-surface": {
+        "displayName": "dark surface",
+        "tonalRamp": [
+          "oklch(from #182849 15% c h)",
+          "oklch(from #182849 27% c h)",
+          "oklch(from #182849 38% c h)",
+          "oklch(from #182849 49% c h)",
+          "oklch(from #182849 61% c h)",
+          "oklch(from #182849 72% c h)",
+          "oklch(from #182849 84% c h)",
+          "oklch(from #182849 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "dark-text": {
+        "displayName": "dark text",
+        "tonalRamp": [
+          "oklch(from #edf4ff 15% c h)",
+          "oklch(from #edf4ff 27% c h)",
+          "oklch(from #edf4ff 38% c h)",
+          "oklch(from #edf4ff 49% c h)",
+          "oklch(from #edf4ff 61% c h)",
+          "oklch(from #edf4ff 72% c h)",
+          "oklch(from #edf4ff 84% c h)",
+          "oklch(from #edf4ff 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "dark-muted": {
+        "displayName": "dark muted",
+        "tonalRamp": [
+          "oklch(from #acbddc 15% c h)",
+          "oklch(from #acbddc 27% c h)",
+          "oklch(from #acbddc 38% c h)",
+          "oklch(from #acbddc 49% c h)",
+          "oklch(from #acbddc 61% c h)",
+          "oklch(from #acbddc 72% c h)",
+          "oklch(from #acbddc 84% c h)",
+          "oklch(from #acbddc 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "dark-accent": {
+        "displayName": "dark accent",
+        "tonalRamp": [
+          "oklch(from #a1beff 15% c h)",
+          "oklch(from #a1beff 27% c h)",
+          "oklch(from #a1beff 38% c h)",
+          "oklch(from #a1beff 49% c h)",
+          "oklch(from #a1beff 61% c h)",
+          "oklch(from #a1beff 72% c h)",
+          "oklch(from #a1beff 84% c h)",
+          "oklch(from #a1beff 95% c h)"
+        ],
+        "role": "primary"
+      },
+      "dark-accent-text": {
+        "displayName": "dark accent text",
+        "tonalRamp": [
+          "oklch(from #14254c 15% c h)",
+          "oklch(from #14254c 27% c h)",
+          "oklch(from #14254c 38% c h)",
+          "oklch(from #14254c 49% c h)",
+          "oklch(from #14254c 61% c h)",
+          "oklch(from #14254c 72% c h)",
+          "oklch(from #14254c 84% c h)",
+          "oklch(from #14254c 95% c h)"
+        ],
+        "role": "primary"
+      },
+      "dark-soft": {
+        "displayName": "dark soft",
+        "tonalRamp": [
+          "oklch(from #23385e 15% c h)",
+          "oklch(from #23385e 27% c h)",
+          "oklch(from #23385e 38% c h)",
+          "oklch(from #23385e 49% c h)",
+          "oklch(from #23385e 61% c h)",
+          "oklch(from #23385e 72% c h)",
+          "oklch(from #23385e 84% c h)",
+          "oklch(from #23385e 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "dark-line": {
+        "displayName": "dark line",
+        "tonalRamp": [
+          "oklch(from #354b70 15% c h)",
+          "oklch(from #354b70 27% c h)",
+          "oklch(from #354b70 38% c h)",
+          "oklch(from #354b70 49% c h)",
+          "oklch(from #354b70 61% c h)",
+          "oklch(from #354b70 72% c h)",
+          "oklch(from #354b70 84% c h)",
+          "oklch(from #354b70 95% c h)"
+        ],
+        "role": "neutral"
+      },
+      "dark-danger": {
+        "displayName": "dark danger",
+        "tonalRamp": [
+          "oklch(from #ffa4b6 15% c h)",
+          "oklch(from #ffa4b6 27% c h)",
+          "oklch(from #ffa4b6 38% c h)",
+          "oklch(from #ffa4b6 49% c h)",
+          "oklch(from #ffa4b6 61% c h)",
+          "oklch(from #ffa4b6 72% c h)",
+          "oklch(from #ffa4b6 84% c h)",
+          "oklch(from #ffa4b6 95% c h)"
+        ],
+        "role": "secondary"
+      },
+      "dark-success": {
+        "displayName": "dark success",
+        "tonalRamp": [
+          "oklch(from #92e6c2 15% c h)",
+          "oklch(from #92e6c2 27% c h)",
+          "oklch(from #92e6c2 38% c h)",
+          "oklch(from #92e6c2 49% c h)",
+          "oklch(from #92e6c2 61% c h)",
+          "oklch(from #92e6c2 72% c h)",
+          "oklch(from #92e6c2 84% c h)",
+          "oklch(from #92e6c2 95% c h)"
+        ],
+        "role": "secondary"
+      },
+      "dark-success-surface": {
+        "displayName": "dark success surface",
+        "tonalRamp": [
+          "oklch(from #1a443c 15% c h)",
+          "oklch(from #1a443c 27% c h)",
+          "oklch(from #1a443c 38% c h)",
+          "oklch(from #1a443c 49% c h)",
+          "oklch(from #1a443c 61% c h)",
+          "oklch(from #1a443c 72% c h)",
+          "oklch(from #1a443c 84% c h)",
+          "oklch(from #1a443c 95% c h)"
+        ],
+        "role": "secondary"
+      },
+      "dark-phase-cross": {
+        "displayName": "dark phase cross",
+        "tonalRamp": [
+          "oklch(from #83a7ff 15% c h)",
+          "oklch(from #83a7ff 27% c h)",
+          "oklch(from #83a7ff 38% c h)",
+          "oklch(from #83a7ff 49% c h)",
+          "oklch(from #83a7ff 61% c h)",
+          "oklch(from #83a7ff 72% c h)",
+          "oklch(from #83a7ff 84% c h)",
+          "oklch(from #83a7ff 95% c h)"
+        ],
+        "role": "secondary"
+      },
+      "dark-phase-f2l": {
+        "displayName": "dark phase f2l",
+        "tonalRamp": [
+          "oklch(from #f79bad 15% c h)",
+          "oklch(from #f79bad 27% c h)",
+          "oklch(from #f79bad 38% c h)",
+          "oklch(from #f79bad 49% c h)",
+          "oklch(from #f79bad 61% c h)",
+          "oklch(from #f79bad 72% c h)",
+          "oklch(from #f79bad 84% c h)",
+          "oklch(from #f79bad 95% c h)"
+        ],
+        "role": "secondary"
+      },
+      "dark-phase-oll": {
+        "displayName": "dark phase oll",
+        "tonalRamp": [
+          "oklch(from #eed078 15% c h)",
+          "oklch(from #eed078 27% c h)",
+          "oklch(from #eed078 38% c h)",
+          "oklch(from #eed078 49% c h)",
+          "oklch(from #eed078 61% c h)",
+          "oklch(from #eed078 72% c h)",
+          "oklch(from #eed078 84% c h)",
+          "oklch(from #eed078 95% c h)"
+        ],
+        "role": "secondary"
+      },
+      "dark-phase-pll": {
+        "displayName": "dark phase pll",
+        "tonalRamp": [
+          "oklch(from #6ed5b5 15% c h)",
+          "oklch(from #6ed5b5 27% c h)",
+          "oklch(from #6ed5b5 38% c h)",
+          "oklch(from #6ed5b5 49% c h)",
+          "oklch(from #6ed5b5 61% c h)",
+          "oklch(from #6ed5b5 72% c h)",
+          "oklch(from #6ed5b5 84% c h)",
+          "oklch(from #6ed5b5 95% c h)"
+        ],
+        "role": "secondary"
+      }
+    }
+  },
+  "components": [
+    {
+      "css": ".ds-button-primary { background: var(--accent, #2456d9); color: var(--accent-text, #ffffff); border: 1px solid var(--line, #c9d7ec); border-radius: var(--radius-control, 8px); min-height: var(--control-height, 40px); padding: 8px 12px; font: 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; transition: background-color 140ms ease-out, color 140ms ease-out; } .ds-button-primary:hover { background: var(--soft, #e2ecfb); color: var(--text, #172554); } .ds-button-primary:focus-visible { outline: 2px solid var(--accent, #2456d9); outline-offset: 3px; }",
+      "html": "<button class=\"ds-button-primary\">View analysis</button>",
+      "kind": "button",
+      "name": "primary button",
+      "description": "Existing shared Button variant.",
+      "refersTo": "button-primary"
+    },
+    {
+      "css": ".ds-button-outline { background: var(--surface, #ffffff); color: var(--text, #172554); border: 1px solid var(--line, #c9d7ec); border-radius: var(--radius-control, 8px); min-height: var(--control-height, 40px); padding: 8px 12px; font: 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; transition: background-color 140ms ease-out, color 140ms ease-out; } .ds-button-outline:hover { background: var(--soft, #e2ecfb); color: var(--text, #172554); } .ds-button-outline:focus-visible { outline: 2px solid var(--accent, #2456d9); outline-offset: 3px; }",
+      "html": "<button class=\"ds-button-outline\">View analysis</button>",
+      "kind": "button",
+      "name": "outline button",
+      "description": "Existing shared Button variant.",
+      "refersTo": "button-outline"
+    },
+    {
+      "css": ".ds-button-ghost { background: transparent; color: var(--text, #172554); border: 1px solid var(--line, #c9d7ec); border-radius: var(--radius-control, 8px); min-height: var(--control-height, 40px); padding: 8px 12px; font: 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; transition: background-color 140ms ease-out, color 140ms ease-out; } .ds-button-ghost:hover { background: var(--soft, #e2ecfb); color: var(--text, #172554); } .ds-button-ghost:focus-visible { outline: 2px solid var(--accent, #2456d9); outline-offset: 3px; }",
+      "html": "<button class=\"ds-button-ghost\">View analysis</button>",
+      "kind": "button",
+      "name": "ghost button",
+      "description": "Existing shared Button variant.",
+      "refersTo": "button-ghost"
+    },
+    {
+      "css": ".ds-field-label { color: var(--text, #172554); font: 14px 'Segoe UI', sans-serif; } .ds-field { display:block; margin-top:8px; padding:8px 12px; min-height:40px; background:var(--surface, #fff); color:var(--text, #172554); border:1px solid var(--line, #c9d7ec); border-radius:8px; font:inherit; } .ds-field:hover { border-color:var(--muted, #526381); } .ds-field:focus-visible { outline: 2px solid var(--accent, #2456d9); outline-offset: 3px; }",
+      "html": "<label class=\"ds-field-label\">Session name<input class=\"ds-field\" placeholder=\"Practice session\"></label>",
+      "kind": "input",
+      "name": "Text field",
+      "description": "Shared text field for named session and import forms.",
+      "refersTo": "input"
+    },
+    {
+      "name": "Stage navigation",
+      "description": "Midnight shell with selected page state.",
+      "css": ".ds-nav { display:flex; gap:4px; padding:16px; background:var(--shell, #172554); font:14px \"Segoe UI\", sans-serif; } .ds-nav a { padding:10px 16px; color:var(--shell-muted, #c1d0ee); border-radius:8px; text-decoration:none; } .ds-nav a[aria-current] { background:#2857d9; color:#fff; } .ds-nav a:hover { background:#263e75; color:#fff; } .ds-nav a:focus-visible { outline:2px solid #c1d4ff; outline-offset:3px; }",
+      "kind": "nav",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Practice\"><a href=\"#solve\" aria-current=\"page\">Solve</a><a href=\"#cross\">Cross Trainer</a></nav>"
+    },
+    {
+      "css": ".ds-success { display:inline-flex; gap:6px; padding:6px 12px; border-radius:999px; background:var(--success-surface, #d9f4e9); color:var(--success, #167252); font:600 14px \"Segoe UI\", sans-serif; }",
+      "html": "<span class=\"ds-success\">Optimal cross</span>",
+      "kind": "chip",
+      "name": "Success badge",
+      "description": "Localized Cross success feedback.",
+      "refersTo": "success-badge"
+    },
+    {
+      "name": "Floating phase card",
+      "description": "Overlay depth for pinned or hovered phase detail, outside document flow.",
+      "css": ".ds-phase-card { background:var(--surface, #fff); color:var(--text, #172554); padding:16px; border-radius:12px; box-shadow:0 8px 28px #0d20452b; font:14px 'Segoe UI', sans-serif; } .ds-phase-card button { background:var(--soft, #e2ecfb); color:inherit; border:0; border-radius:8px; padding:8px 12px; } .ds-phase-card button:hover { background:var(--line, #c9d7ec); } .ds-phase-card button:focus-visible { outline: 2px solid var(--accent, #2456d9); outline-offset: 3px; }",
+      "kind": "card",
+      "html": "<section class=\"ds-phase-card\"><strong>PLL</strong><p>Recognition and execution</p><button aria-label=\"Close phase details\">Close</button></section>"
+    },
+    {
+      "name": "Phase ribbon",
+      "description": "Duration-proportional phase selection; illustrative preview only.",
+      "css": ".ds-ribbon { display:flex; height:14px; width:100%; } .ds-ribbon button { border:0; padding:0; cursor:pointer; } .ds-ribbon button:hover { filter:brightness(1.08); } .ds-ribbon button:focus-visible { outline:2px solid var(--text,#172554); outline-offset:3px; }",
+      "kind": "custom",
+      "html": "<div class=\"ds-ribbon\" aria-label=\"Illustrative phase ribbon\"><button aria-label=\"Cross\" style=\"flex:1;background:var(--phase-cross,#4775e8)\"></button><button aria-label=\"F2L\" style=\"flex:4;background:var(--phase-f2l,#ef8093)\"></button><button aria-label=\"OLL\" style=\"flex:2;background:var(--phase-oll,#dfb63c)\"></button><button aria-label=\"PLL\" style=\"flex:2;background:var(--phase-pll,#39a78a)\"></button></div>"
+    }
+  ],
+  "narrative": {
+    "northStar": "Competition Stage",
+    "rules": [
+      {
+        "name": "The Semantic Color Rule",
+        "body": "Phase colors retain their measured meaning across live results and saved details; pair color with labels or other state cues.",
+        "section": "colors"
+      },
+      {
+        "name": "The Open Stage Rule",
+        "body": "Use shared alignment and space before introducing another panel around practice content.",
+        "section": "elevation"
+      }
+    ],
+    "overview": "Physical practice takes the stage. A midnight-indigo navigation shell frames an open blue practice plane; a centered interactive cube and large timer carry the main visual weight. Color helps identify actions and measured phases while flat supporting regions keep attention on the attempt.\n\nThe approved direction is code-led, with `.impeccable/mocks/decision/assigned.html` as its composition reference. It uses the existing geometric 3D cube and component foundations; no new shipping raster assets or approved raster comp establish this system. The current source, particularly `src/styles/competition-stage.css`, is the extraction authority. This stylesheet loads after `workspace.css` and `design-navigation.css` in `src/app/main.tsx`.",
+    "keyCharacteristics": [
+      "One centered practice plane.",
+      "A concentrated indigo shell and meaningful phase colors.",
+      "Large tabular time with restrained interface typography.",
+      "Flat sections and progressive analysis disclosure."
+    ],
+    "dos": [
+      "Do keep the cube and timer on one shared centerline.",
+      "Do preserve phase meanings and equivalent keyboard, click, and touch access.",
+      "Do keep full saved review and all-results history reachable.",
+      "Do use shared tokens and the final stylesheet cascade when extending the interface."
+    ],
+    "donts": [
+      "Don't reintroduce unequal flanking sidebars around the practice stage.",
+      "Don't move surrounding content when a phase card opens on hover.",
+      "Don't fabricate unavailable timing or product capabilities to fill space.",
+      "Don't treat the superseded design guides as current visual authority."
+    ]
+  }
+}

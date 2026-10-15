@@ -6,7 +6,7 @@ test('four physical F2L pairs remain accessible after offline saved-history reop
   const scramble = solution.slice().reverse().map(move => move.endsWith('2') ? move : move.endsWith("'") ? move[0] : `${move}'`);
   const scrambleNotation = sequence.slice().reverse().map(move => move.endsWith('2') ? move : move.endsWith("'") ? move[0] : `${move}'`).join(' ');
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async scramble => {
     const path = '/browser-tests/timed-harness.tsx';
     const harness = await import(/* @vite-ignore */ path) as typeof import('./timed-harness');
@@ -18,7 +18,8 @@ test('four physical F2L pairs remain accessible after offline saved-history reop
   for (const [index, move] of scramble.entries()) await physical(move, 100 + index * 100);
   for (const [index, move] of solution.entries()) await physical(move, 10000 + index * 100);
   const current = page.getByRole('region', { name: 'CFOP phase timing' });
-  await expect(current.getByRole('button', { name: /F2L pair 1 execution:/ })).toHaveCSS('background-color', 'rgb(121, 214, 187)');
+  await expect(current.getByRole('button', { name: /F2L pair 1 execution:/ })).toHaveCSS('background-color', 'rgb(239, 128, 147)');
+  await current.getByRole('button', { name: 'View analysis', exact: true }).click();
   const pairControl = current.getByRole('button', { name: 'Show F2L pair 1 details' });
   await expect(pairControl).toHaveCSS('min-height', '44px');
   await expect(pairControl).toHaveCSS('min-width', '44px');
@@ -39,18 +40,18 @@ test('four physical F2L pairs remain accessible after offline saved-history reop
 
 test('physical completion saves exact precision and captured session, then survives browser reopening', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async () => {
     const path = '/browser-tests/timed-harness.tsx';
     const harness = await import(/* @vite-ignore */ path) as typeof import('./timed-harness');
     (window as unknown as { timedPhysical: ReturnType<typeof harness.mount> }).timedPhysical = harness.mount();
   });
   const app = page.locator('body');
-  await app.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session').selectOption({ label: 'New session' });
+  await app.locator('.stage-session').getByLabel('History session').selectOption({ label: 'New session' });
   await app.getByLabel('New session name').fill('Original session');
   await app.getByRole('button', { name: 'Create session' }).click();
-  await expect(app.getByRole('region', { name: 'Saved timed results' }).getByRole('combobox', { name: 'History session' }).locator('option:checked')).toHaveText('Original session');
-  const firstSession = await app.getByRole('region', { name: 'Saved timed results' }).getByRole('combobox', { name: 'History session' }).inputValue();
+  await expect(app.locator('.stage-session').getByRole('combobox', { name: 'History session' }).locator('option:checked')).toHaveText('Original session');
+  const firstSession = await app.locator('.stage-session').getByRole('combobox', { name: 'History session' }).inputValue();
   if (await page.getByRole('dialog').count()) await page.getByRole('button', { name: 'Close', exact: true }).click();
   await app.getByRole('link', { name: 'Solve', exact: true }).click();
   await app.getByRole('button', { name: 'Connect Cube' }).click();
@@ -87,7 +88,7 @@ test('physical completion saves exact precision and captured session, then survi
     open.onsuccess = () => { const db = open.result; const request = db.transaction('checkpoints').objectStore('checkpoints').count(); request.onsuccess = () => { resolve(request.result); db.close(); }; };
   }))).toBe(0);
   await page.reload();
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByRole('option', { name: 'Later session' })).toBeAttached();
+  await expect(page.locator('.stage-session').getByRole('option', { name: 'Later session' })).toBeAttached();
   await expect(page.getByRole('region', { name: 'Saved timed results' }).locator('tbody tr')).toHaveCount(1);
   await expect(page.getByRole('region', { name: 'Saved timed results' }).locator('tbody tr')).toContainText('3.23 (+2)');
   const records = await page.evaluate(() => new Promise<unknown[]>((resolve, reject) => {
@@ -116,7 +117,7 @@ test('physical completion saves exact precision and captured session, then survi
 
 test('legacy shared receipts recover offline history details and preserve raw timing through penalty edits', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async () => {
     const path = '/src/adapters/local-repository.ts';
     const { LocalRepository } = await import(/* @vite-ignore */ path) as typeof import('../src/adapters/local-repository');

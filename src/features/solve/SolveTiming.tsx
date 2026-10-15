@@ -14,6 +14,6 @@ export function SolveTiming({ session }: { session: LiveSession }) {
     {timed?.result?.status === 'interrupted' && <p role="status">Interrupted: {timed.result.reason}.</p>}
     {timed?.saveState === 'failed' && <p role="alert">Result was not saved. {timed.error} <Button onClick={() => session.retrySave()}>Retry save</Button></p>}
     {timed?.checkpointError && <p role="alert">{timed.checkpointError}</p>}
-    {result && <CFOPBreakdown result={result} />}
+    {result && <CFOPBreakdown result={result} compact />}
   </div>;
 }

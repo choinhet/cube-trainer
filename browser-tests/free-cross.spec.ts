@@ -23,14 +23,14 @@ async function finishSetup(page: Page, startMs: number, retry = false) {
 }
 async function prepare(page: Page, failure: 'checkpoint' | 'finalize' | null = null, mode = 'free', scramble = 'R2', sourceAlgorithm = '') {
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async ({ failure, scramble, sourceAlgorithm }) => {
     const path = '/browser-tests/cross-practice-harness.tsx';
     const harness = await import(/* @vite-ignore */ path) as typeof import('./cross-practice-harness');
     (window as unknown as { physicalCross: ReturnType<typeof harness.mount> }).physicalCross = harness.mount(failure, scramble, sourceAlgorithm);
   }, { failure, scramble, sourceAlgorithm });
   const app = page.locator('body');
-  await app.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session').selectOption({ label: 'New session' });
+  await app.locator('.stage-session').getByLabel('History session').selectOption({ label: 'New session' });
   await app.getByLabel('New session name').fill('Cross session');
   await app.getByRole('button', { name: 'Create session' }).click();
   await expect(page.getByRole('dialog', { name: 'New session', exact: true })).toHaveCount(0);
@@ -168,7 +168,8 @@ test('shares a solved-origin scramble, imports it from a scrambled cube, and cop
   await context.grantPermissions(['clipboard-read', 'clipboard-write']);
   const app = await prepare(page);
   const workspace = await app.getByRole('region', { name: 'Cross workspace' }).boundingBox();
-  expect(workspace!.y + workspace!.height).toBeLessThanOrEqual(page.viewportSize()!.height);
+  expect(workspace!.x).toBeGreaterThanOrEqual(0);
+  expect(workspace!.x + workspace!.width).toBeLessThanOrEqual(page.viewportSize()!.width);
   await app.getByRole('button', { name: 'Copy scramble' }).click();
   expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('R2');
   await physical(page, 'F', 1000);

@@ -5,14 +5,14 @@ test('real worker and live guidance reach the full target from an arbitrary sour
   const sourceAlg = "F2 D R' U L2 B";
   const source = await independentTarget(sourceAlg);
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async source => {
     const path = '/browser-tests/preparation-harness.tsx';
     const harness = await import(/* @vite-ignore */ path) as typeof import('./preparation-harness');
     (window as unknown as { physical: (move: string) => void }).physical = harness.mount(source);
   }, source);
   const app = page.locator('body');
-  await app.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session').selectOption({ label: 'New session' });
+  await app.locator('.stage-session').getByLabel('History session').selectOption({ label: 'New session' });
   await app.getByLabel('New session name').fill('Arbitrary setup');
   await app.getByRole('button', { name: 'Create session' }).click();
   await expect(page.getByRole('dialog', { name: 'New session', exact: true })).toHaveCount(0);
@@ -76,7 +76,7 @@ test('production setup worker solves deterministic full-state fixtures and repor
 test('loading stays interactive and cancellation, solver errors and movement cannot arm a setup', async ({ page }) => {
   const source = await independentTarget('F');
   await page.goto('/');
-  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await expect(page.locator('.stage-session').getByLabel('History session')).toHaveValue(/.+/);
   await page.evaluate(async source => {
     const path = '/browser-tests/preparation-harness.tsx';
     const harness = await import(/* @vite-ignore */ path) as typeof import('./preparation-harness');
@@ -88,7 +88,7 @@ test('loading stays interactive and cancellation, solver errors and movement can
     });
   }, source);
   const app = page.locator('body');
-  await app.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session').selectOption({ label: 'New session' });
+  await app.locator('.stage-session').getByLabel('History session').selectOption({ label: 'New session' });
   await app.getByLabel('New session name').fill('Cancellation checks');
   await app.getByRole('button', { name: 'Create session' }).click();
   await expect(page.getByRole('dialog', { name: 'New session', exact: true })).toHaveCount(0);

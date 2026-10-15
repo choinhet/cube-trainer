@@ -20,7 +20,7 @@ for (const width of [375, 640]) {
     await page.setViewportSize({ width, height: width === 640 ? 450 : 812 });
     await page.goto('/');
     if (width === 640) await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
-    const picker = page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session');
+    const picker = page.locator('.stage-session').getByLabel('History session');
     await expect(picker).toHaveValue(/.+/);
     await picker.focus();
     await picker.selectOption({ label: 'New session' });

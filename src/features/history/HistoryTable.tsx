@@ -16,8 +16,10 @@ export function HistoryTable({ entries, selected, onSelect, previousLabel, nextL
   const area = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
+  const [expanded, setExpanded] = useState(false);
   useEffect(() => {
     const element = area.current;
+    if (!expanded) { setPageSize(5); return; }
     if (!element || typeof ResizeObserver === 'undefined') return;
     const measure = () => {
       const height = element.clientHeight;
@@ -27,14 +29,15 @@ export function HistoryTable({ entries, selected, onSelect, previousLabel, nextL
     const observer = new ResizeObserver(measure);
     observer.observe(element); measure();
     return () => observer.disconnect();
-  }, []);
+  }, [expanded]);
   const totalPages = Math.max(1, Math.ceil(entries.length / pageSize));
   const currentPage = Math.min(page, totalPages - 1);
-  return <>
+  return <div className="history-results" data-expanded={expanded}>
+    <Button className="history-view-toggle" variant="ghost" aria-expanded={expanded} onClick={() => { setExpanded(!expanded); setPage(0); }}>{expanded ? 'Recent results' : 'All results'}</Button>
     <div className="history-table-area" ref={area}>
       <ResultTable moves={moves}>{entries.slice(currentPage * pageSize, (currentPage + 1) * pageSize).map(entry => <TableRow key={entry.id} data-selected={selected === entry.id}>
-        <TableCell>{entry.tps}</TableCell><TableCell><Button variant="ghost" onClick={() => onSelect(entry.id)}>{entry.time}</Button></TableCell>
-        {moves && <TableCell>{entry.moves}</TableCell>}
+        <TableCell><span className="history-cell-label" aria-hidden="true">TPS</span>{entry.tps}</TableCell><TableCell><Button variant="ghost" onClick={() => onSelect(entry.id)}>{entry.time}</Button></TableCell>
+        {moves && <TableCell><span className="history-cell-label" aria-hidden="true">Moves</span>{entry.moves}</TableCell>}
       </TableRow>)}</ResultTable>
     </div>
     <nav className="history-pagination" aria-label="History pages">
@@ -42,5 +45,5 @@ export function HistoryTable({ entries, selected, onSelect, previousLabel, nextL
       <span aria-live="polite" aria-label={`Page ${currentPage + 1} of ${totalPages}`}>{currentPage + 1} / {totalPages}</span>
       <IconButton label={nextLabel} disabled={currentPage + 1 === totalPages} onClick={() => setPage(currentPage + 1)}><ChevronRight /></IconButton>
     </nav>
-  </>;
+  </div>;
 }

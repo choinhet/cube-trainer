@@ -46,10 +46,11 @@ function CrossAttemptDetails({ record, sessionName }: { record: CrossRecord; ses
   </article>;
 }
 
-export function CrossHistory({ records, error, compact = false, repository, sessionNames = {} }: { records: CrossRecord[]; error: string | null; compact?: boolean; repository?: LocalRepository; sessionNames?: Record<string, string> }) {
+export function CrossHistory({ records, error, compact = false, repository, sessionNames = {}, sessionTarget }: { records: CrossRecord[]; error: string | null; compact?: boolean; repository?: LocalRepository; sessionNames?: Record<string, string>; sessionTarget?: HTMLElement | null }) {
   const [selected, setSelected] = useState<string | null>(null);
   if (compact) return <section aria-label="Cross practice history" className="history-panel">
-    {repository && <SessionPicker repository={repository} />}
+    {repository && <SessionPicker repository={repository} target={sessionTarget} />}
+    <h2>Recent cross attempts</h2>
     {error && <p role="alert">{error}</p>}
     {records.length ? <HistoryTable moves entries={records.slice().reverse().map(record => ({ id: record.id, tps: record.mode === 'free' ? resultTPS(record.status, record.rawDurationMs, record.rawTrace) : '—', time: record.mode === 'mixed' ? 'Mixed' : record.mode !== 'free' ? '—' : record.status === 'completed' ? (record.rawDurationMs / 1000).toFixed(2) : record.status, moves: `${record.normalizedExecutedCount}/${record.case.optimum}` }))} selected={selected} onSelect={setSelected} previousLabel="Previous cross result" nextLabel="Next cross result" /> : <p className="empty-history">No saved cross attempts.</p>}
     <Overlay open={!!selected && records.some(record => record.id === selected)} onOpenChange={open => { if (!open) setSelected(null); }} title="Cross details" size="wide">{records.filter(record => record.id === selected).map(record => <CrossAttemptDetails key={record.id} record={record} sessionName={sessionNames[record.sessionId] ?? 'Unavailable session'} />)}</Overlay>
@@ -68,7 +69,7 @@ export function CrossHistory({ records, error, compact = false, repository, sess
 }
 
 function Feedback({ target, children }: { target?: HTMLElement | null; children: ReactNode }) { return target ? createPortal(<div className="cross-feedback">{children}</div>, target) : <div className="cross-feedback">{children}</div>; }
-export function FreeCrossPractice({ session, repository, sessionReady, generate, solve, compact = false, historyTarget, feedbackTarget, enabled = true, mirrored = true }: { session: CrossPracticeController; repository: LocalRepository; sessionReady: boolean; generate?: CrossGenerator; solve?: SetupSolver; compact?: boolean; historyTarget?: HTMLElement | null; feedbackTarget?: HTMLElement | null; enabled?: boolean; mirrored?: boolean }) {
+export function FreeCrossPractice({ session, repository, sessionReady, generate, solve, compact = false, historyTarget, feedbackTarget, enabled = true, mirrored = true, sessionTarget }: { session: CrossPracticeController; repository: LocalRepository; sessionReady: boolean; generate?: CrossGenerator; solve?: SetupSolver; compact?: boolean; historyTarget?: HTMLElement | null; feedbackTarget?: HTMLElement | null; enabled?: boolean; mirrored?: boolean; sessionTarget?: HTMLElement | null }) {
   const store = useMemo(() => new CrossRepository(repository), [repository]);
   const [color, setColor] = useState<CrossColor>('white');
   const [difficulty, setDifficulty] = useState(6);
@@ -230,7 +231,7 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
         <p id={`${importFormId}-feedback`} role={importError ? 'alert' : 'status'}>{importError ?? (importCommitting ? 'Finishing imported setup… Closing keeps preparation running.' : actionPending ? 'Preparing imported scramble… Cancel or close to stop computation.' : !session.canPractice ? 'Connect and synchronize your cube before importing.' : !sessionReady || !historyReady ? 'Wait for local sessions and history to finish loading.' : 'Enter a scramble, choose its cross color, then use it to begin setup.')}</p>
       </form>
     </Overlay>
-    {historyTarget ? createPortal(<CrossHistory records={records} error={historyError} compact={compact} repository={repository} sessionNames={sessionNames} />, historyTarget) : <CrossHistory records={records} error={historyError} compact={compact} repository={repository} sessionNames={sessionNames} />}
+    {historyTarget ? createPortal(<CrossHistory records={records} error={historyError} compact={compact} repository={repository} sessionNames={sessionNames} sessionTarget={sessionTarget} />, historyTarget) : <CrossHistory records={records} error={historyError} compact={compact} repository={repository} sessionNames={sessionNames} sessionTarget={sessionTarget} />}
     {historyError && <Button disabled={!!session.preparation && !historyReady} onClick={() => {
       if (!historyReady) retryRecovery();
       else void store.list().then(value => { setRecords(value); setHistoryError(null); }, cause => setHistoryError(`Cross history could not be loaded: ${String(cause)}`));

@@ -1,4 +1,6 @@
-# Design-system adoption
+# Design-system adoption (historical)
+
+This is the historical adoption and verification record preceding Competition Stage. Its test counts describe that implementation and do not certify the later redesign. Current visual authority is [DESIGN.md](../DESIGN.md); redesign review evidence is recorded in [the finish review](../.scratch/app-redesign/finish-review.md). Preserve the behavioral findings and explicit user feedback below as history, with final styling governed by the approved redesign.
 
 Implemented on 2026-10-15 from the six local tickets in `.scratch/design-system-adoption/issues/` and [the agreed design guide](design-system.md).
 

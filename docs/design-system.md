@@ -1,8 +1,8 @@
 # Design system
 
-Status: adopted across the six design-system implementation tickets on 2026-10-15.
+Status: historical; superseded by the approved Competition Stage redesign on 2026-10-15.
 
-This guide records the design planning session approved on 2026-10-15 and its implementation. Use it when designing or changing screens, modals, controls, or visual styles. See [adoption and review notes](design-system-adoption.md) for verification and interaction details.
+This guide preserves the earlier planning and implementation record. Its visual prescriptions are superseded; use [the current design system](../DESIGN.md) for new interface work. Behavioral requirements, accessibility expectations, and explicit user feedback remain historical evidence. See [adoption and review notes](design-system-adoption.md) for verification and interaction details.
 
 ## Product principles
 

@@ -50,7 +50,7 @@ function HistoryRow({ result, sessionName, current, repository, timezone }: { re
   </li>;
 }
 
-export function TimedHistory({ repository, refreshKey, compact = false }: { repository: LocalRepository; refreshKey?: string | number; compact?: boolean }) {
+export function TimedHistory({ repository, refreshKey, compact = false, sessionTarget }: { repository: LocalRepository; refreshKey?: string | number; compact?: boolean; sessionTarget?: HTMLElement | null }) {
   const [selected, setSelected] = useState<string | null>(null);
   const [version, refresh] = useReducer((value: number) => value + 1, 0);
   const [records, setRecords] = useState<TimedResult[]>([]);
@@ -66,7 +66,8 @@ export function TimedHistory({ repository, refreshKey, compact = false }: { repo
     return () => { active = false; };
   }, [repository, version, refreshKey]);
   if (compact) return <section className="history-panel" aria-label="Saved timed results">
-    <SessionPicker repository={repository} />
+    <SessionPicker repository={repository} target={sessionTarget} />
+    <h2>Recent solves</h2>
     {error && <p role="alert">{error} <Button onClick={refresh}>Retry history</Button></p>}
     {loading && !data && <p role="status">Loading history…</p>}
     {records.length > 0 ? <HistoryTable entries={records.slice().reverse().map(result => ({ id: result.id, tps: resultTPS(result.status, result.rawDurationMs, result.rawTurns), time: result.status === 'interrupted' ? 'Interrupted' : formatSolveTime(result) }))} selected={selected} onSelect={setSelected} previousLabel="Previous results" nextLabel="Next results" /> : !loading && !error && <p className="empty-history">No saved timed results.</p>}
