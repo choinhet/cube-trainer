@@ -11,7 +11,7 @@ export function DeviceControls({ session, bluetoothAvailable, confirm }: { sessi
       <MetricGroup><Metric label="Cube" value={session.deviceName ?? 'No cube connected'} /><Metric label="Status" value={<span role="status">{session.status === 'connected' ? 'Connected' : session.status}</span>} /><Metric label="Battery" value={battery?.type === 'BATTERY' ? `${battery.batteryLevel}%` : 'Unavailable'} /></MetricGroup>
       {!bluetoothAvailable && <p>Bluetooth is unavailable in this browser. Use a browser with Web Bluetooth support to connect a cube.</p>}
       {session.status === 'connecting' && <p role="status">Choose your cube in the Bluetooth device picker. You can cancel in that picker.</p>}
-      <ActionBar>{session.status === 'disconnected' ? <Button disabled={!bluetoothAvailable || !session.canConnect} onClick={() => void session.connect()}>Connect Cube</Button> : <Button variant="outline" disabled={session.status !== 'connected'} onClick={() => void session.disconnect()}>Disconnect cube</Button>}</ActionBar>
+      <ActionBar>{session.status === 'disconnected' ? <Button disabled={!bluetoothAvailable || !session.canConnect} onClick={() => void session.connect()}>Connect Cube</Button> : <Button variant="outline" disabled={session.status !== 'connected'} onClick={() => void session.disconnect()}>Disconnect</Button>}</ActionBar>
       {(session.error || snapshot.reason) && <p role="alert">{session.error || snapshot.reason}</p>}
     </ModalSection>
     <Disclosure title="Cube calibration" defaultOpen>

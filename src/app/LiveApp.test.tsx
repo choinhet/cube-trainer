@@ -8,6 +8,7 @@ import { SOLVED, turn } from '../domain/cube';
 import { IDBFactory } from 'fake-indexeddb';
 import { LocalRepository } from '../adapters/local-repository';
 import { validateScramble } from '../domain/scramble';
+vi.stubGlobal('ResizeObserver', class { observe() {} unobserve() {} disconnect() {} });
 afterEach(() => { cleanup(); window.location.hash = ''; });
 it('allows unsolved synchronized preparation and labels original and actual setup while solving', async () => {
   let deliver: (event: GanCubeEvent) => void = () => {};
@@ -231,4 +232,3 @@ it('uses saved locked viewing preferences on both screens and clears manual rota
   expect(screen.getByLabelText('Physical orientation').style.transform).toBe(initial);
   expect((await repository.load()).settings.defaultAngle).toBe(65);
 });
-
