@@ -13,12 +13,12 @@ it('keeps the dialog title and close action outside overflowing content and expo
   fireEvent.click(screen.getByRole('button', { name: 'Close' }));
   expect(change).toHaveBeenCalledWith(false);
 });
-it('dismisses with one Escape while the close tooltip has keyboard focus', async () => {
+it('keeps the obvious close icon free of tooltips and dismisses with one Escape', () => {
   const change = vi.fn();
   render(<Overlay open onOpenChange={change} title="Device"><button>Disconnect</button></Overlay>);
   const close = screen.getByRole('button', { name: 'Close' });
-  close.focus();
-  await screen.findByRole('tooltip');
+  fireEvent.focus(close);
+  expect(screen.queryByRole('tooltip')).toBeNull();
   fireEvent.keyDown(close, { key: 'Escape', code: 'Escape' });
   expect(change).toHaveBeenCalledWith(false);
 });

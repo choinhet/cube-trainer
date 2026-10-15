@@ -27,7 +27,7 @@ it('allows unsolved synchronized preparation and labels original and actual setu
   expect(screen.queryByText(/Original practice scramble:/)).toBeNull();
   expect(screen.getByLabelText('Actual setup moves').textContent).toBe("Current F'R2U");
 });
-it('shows preparation progress, provisional turns, undo, exact target and explicit cancellation', async () => {
+it('shows preparation progress, provisional turns, undo, exact target and cancels on navigation', async () => {
   let deliver: (event: GanCubeEvent) => void = () => {};
   const connection: Connection = { deviceName: 'test', events$: { subscribe: observer => { deliver = observer.next; return { unsubscribe: () => {} }; } }, sendCubeCommand: async () => {}, disconnect: async () => {} };
   const repository = new LocalRepository(new IDBFactory()); await repository.createSession('Practice');
@@ -47,7 +47,8 @@ it('shows preparation progress, provisional turns, undo, exact target and explic
   physical('R'); physical('U');
   expect(screen.getByLabelText('Actual setup moves').querySelector('[aria-current=step]')).toBeNull();
   expect(screen.getByLabelText('Live 3D cube').getAttribute('data-state')).toBe(validateScramble('R2 U').target);
-  fireEvent.click(screen.getByRole('button', { name: 'Cancel preparation' }));
+  expect(screen.queryByRole('button', { name: 'Cancel preparation' })).toBeNull();
+  fireEvent.click(screen.getByRole('link', { name: 'Insights' }));
   await waitFor(() => expect(screen.queryByLabelText('Actual setup moves')).toBeNull());
 });
 it('exposes separate reset buttons, preserves camera and state on gyro reset, and requires solved confirmation', async () => {

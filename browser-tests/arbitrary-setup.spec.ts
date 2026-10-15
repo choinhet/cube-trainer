@@ -39,7 +39,8 @@ test('real worker and live guidance reach the full target from an arbitrary sour
   await expect(app.getByLabel('Actual setup moves').locator('[aria-current=step]')).toHaveCount(0);
   await expect(app.getByLabel('Live 3D cube')).toHaveAttribute('data-state', target);
 
-  await app.getByRole('button', { name: 'Cancel preparation' }).click();
+  await app.getByRole('link', { name: 'Insights', exact: true }).click();
+  await app.getByRole('link', { name: 'Solve', exact: true }).click();
   await expect(app.getByLabel('Actual setup moves')).toBeVisible({ timeout: 45_000 });
 });
 
@@ -94,14 +95,17 @@ test('loading stays interactive and cancellation, solver errors and movement can
   await app.getByRole('link', { name: 'Solve', exact: true }).click();
   await app.getByRole('button', { name: 'Connect Cube' }).click();
   await expect(app.getByRole('button', { name: 'Connected', exact: true })).toBeVisible();
-  const cancel = app.getByRole('button', { name: 'Cancel preparation' });
+  const leaveAndReturn = async () => {
+    await app.getByRole('link', { name: 'Insights', exact: true }).click();
+    await app.getByRole('link', { name: 'Solve', exact: true }).click();
+  };
   const loading = app.getByText(/Computing setup.*Keep cube still/);
   await expect(loading).toBeVisible({ timeout: 45_000 });
   await app.getByLabel('Live 3D cube').press('ArrowRight');
-  await cancel.click();
+  await leaveAndReturn();
   await expect(app.getByRole('alert')).toContainText('Synthetic solver failure', { timeout: 45_000 });
   await expect(app.getByLabel('Actual setup moves')).toHaveCount(0);
-  await cancel.click();
+  await leaveAndReturn();
   await expect(loading).toBeVisible({ timeout: 45_000 });
   await page.evaluate(() => (window as unknown as { physical: (move: string) => void }).physical('R'));
   await expect(app.getByRole('alert')).toContainText('cube moved');

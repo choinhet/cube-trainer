@@ -22,7 +22,7 @@ Define shared tokens in `src/styles/workspace.css`; components consume these tok
 | --- | --- |
 | Typography | System font stack; 16px base text, 14px dense data and controls, 12px secondary annotations only. |
 | Hierarchy | Use a small heading scale and restrained weight changes. Keep the timer as the dominant result. |
-| Numbers | Tabular numerals for timers and metrics. Right-align numeric table cells and their headers; left-align descriptive labels. |
+| Numbers | Tabular numerals for timers and metrics. Center history values and their headers, and center phase-table data columns and headers. Keep descriptive row labels left-aligned. |
 | Spacing | Use the 4px scale: 4, 8, 12, 16, 24, 32px. Related elements sit closer than separate sections. |
 | Controls | Consistent heights within a control group. Start with 36px desktop controls; provide at least 44px touch targets, using responsive sizing or hit areas. |
 | Icons | Use the existing Lucide family, consistent stroke and optical size, and centered alignment. Start at 20px for standard actions. |
@@ -45,6 +45,8 @@ Use the same icon for the same action everywhere. Reuse `IconButton` for icon ac
 Prefer icon-only actions and navigation when their meaning is recognizable in context. Preserve labels for settings, ambiguous actions or choices, measurements, and essential status. A tooltip supplements understanding; it does not carry the only explanation required to complete a task.
 
 Standardize tooltips on the shared Radix implementation, with the existing 300ms delay as the starting behavior. Show them on hover and keyboard focus; dismiss predictably on Escape or loss of hover/focus. Avoid duplicate native `title` tooltips. Tooltips contain short, noninteractive explanations. Interactive or rich content belongs in a popover, disclosure, or modal with explicit activation.
+
+Obvious X close buttons have an accessible name and no tooltip. Opening or focusing a dialog must not display a persistent Close tooltip.
 
 On touch devices, controls must remain understandable and usable without hover. Where an icon is ambiguous, provide a visible label or an explicit information control that opens a dismissible explanation. Preserve ordinary single-tap action behavior.
 
@@ -115,7 +117,7 @@ Use the same feedback pattern for equivalent actions, such as copying a scramble
 
 ## Responsive behavior
 
-Reflow summaries, fields, and action groups on narrow screens. Keep values, labels, and controls readable. Dense analysis tables may scroll horizontally inside a bounded, discoverable scroll area; the page itself should fit the viewport. Preserve row and column context where practical.
+Reflow summaries, fields, and action groups on narrow screens. Keep values, labels, and controls readable. Dense analysis tables may scroll horizontally inside a bounded, discoverable scroll area; the page itself should fit the viewport width. Preserve row and column context where practical.
 
 Modal width is bounded by the viewport with consistent outer spacing. Keep important controls usable with touch and keyboard. Validate both mobile and desktop layouts, browser zoom, long labels, long scrambles, and overflowing content.
 
@@ -149,6 +151,8 @@ Settings and attempt details use the wide modal; Device and Import shared scramb
 
 The timeline preserves proportional segment widths. Its step-table buttons provide equivalent case details through targets at least 44px wide and high, including recognition and execution information. Overall Turns and TPS count physical face-turn events consistently with history; step Executed moves and Moves per second combine consecutive quarter turns into half turns. The analysis explains this distinction.
 
-Live result analysis scrolls inside a bounded area. Result states reserve space for the timer and recovery actions by reducing the cube presentation.
+Live result analysis participates in normal page scrolling, with no nested vertical scroll box and no result-specific shrinking of the cube. Center the cube and timer together in the training area. Preparation starts automatically; do not add a Cancel preparation button. Navigation and device actions retain their existing cancellation behavior, and abandoning an active solve remains available.
+
+User feedback on 2026-10-15 takes precedence over the initial adoption choices: preserve the compact floating phase card on hover in both the Solve workspace and saved details, keep the proportional timeline 14px high, and center history and phase-table columns. A phase card can also be pinned by click or keyboard and dismissed explicitly. The selected navbar page uses its existing rounded background and border treatment with `aria-current`; it has no extra bottom underline.
 
 All forms retain ordinary Escape, close, and backdrop dismissal. Closing New session during a write lets the write finish. Closing Import cancels computation before preparation replacement starts; once replacement starts, closing lets preparation finish. Nearby status text explains this behavior, failures remain visible, and failed submissions retain their input.

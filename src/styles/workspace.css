@@ -107,8 +107,11 @@ button:hover:enabled, .app-shell button:hover:enabled { background: var(--soft);
 .controls-sidebar input[type="range"] { margin-inline: auto; }
 .controls-sidebar select { text-align: center; }
 .empty-history, .app-shell .empty-history { color: var(--muted); padding: 24px 0; text-align: center; font-size: 12px; }
-.practice-workspace, .app-shell .practice-workspace { display: flow-root; max-width: 1040px; margin: 0 auto; padding: 32px 24px 0; text-align: center; }
+.practice-workspace, .app-shell .practice-workspace { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: calc(100dvh - 140px); max-width: 1040px; margin: 0 auto; padding: 24px; text-align: center; }
 .practice-sequence { min-height: 108px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: var(--space-3); }
+.practice-sequence { width: 100%; }
+.practice-sequence:empty { display: none; }
+.timing-feedback, .cross-feedback-slot { width: 100%; text-align: center; }
 .practice-sequence > p { margin: 0; }
 .move-guidance { width: 100%; }
 .move-sequence { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: center; margin: 0; padding: 0; font-size: 22px; font-weight: 500; letter-spacing: .02em; }
@@ -375,7 +378,7 @@ button:focus-visible, [data-slot="button"]:focus-visible { outline: 2px solid va
 .session-picker select, .app-shell .session-picker select { height: var(--control-height); min-height: var(--control-height); font-size: var(--font-control); }
 .history-table-area { overflow: auto; overscroll-behavior: contain; }
 .history-list { width: 100%; max-width: none; font-size: var(--font-control); }
-.history-list th, .history-list td { text-align: right; font-size: var(--font-control); }
+.history-list th, .history-list td { text-align: center; font-size: var(--font-control); }
 .history-list th { letter-spacing: normal; }
 .history-list [data-slot="button"], .app-shell .history-list button { font-variant-numeric: tabular-nums; font-size: var(--font-control); }
 .history-list tr[data-selected="true"] { box-shadow: inset 3px 0 var(--accent); }
