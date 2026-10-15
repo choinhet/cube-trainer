@@ -1,3 +1,5 @@
+import { Disclosure } from "../../components/ModalPatterns";
+import { Button } from "../../components/ui/button";
 import { useEffect, useRef, useState } from "react";
 import { turn } from "../../domain/cube";
 import {
@@ -104,9 +106,9 @@ export function CrossCases() {
           ))}
         </select>
       </label>{" "}
-      <button disabled={busy} onClick={() => void generate()}>
+      <Button variant="outline" disabled={busy} onClick={() => void generate()}>
         Generate cross case
-      </button>
+      </Button>
       {busy && (
         <p role="status">Computing exact cross distances in a worker…</p>
       )}
@@ -120,8 +122,7 @@ export function CrossCases() {
             Original whole-cube scramble:{" "}
             <code>{caseData.originalScramble}</code>
           </p>
-          <details>
-            <summary>Stable case ID and full target</summary>
+          <Disclosure title="Stable case ID and full target">
             <p>
               <code>{caseData.caseId}</code>
             </p>
@@ -131,7 +132,7 @@ export function CrossCases() {
             <p>
               Inspected state: <code>{state}</code>
             </p>
-          </details>
+          </Disclosure>
           <p>
             Committed prefix: <code>{prefix.join(" ") || "(empty)"}</code>
           </p>
@@ -143,14 +144,14 @@ export function CrossCases() {
           </p>
           <p>Every optimal next move:</p>
           {query.nextMoves.map((move) => (
-            <button
+            <Button variant="outline"
               disabled={busy}
               key={move}
               onClick={() => void advance(move)}
               aria-label={`Inspect optimal move ${move}`}
             >
               {move}
-            </button>
+            </Button>
           ))}
           {!query.distance && (
             <p>Cross complete and aligned to adjacent centers.</p>
@@ -159,9 +160,9 @@ export function CrossCases() {
             Display continuation:{" "}
             <code>{query.continuation.join(" ") || "(complete)"}</code>
           </p>
-          <button disabled={busy} onClick={() => void advance()}>
+          <Button variant="outline" disabled={busy} onClick={() => void advance()}>
             Restore starting case
-          </button>
+          </Button>
           {metrics && (
             <p>
               Worker table: {metrics.reachableStates.toLocaleString()} states,

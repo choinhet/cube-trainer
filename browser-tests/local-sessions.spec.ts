@@ -34,8 +34,32 @@ test('aborted creation leaves the dialog retryable and committed sessions intact
   await page.getByLabel('New session name').fill('Failed creation');
   await page.getByRole('button', { name: 'Create session' }).click();
   await expect(page.getByRole('alert')).toContainText('Session was not created');
+  await expect(page.getByLabel('New session name')).toHaveValue('Failed creation');
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.reload();
   await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session').locator('option:checked')).toHaveText('First');
   await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session').locator('option')).toHaveCount(3);
+});
+
+test('keyboard submission and Escape preserve a session draft with contained focus', async ({ page }) => {
+  await page.goto('/');
+  const picker = page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session');
+  await picker.focus();
+  await picker.selectOption({ label: 'New session' });
+  const dialog = page.getByRole('dialog', { name: 'New session', exact: true });
+  const name = dialog.getByLabel('New session name');
+  await name.fill('Keyboard practice');
+  await name.press('Tab');
+  await expect(dialog.locator(':focus')).toHaveCount(1);
+  await name.focus();
+  await name.press('Escape');
+  await expect(dialog).toHaveCount(0);
+  await expect(picker).toBeFocused();
+  await picker.focus();
+  await picker.selectOption({ label: 'New session' });
+  await expect(name).toHaveValue('Keyboard practice');
+  await name.press('Enter');
+  await expect(dialog).toHaveCount(0);
+  await expect(picker.locator('option:checked')).toHaveText('Keyboard practice');
+  await expect(picker.locator('option', { hasText: 'Keyboard practice' })).toHaveCount(1);
 });

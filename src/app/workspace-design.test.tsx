@@ -29,7 +29,7 @@ it('provides home navigation and contextual device/settings dialogs', async () =
   expect(screen.getByText('82%')).toBeTruthy();
   expect(screen.getByText(/Test cube/)).toBeTruthy();
   expect(screen.getByRole('button', { name: 'Reset gyro (U4)' })).toBeTruthy();
-  fireEvent.click(screen.getByRole('button', { name: 'Close Device' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Close' }));
   fireEvent.click(screen.getByRole('link', { name: 'Settings' }));
   expect(screen.getByRole('dialog', { name: 'Settings' })).toBeTruthy();
 });
