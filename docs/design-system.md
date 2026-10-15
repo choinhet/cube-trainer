@@ -1,8 +1,8 @@
 # Design system
 
-Status: agreed design direction; implementation is incremental.
+Status: adopted across the six design-system implementation tickets on 2026-10-15.
 
-This guide records the design planning session approved on 2026-10-15. Use it when designing or changing screens, modals, controls, or visual styles. It defines the target system; it does not claim that the current interface already conforms.
+This guide records the design planning session approved on 2026-10-15 and its implementation. Use it when designing or changing screens, modals, controls, or visual styles. See [adoption and review notes](design-system-adoption.md) for verification and interaction details.
 
 ## Product principles
 
@@ -123,22 +123,32 @@ Modal width is bounded by the viewport with consistent outer spacing. Keep impor
 
 Implement incrementally, starting with foundations and shared patterns. Each migrated screen must use those patterns before adding local exceptions.
 
-- [ ] Foundations: implement typography and spacing tokens; verify contrast, control dimensions, and numeric alignment.
-- [ ] Shared controls: unify icons, tooltips, focus, selection, and feedback behavior.
-- [ ] Shared layouts: extend Overlay and introduce the needed section, field, metric, disclosure, and action patterns.
-- [ ] Solve: align training controls, timer, scramble, history, and guidance with the shared system.
-- [ ] Solve details: preserve immediately visible analysis; standardize metrics, case details, supporting information, and actions.
-- [ ] Cross Trainer: reuse training, history, and control patterns while preserving its specific workflow.
-- [ ] Cross details: adopt the common attempt structure wherever appropriate.
-- [ ] Settings: unify fields, sections, disclosure behavior, and modal sizing.
-- [ ] Device: unify connection controls, state feedback, and modal layout.
-- [ ] Import shared scramble: unify fields, validation, and actions.
-- [ ] New session: unify fields, validation, and actions.
-- [ ] Insights: apply shared navigation, tabs, surfaces, and placeholder states without adding analytics features.
-- [ ] Debug: use shared controls and sections; retain appropriately dense technical details and bounded overflow.
+- [x] Foundations: implement typography and spacing tokens; verify contrast, control dimensions, and numeric alignment.
+- [x] Shared controls: unify icons, tooltips, focus, selection, and feedback behavior.
+- [x] Shared layouts: extend Overlay and introduce the needed section, field, metric, disclosure, and action patterns.
+- [x] Solve: align training controls, timer, scramble, history, and guidance with the shared system.
+- [x] Solve details: preserve immediately visible analysis; standardize metrics, case details, supporting information, and actions.
+- [x] Cross Trainer: reuse training, history, and control patterns while preserving its specific workflow.
+- [x] Cross details: adopt the common attempt structure wherever appropriate.
+- [x] Settings: unify fields, sections, disclosure behavior, and modal sizing.
+- [x] Device: unify connection controls, state feedback, and modal layout.
+- [x] Import shared scramble: unify fields, validation, and actions.
+- [x] New session: unify fields, validation, and actions.
+- [x] Insights: apply shared navigation, tabs, surfaces, and placeholder states without adding analytics features.
+- [x] Debug: use shared controls and sections; retain appropriately dense technical details and bounded overflow.
 
 ### Completion criteria for a migrated view
 
 Verify the view visually on desktop and mobile. Confirm keyboard navigation, accessible control names, focus restoration for modals, tooltip/disclosure behavior, and touch usability. Exercise applicable empty, loading, disabled, and error states. Check that essential information remains visible and supporting detail remains reachable.
 
-Compare it with at least one other view using the same patterns: equivalent controls, section spacing, actions, and metrics should behave and align consistently. Record any intentional exception in this guide. Run relevant existing checks for behavior changed during implementation; this documentation-only planning step requires no application changes.
+Compare it with at least one other view using the same patterns: equivalent controls, section spacing, actions, and metrics should behave and align consistently. Record any intentional exception in this guide. Run relevant existing checks for behavior changed during implementation.
+
+### Adopted interaction details
+
+Settings and attempt details use the wide modal; Device and Import shared scramble use medium; New session uses small. Modal headers and form footers stay reachable while the body scrolls.
+
+The timeline preserves proportional segment widths. Its step-table buttons provide equivalent case details through targets at least 44px wide and high, including recognition and execution information. Overall Turns and TPS count physical face-turn events consistently with history; step Executed moves and Moves per second combine consecutive quarter turns into half turns. The analysis explains this distinction.
+
+Live result analysis scrolls inside a bounded area. Result states reserve space for the timer and recovery actions by reducing the cube presentation.
+
+All forms retain ordinary Escape, close, and backdrop dismissal. Closing New session during a write lets the write finish. Closing Import cancels computation before preparation replacement starts; once replacement starts, closing lets preparation finish. Nearby status text explains this behavior, failures remain visible, and failed submissions retain their input.
