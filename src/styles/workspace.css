@@ -282,3 +282,76 @@ select[data-slot="native-select"], .app-shell select[data-slot="native-select"] 
 .cfop-bar .cfop-segment { background: var(--cfop-fill, var(--cfop-color)); height: 44px; min-height: 44px; border: 0; border-radius: 0; padding: 0; white-space: nowrap; color: #17202b; font-size: .7rem; }
 .cfop-bar .cfop-recognition { --cfop-fill: color-mix(in srgb, var(--cfop-color) 50%, black); color: white; }
 .cfop-bar .cfop-segment:hover:enabled, .app-shell .cfop-bar .cfop-segment:hover:enabled { background: var(--cfop-fill, var(--cfop-color)); }
+
+.cfop-breakdown { max-width: 64rem; text-align: center; }
+.cfop-bar { margin-top: 2rem; min-height: 0; overflow: visible; height: 14px; }
+.cfop-bar .cfop-segment { position: relative; height: 14px; min-height: 14px; overflow: visible; }
+.cfop-bar .cfop-recognition { --cfop-fill: #74777d; }
+.cfop-bar-label { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: .65rem; color: var(--foreground, #aeb8c5); white-space: nowrap; }
+.cfop-times { justify-content: center; margin-top: .8rem; }
+.cfop-hover { margin: .5rem auto; max-width: 20rem; }
+.cfop-table-scroll { width: 100%; overflow-x: auto; margin-top: 1rem; }
+.cfop-analysis-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cfop-analysis-table th, .cfop-analysis-table td { padding: .65rem .8rem; border-bottom: 1px solid #ffffff18; text-align: center; }
+.cfop-analysis-table th:first-child { text-align: left; }
+.cfop-analysis-table small { display: block; font-size: .65rem; font-weight: normal; opacity: .7; }
+.cfop-cross-moves { font-variant-numeric: tabular-nums; }
+
+/* Constrain grid children so the analysis table scrolls inside the solve modal. */
+.workspace-dialog:has(.solve-detail) { width: calc(100vw - 32px); max-width: 76rem; overflow-x: hidden; }
+.workspace-dialog .result-details, .workspace-dialog .solve-detail { min-width: 0; max-width: 100%; }
+.workspace-dialog .cfop-breakdown, .workspace-dialog .cfop-table-scroll { min-width: 0; max-width: 100%; }
+.workspace-dialog .solve-detail-actions { flex-wrap: wrap; }
+
+.cfop-bar { position: relative; }
+
+.cfop-bar .cfop-hover p { margin: 0; width: 100%; line-height: 1.5; }
+.cfop-case-icon { display: block; flex: none; width: 64px; height: 64px; margin-inline: auto; }
+.cfop-analysis-table small { max-width: 12rem; margin-inline: auto; white-space: normal; overflow-wrap: anywhere; }
+
+/* Compact case cards float over the analysis without affecting its layout. */
+.cfop-icon-well { display: grid; place-items: center; width: 88px; height: 88px; border: 1px solid color-mix(in srgb, var(--text) 7%, transparent); border-radius: 12px; background: color-mix(in srgb, var(--text) 4%, transparent); }
+.cfop-tooltip-timing { display: flex; align-items: center; justify-content: space-between; gap: .5rem; width: calc(100% + 2rem); margin-top: .1rem; padding: .7rem 1rem; border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent); font-size: .7rem; font-variant-numeric: tabular-nums; }
+.cfop-tooltip-timing strong { color: var(--text); font-weight: 600; }
+.cfop-tooltip-timing > span { color: var(--muted); }
+
+.cfop-breakdown { position: relative; }
+.cfop-breakdown > .cfop-hover { position: absolute; z-index: 20; display: flex; flex-direction: column; align-items: center; gap: .8rem; width: min(15rem, 100%); max-width: 100%; box-sizing: border-box; margin: 0; padding: 1rem 1rem 0; border: 1px solid color-mix(in srgb, var(--text) 16%, var(--surface)); border-radius: 14px; background: var(--surface); color: var(--text); box-shadow: 0 12px 32px #0006, 0 2px 6px #0003; pointer-events: none; text-align: center; }
+.cfop-hover .cfop-tooltip-title { margin: 0; font-size: .85rem; font-weight: 650; letter-spacing: .015em; }
+.cfop-hover .cfop-execution-note { max-width: 100%; margin: 0; padding: .3rem .65rem; border-radius: 6px; font-size: .7rem; background: color-mix(in srgb, #eed475 10%, transparent); color: #eed475; }
+.cfop-hover .cfop-tooltip-timing { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.cfop-hover .cfop-tooltip-timing p { display: flex; flex-direction: column; gap: .2rem; margin: 0; text-align: center; font-size: .7rem; text-transform: capitalize; color: var(--muted); }
+.cfop-hover .cfop-tooltip-timing strong { font-size: 1rem; white-space: nowrap; }
+.cfop-hover .cfop-tooltip-timing small { font-size: .65rem; font-weight: 400; text-transform: none; }
+.cfop-timing-percent { font-size: .65rem; }
+.cfop-analysis-table th[tabindex] { cursor: help; }
+.cfop-analysis-table th[tabindex]:focus-visible { outline: 2px solid var(--muted); outline-offset: -2px; }
+
+
+.cfop-breakdown .cfop-cross-moves { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1rem 1.5rem; width: fit-content; max-width: 100%; margin: 1.5rem auto .5rem; padding: .75rem 1.25rem; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--text) 3%, transparent); font-variant-numeric: tabular-nums; }
+.cfop-cross-caption { color: var(--muted); font-size: .75rem; font-weight: 500; }
+.cfop-cross-moves dl { display: flex; gap: 1.5rem; margin: 0; }
+.cfop-cross-moves dl > div { display: flex; flex-direction: column; align-items: center; gap: .15rem; min-width: 3rem; }
+.cfop-cross-moves dl > div + div { padding-left: 1.5rem; border-left: 1px solid var(--line); }
+.cfop-cross-moves dt { color: var(--muted); font-size: .65rem; }
+.cfop-cross-moves dd { margin: 0; color: var(--text); font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
+
+/* Round only the outside ends, leaving labels free to sit above the bar. */
+.cfop-bar .cfop-phase-group:first-child .cfop-segment:first-child { border-radius: 999px 0 0 999px; }
+.cfop-bar .cfop-phase-group:last-child .cfop-segment:last-child { border-radius: 0 999px 999px 0; }
+.cfop-bar .cfop-phase-group:only-child .cfop-segment:only-child { border-radius: 999px; }
+.cfop-breakdown .cfop-cross-moves { flex-wrap: nowrap; gap: .9rem; padding: .45rem .85rem; border-radius: 999px; white-space: nowrap; }
+.cfop-cross-moves dl { gap: .85rem; }
+.cfop-cross-moves dl > div { flex-direction: row; gap: .4rem; min-width: 0; }
+.cfop-cross-moves dl > div + div { padding-left: .85rem; }
+.cfop-cross-moves dd { font-size: .85rem; line-height: 1; }
+.solve-scramble { margin-top: .5rem; padding: .75rem 1rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--text) 3%, transparent); }
+.solve-scramble-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: .75rem; font-weight: 500; }
+.solve-scramble p { margin: .5rem 0 0; font-family: ui-monospace, monospace; font-size: .8rem; line-height: 1.8; text-align: left; overflow-wrap: anywhere; }
+.solve-detail-actions .penalty-toggles > button, .solve-detail-actions > .delete-result { box-sizing: border-box; width: 72px; min-width: 72px; height: 44px; min-height: 44px; padding: 0; border-radius: 8px; }
+
+.solve-detail .solve-scramble { display: grid; grid-template-columns: minmax(0, 1fr) 48px; align-items: start; gap: .75rem; margin: .5rem 0 1rem; padding: .5rem 0; border: 0; border-radius: 0; background: transparent; }
+.solve-detail .solve-scramble > p { margin: 0; font-size: 1rem; line-height: 1.9; user-select: text; }
+.solve-detail .solve-copy-scramble { width: 48px; min-width: 48px; height: 48px; min-height: 48px; padding: 0; }
+.solve-detail .solve-copy-scramble svg { width: 21px; height: 21px; }
+.solve-scramble-error { grid-column: 1 / -1; }

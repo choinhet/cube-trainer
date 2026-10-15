@@ -166,13 +166,16 @@ export class LiveSession extends DiagnosticSession {
     }
     await this.startPreparation(generate, solve);
   }
+  private get originalTimedScramble(): string | undefined {
+    return this.scramble && this.scramble.moves.reduce(turn, SOLVED) === this.scramble.target ? this.scramble.original : undefined;
+  }
   private persistCheckpoint(): Promise<void> {
     const attempt = this.timedAttempt;
     const persistence = this.persistence;
     if (!attempt || attempt.terminal || !persistence) return Promise.resolve();
     const snapshot = this.diagnostic.snapshot();
     const checkpoint: AttemptCheckpoint = { kind: 'timed', id: attempt.id, phase: attempt.phase,
-      result: attempt.interruptedData(this.monotonicClock(), 'Browser interruption'), facelets: snapshot.facelets, rawTurns: snapshot.turns.slice(this.attemptTurnOffset) };
+      result: { ...attempt.interruptedData(this.monotonicClock(), 'Browser interruption'), ...(this.originalTimedScramble ? { originalScramble: this.originalTimedScramble } : {}) }, facelets: snapshot.facelets, rawTurns: snapshot.turns.slice(this.attemptTurnOffset) };
     this.writes = this.writes.then(() => persistence.checkpoint(checkpoint)).catch(error => {
       if (this.timedAttempt !== attempt) return;
       this.checkpointError = `Active attempt checkpoint was not saved: ${String(error)}`;
@@ -217,7 +220,7 @@ export class LiveSession extends DiagnosticSession {
   }
   private completeTimed(result: TimedResult): void {
     const snapshot = this.diagnostic.snapshot();
-    result = { ...result, analysisInputVersion: 2, facelets: result.facelets ?? snapshot.facelets, rawTurns: result.rawTurns ?? snapshot.turns.slice(this.solveTurnOffset ?? this.attemptTurnOffset) };
+    result = { ...result, ...(this.originalTimedScramble ? { originalScramble: this.originalTimedScramble } : {}), analysisInputVersion: 2, facelets: result.facelets ?? snapshot.facelets, rawTurns: result.rawTurns ?? snapshot.turns.slice(this.solveTurnOffset ?? this.attemptTurnOffset) };
     this.completedResult = result;
     if (result.status === 'completed') this.previousTimedResult = result;
     this.saveState = 'pending';
@@ -506,3 +509,4 @@ export class LiveSession extends DiagnosticSession {
     this.notify();
   }
 }
+

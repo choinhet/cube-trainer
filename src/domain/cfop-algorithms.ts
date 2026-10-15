@@ -1,3 +1,4 @@
+import { identifyLLCase } from './cfop-case-identification';
 import { catalogMatches, type CatalogMatch } from "./cfop-algorithm-matches";
 import { cfopProgress, type CFOPAnalysis } from "./cfop-analysis";
 import type { CFOPCase } from "./cfop-pairs";
@@ -134,11 +135,15 @@ export function analyzeLLAlgorithms(
               match.case.phase === "OLL",
           ) ?? matched;
       }
-      const name =
-        matched?.case.name ??
-        (twoLook
-          ? `Unrecognized (${i === 0 ? "edges" : "corners"})`
-          : "Unrecognized");
+      const startingCase = identifyLLCase(analysis.states[section.start], analysis.crossColor, phaseName)
+        ?? identifyLLCase(analysis.states[section.start], analysis.crossColor, phaseName, twoLook ? i === 0 ? 'edges' : 'corners' : 'one-look');
+      const caseName = startingCase?.name ?? 'Unrecognized case';
+      const executedAlgorithmName = matched?.case.name;
+      // Two-look corner names (L, Sune, etc.) alias the numbered full OLL case.
+      const sameCase = !!matched && !!startingCase &&
+        (matched.case.id === startingCase.id || matched.case.id.replace(/^2look-/, '') === startingCase.id);
+      const executionNote = sameCase ? undefined
+        : `${executedAlgorithmName ?? 'Unrecognized algorithm'} executed`;
       const startMs = time(section.start),
         endMs = time(section.end);
       const alignmentOnly =
@@ -155,7 +160,10 @@ export function analyzeLLAlgorithms(
       output.push({
         id: `${phaseName.toLowerCase()}-${i + 1}`,
         phase: phaseName,
-        label: `${phaseName} - ${name}`,
+        label: `${phaseName} - ${caseName}`,
+        caseName,
+        ...(executionNote ? { executionNote } : {}),
+        ...(executedAlgorithmName ? { executedAlgorithmName } : {}),
         startIndex: section.start,
         solutionStartIndex: section.solution,
         endIndex: section.end,
@@ -164,11 +172,13 @@ export function analyzeLLAlgorithms(
         endMs,
         recognitionMs: Math.max(0, executionStartMs - startMs),
         executionMs: Math.max(0, endMs - executionStartMs),
-        ...(matched
-          ? { catalogCaseId: matched.case.id, variantId: matched.variant.id }
-          : {}),
+        ...(startingCase ? { catalogCaseId: startingCase.id } : {}),
+        ...(matched ? { executedCatalogCaseId: matched.case.id, variantId: matched.variant.id } : {}),
       });
     });
   }
   return output;
 }
+
+
+

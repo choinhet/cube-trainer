@@ -15,7 +15,13 @@ export interface CFOPCase {
   endMs: number;
   recognitionMs: number;
   executionMs: number;
+  /** Case identified from the starting cube state. */
   catalogCaseId?: string;
+  caseName?: string;
+  executionNote?: string;
+  /** Independently matched physical algorithm, when recognized. */
+  executedCatalogCaseId?: string;
+  executedAlgorithmName?: string;
   variantId?: string;
 }
 /** Cases are bounded by restored Cross checkpoints, permitting insertion turns. */
@@ -43,3 +49,5 @@ export function analyzeF2LPairs(result: TimedResult, analysis: CFOPAnalysis): CF
     return detail;
   });
 }
+
+

@@ -15,6 +15,8 @@ export interface TimedResult {
   inspectionElapsedMs?: number;
   /** Version of durable full-state/physical-trace inputs for offline analysis. */
   analysisInputVersion?: 1 | 2;
+  /** Original generated scramble from solved, retained independently of solve moves. */
+  originalScramble?: string;
   /** Monotonic host start, retained independently of any missing move timestamp. */
   solveStartHostMs?: number;
 }
@@ -141,3 +143,4 @@ export class TimedAttempt {
     };
   }
 }
+

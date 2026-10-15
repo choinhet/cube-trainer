@@ -1,3 +1,4 @@
+import { SolveScramble } from './SolveScramble';
 import { useEffect, useReducer, useState } from 'react';
 import type { LocalData, LocalRepository } from '../../adapters/local-repository';
 import { formatSolveTime, type Penalty, type TimedResult } from '../../domain/timed-attempt';
@@ -29,6 +30,7 @@ function HistoryRow({ result, sessionName, current, repository, timezone }: { re
     } finally { setBusy(false); }
   }
   return <li className="solve-detail" aria-label={`Attempt started ${formattedDate}`}>
+    <SolveScramble result={result} />
     <Table className="solve-metadata" aria-label="Solve details">
       <TableBody>
         <TableRow><TableHead scope="row">Session</TableHead><TableCell>{sessionName} ({current ? 'current session' : 'historical session'})</TableCell></TableRow>
@@ -77,4 +79,8 @@ export function TimedHistory({ repository, refreshKey, compact = false }: { repo
     {records.length ? <ol>{records.map(result => <HistoryRow key={result.id} result={result} sessionName={data?.sessions.find(session => session.id === result.sessionId)?.name ?? 'Unavailable session'} current={result.sessionId === data?.currentSessionId} repository={repository} timezone={data?.settings.reportingTimezone} />)}</ol> : !records.length && !loading && !error && <p>No saved timed results.</p>}
   </section>;
 }
+
+
+
+
 

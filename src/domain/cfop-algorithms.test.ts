@@ -1,3 +1,4 @@
+import { ALGORITHM_CATALOG } from './algorithm-catalog';
 import { expect, test } from "vitest";
 import { analyzeCFOP } from "./cfop-analysis";
 import { analyzeLLAlgorithms } from "./cfop-algorithms";
@@ -30,6 +31,8 @@ test("names direct OLL and PLL while preserving setup, pauses, final alignment a
   const analysis = analyzeCFOP(input)!;
   const cases = analyzeLLAlgorithms(input, analysis);
   expect(cases.map((c) => c.label)).toEqual(["OLL - 27", "PLL - T"]);
+  expect(cases[0]).toMatchObject({ caseName: '27', executedAlgorithmName: '27', catalogCaseId: 'oll-27', executedCatalogCaseId: 'oll-27' });
+  expect(cases[0].label).not.toContain('executed');
   expect(cases[0].recognitionMs).toBe(300);
   expect(cases[1].endMs).toBe(input.rawDurationMs);
   expect(input).toEqual(original);
@@ -38,9 +41,11 @@ test("names direct OLL and PLL while preserving setup, pauses, final alignment a
 test("splits edge and corner orientation at their state milestone", () => {
   const input = result(`F R U R' U' F' ${sune}`);
   const analysis = analyzeCFOP(input)!;
+  expect(analyzeLLAlgorithms(input, analysis)[0]).toMatchObject({ caseName: '40', executedAlgorithmName: 'Line', catalogCaseId: 'oll-40', executedCatalogCaseId: '2look-oll-line', executionNote: 'Line executed' });
+  expect(analyzeLLAlgorithms(input, analysis)[1].executionNote).toBeUndefined();
   expect(analyzeLLAlgorithms(input, analysis).map((c) => c.label)).toEqual([
-    "OLL - Line",
-    "OLL - Sune",
+    "OLL - 40",
+    "OLL - 27",
   ]);
 });
 test("retains unknown OLL state progress through an internal identity detour", () => {
@@ -48,7 +53,7 @@ test("retains unknown OLL state progress through an internal identity detour", (
   const analysis = analyzeCFOP(input)!;
   expect(analysis.phases.map((p) => p.endIndex)).toEqual([0, 3, 14, 28]);
   expect(analyzeLLAlgorithms(input, analysis).map((c) => c.label)).toEqual([
-    "OLL - Unrecognized",
+    "OLL - 27",
     "PLL - T",
   ]);
 });
@@ -56,8 +61,8 @@ test("supports repeated named algorithms and consecutive PLL operations without 
   const input = result(`${t} ${t} R U' R U R U R U' R' U' R2`);
   const analysis = analyzeCFOP(input)!;
   expect(analyzeLLAlgorithms(input, analysis).map((c) => c.label)).toEqual([
-    "PLL - T",
-    "PLL - T",
+    "PLL - Ua",
+    "PLL - Jb",
     "PLL - Ua",
   ]);
 });
@@ -81,7 +86,7 @@ test("keeps unknown algorithms together without treating a pause as another case
   input.rawDurationMs += 2000;
   const analysis = analyzeCFOP(input)!;
   const cases = analyzeLLAlgorithms(input, analysis);
-  expect(cases.map((c) => c.label)).toEqual(["OLL - Unrecognized", "PLL - T"]);
+  expect(cases.map((c) => c.label)).toEqual(["OLL - 27", "PLL - T"]);
   expect(cases[0].solutionStartIndex).toBe(5);
   expect(cases[0].executionMs).toBeGreaterThan(2000);
   expect(
@@ -92,8 +97,8 @@ test("unknown edge operation still exposes the independent two-look milestone", 
   const input = result(`F R R U U' R' U R' U' F' ${sune}`);
   const analysis = analyzeCFOP(input)!;
   expect(analyzeLLAlgorithms(input, analysis).map((c) => c.label)).toEqual([
-    "OLL - Unrecognized (edges)",
-    "OLL - Sune",
+    "OLL - 40",
+    "OLL - 27",
   ]);
 });
 test("analyzes a representative 193-turn trace and reuses the offline match index", () => {
@@ -124,4 +129,28 @@ test("keeps OLL and PLL skipped when the final F2L insertion solves the cube", (
   const analysis = analyzeCFOP(result("R U R'"))!;
   expect(analysis.phases.map((p) => p.endIndex)).toEqual([0, 3, 3, 3]);
   expect(analyzeLLAlgorithms(result("R U R'"), analysis)).toEqual([]);
+});
+
+test('falls back to the PLL starting state when an identity detour prevents an algorithm match', () => {
+  const input = result(`R R U U' R' ${t.split(' ').slice(1).join(' ')}`);
+  const analysis = analyzeCFOP(input)!;
+  const pll = analyzeLLAlgorithms(input, analysis).find(item => item.phase === 'PLL')!;
+  expect(pll.label).toBe('PLL - T');
+  expect(pll.catalogCaseId).toBe('pll-T');
+  expect(pll.variantId).toBeUndefined();
+  expect(pll.endMs).toBe(input.rawDurationMs);
+});
+
+
+
+
+
+test('treats the two-look L corner algorithm as the same case as OLL 25', () => {
+  const edges = ALGORITHM_CATALOG.find(entry => entry.id === '2look-oll-l')!.variants[0].physicalTurns;
+  const corners = ALGORITHM_CATALOG.find(entry => entry.id === '2look-oll-25')!.variants[0].physicalTurns;
+  const input = result([...edges, ...corners].join(' '));
+  const details = analyzeLLAlgorithms(input, analyzeCFOP(input)!);
+  const second = details.filter(item => item.phase === 'OLL')[1];
+  expect(second).toMatchObject({ caseName: '25', executedAlgorithmName: 'L', label: 'OLL - 25' });
+  expect(second.executionNote).toBeUndefined();
 });
