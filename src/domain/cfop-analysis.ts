@@ -113,7 +113,12 @@ export function analyzeCFOP(result: TimedResult): CFOPAnalysis | null {
   if (!isFacelets(states[0]) || states[0] === SOLVED) return null;
   const candidates = CROSS_COLORS.map((color) => {
     const progress = states.map((state) => cfopProgress(state, color));
-    if (!progress.some((p, i) => p.f2l && i < moves.length))
+    if (
+      !progress.some(
+        (p, i) =>
+          (p.f2l || (p.cross && p.pairs.some(Boolean))) && i < moves.length,
+      )
+    )
       return {
         color,
         cross: moves.length,
@@ -217,7 +222,7 @@ export function analyzeCFOP(result: TimedResult): CFOPAnalysis | null {
     (candidate) =>
       candidate.cross <= candidate.f2l &&
       candidate.f2l <= candidate.oll &&
-      candidate.f2l < moves.length &&
+      candidate.cross < moves.length &&
       (candidate.cross === 0 || candidate.cross < candidate.f2l),
   );
   candidates.sort((a, b) => a.cross - b.cross || a.f2l - b.f2l);

@@ -120,3 +120,8 @@ test("an alignment-only PLL interval is execution through the authoritative stop
   expect(alignment.recognitionMs).toBe(0);
   expect(alignment.executionMs).toBe(analysis.phases[3].durationMs);
 });
+test("keeps OLL and PLL skipped when the final F2L insertion solves the cube", () => {
+  const analysis = analyzeCFOP(result("R U R'"))!;
+  expect(analysis.phases.map((p) => p.endIndex)).toEqual([0, 3, 3, 3]);
+  expect(analyzeLLAlgorithms(result("R U R'"), analysis)).toEqual([]);
+});
