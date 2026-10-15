@@ -16,6 +16,8 @@ browser.
   CFOP solves and in saved history. Select or focus a phase for details; exact
   durations also appear as text. Phase totals use raw time, excluding inspection
   and penalties. Saved physical traces reproduce the breakdown offline.
+- F2L stays grouped in the bar; expand its four pairs to review recognition and
+  execution. Darker sections show recognition and lighter sections execution.
 - Offers optional 15-second inspection, with a +2 penalty until 17 seconds and
   DNF after that.
 - Saves results automatically and advances to the next scramble. Abandoning an

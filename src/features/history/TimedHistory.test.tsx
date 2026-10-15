@@ -4,7 +4,23 @@ import { cleanup, fireEvent, render, screen, within, waitFor } from '@testing-li
 import { afterEach, expect, it, vi } from 'vitest';
 import { TimedHistory } from './TimedHistory';
 import { LocalRepository } from '../../adapters/local-repository';
+import { SOLVED } from '../../domain/cube';
 afterEach(cleanup);
+it('reopens offline F2L pair details with recognition and execution while keeping penalties separate', async () => {
+  const factory = new IDBFactory(); const repository = new LocalRepository(factory);
+  const session = await repository.createSession('Pairs');
+  const moves = "R U R' L' U' L R' U' R L U L' U".split(' ');
+  await repository.saveTimedResult({ id: 'pairs', sessionId: session.id, status: 'completed', startedAt: 1000, rawDurationMs: 1200, penalty: 'none', timingBasis: 'host-monotonic-receipt', facelets: SOLVED, rawTurns: moves.map((move, serial) => ({ move, serial, hostMs: serial * 100, deviceMs: null })) });
+  render(<TimedHistory repository={new LocalRepository(factory)} />);
+  const summary = await screen.findByText('F2L pair details');
+  fireEvent.click(summary);
+  expect(screen.getByText('F2L pair 4')).toBeTruthy();
+  expect(screen.getAllByText('Recognition: 0.1 s')).toHaveLength(3);
+  expect(screen.getAllByText('Execution: 0.2 s')).toHaveLength(4);
+  fireEvent.click(screen.getByRole('button', { name: '+2' }));
+  await screen.findByText('3.20 (+2)');
+  expect(screen.getAllByText('Execution: 0.2 s')).toHaveLength(4);
+});
 async function fixture() {
   const factory = new IDBFactory(); const repository = new LocalRepository(factory);
   const old = await repository.createSession('Old practice'); const current = await repository.createSession('Current practice');
