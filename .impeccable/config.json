@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/features/solve/solve-details.css"
+        ],
+        "createdAt": "2026-10-15T18:51:27.770Z",
+        "reason": "Agent triage: aria-expanded phase-detail button uses a bottom inset selection indicator; this is functional control state, not a decorative card-side accent."
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/styles/workspace.css"
+        ],
+        "createdAt": "2026-10-15T18:51:27.818Z",
+        "reason": "Agent triage: aria-pressed buttons use a bottom inset selection indicator; this is functional control state, not a decorative card-side accent. Navbar underline was separately removed per user feedback."
+      }
+    ]
+  }
+}
