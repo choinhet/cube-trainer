@@ -1,0 +1,28 @@
+.app-header nav a { min-height: 36px; }
+.app-header nav a[aria-current="page"]::after, .header-actions a[aria-current="page"]::after { content: ""; position: absolute; height: 3px; bottom: 0; left: 12px; right: 12px; border-radius: 2px; background: currentColor; }
+.header-actions a { position: relative; }
+.app-header a:focus-visible, .debug-page pre:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.insights-panel [role="tab"], .debug-page [role="tab"] { min-height: 36px; position: relative; }
+.insights-panel [role="tab"][aria-selected="true"], .debug-page [role="tab"][aria-selected="true"] { border-bottom: 3px solid currentColor; font-weight: 600; }
+.insights-empty-state { padding: var(--space-4, 16px); background: var(--soft); border-radius: var(--radius-control); line-height: 1.6; }
+.debug-page, .diagnostic-content, .debug-page [role="tabpanel"] { min-width: 0; max-width: 100%; }
+.debug-page .diagnostic-content > header { display: none; }
+.debug-page[data-step="1"] .diagnostic-content > section:not(:nth-of-type(1)),
+.debug-page[data-step="2"] .diagnostic-content > section:not(:nth-of-type(2)),
+.debug-page[data-step="3"] .diagnostic-content > section:not(:nth-of-type(3)) { display: none; }
+.debug-page section, .app-shell .debug-page section { padding: 16px; border-radius: var(--radius-control); }
+.debug-page p, .app-shell .debug-page p, .debug-page { font-size: var(--font-control); line-height: 1.5; }
+.debug-page p, .debug-page code { overflow-wrap: anywhere; }
+.debug-page pre { max-width: 100%; max-height: 240px; overflow: auto; padding: 12px; border-radius: var(--radius-control); font-size: var(--font-control); }
+.debug-page .buttons { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.debug-page label { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.debug-page input, .debug-page select, .debug-page textarea { width: 100%; max-width: 100%; min-height: 36px; }
+.debug-page [role="tablist"] { display: flex; flex-wrap: wrap; height: auto; max-width: 100%; justify-content: flex-start; gap: 8px; }
+.debug-page .cube-net { max-width: 100%; overflow: auto; }
+@media (max-width: 640px) {
+  .app-header nav { flex-wrap: wrap; }
+  .app-header nav a, .debug-page button, .insights-panel [role="tab"], .debug-page input, .debug-page select { min-height: 44px; }
+  .app-shell .insights-panel { padding: 16px; }
+  .debug-page .fields { display: grid; grid-template-columns: minmax(0, 1fr); }
+}
+@media (pointer: coarse) { .debug-page button, .debug-page input, .debug-page select { min-height: 44px; } }

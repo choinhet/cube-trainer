@@ -1,0 +1,56 @@
+.solve-detail { min-width: 0; max-width: 100%; }
+.solve-result-header { display: grid; gap: var(--space-2); margin-bottom: var(--space-4); }
+.solve-result-header p { margin: 0; }
+.solve-result-header .solve-result-time { font-size: clamp(40px, 7vw, 64px); line-height: 1.15; font-variant-numeric: tabular-nums; }
+.solve-result-context { color: var(--muted); font-size: var(--font-control); }
+.cfop-breakdown.solve-analysis { max-width: 100%; min-width: 0; margin: var(--space-4) 0; text-align: left; font-size: var(--font-control); }
+.cfop-breakdown.solve-analysis .analysis-context { margin: 0 0 var(--space-3); font-size: var(--font-control); color: var(--muted); }
+.cfop-breakdown.solve-analysis .metric-group { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-3); }
+.cfop-breakdown.solve-analysis .metric dd { font-size: 20px; }
+.cfop-breakdown.solve-analysis .cfop-legend { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); margin-top: var(--space-4); font-size: var(--font-annotation); color: var(--muted); }
+.cfop-legend > span { display: inline-flex; align-items: center; gap: var(--space-1); }
+.cfop-legend i { display: inline-block; width: 12px; height: 12px; border: 1px solid var(--muted); }
+.cfop-legend .recognition-key { background: repeating-linear-gradient(135deg, var(--muted) 0 2px, transparent 2px 4px); }
+.cfop-legend .execution-key { background: var(--muted); }
+.cfop-breakdown.solve-analysis .cfop-bar { margin-top: var(--space-2); height: 36px; overflow: hidden; border-radius: var(--radius-control); }
+.cfop-breakdown.solve-analysis .cfop-bar .cfop-segment { height: 36px; min-height: 36px; border-radius: 0; overflow: hidden; }
+.cfop-breakdown.solve-analysis .cfop-bar .cfop-recognition { background: repeating-linear-gradient(135deg, #303640 0 3px, #89919d 3px 5px); }
+.cfop-breakdown.solve-analysis .cfop-bar .cfop-segment[aria-pressed="true"] { box-shadow: inset 0 0 0 3px var(--text); border: 2px solid var(--canvas); }
+.cfop-breakdown.solve-analysis .analysis-hint { margin: var(--space-2) 0; font-size: var(--font-annotation); color: var(--muted); }
+.cfop-breakdown.solve-analysis .cfop-table-scroll { width: 100%; max-width: 100%; margin-top: var(--space-3); overflow: auto; overscroll-behavior: contain; border: 1px solid var(--line); border-radius: var(--radius-control); }
+.cfop-breakdown.solve-analysis .cfop-analysis-table { font-size: var(--font-control); }
+.cfop-breakdown.solve-analysis .cfop-analysis-table th, .cfop-breakdown.solve-analysis .cfop-analysis-table td { padding: var(--space-2) var(--space-3); border-color: var(--line); text-align: right; }
+.cfop-breakdown.solve-analysis .cfop-analysis-table th:first-child { text-align: left; }
+.cfop-breakdown.solve-analysis .cfop-analysis-table th { font-weight: 600; }
+.cfop-breakdown.solve-analysis .cfop-analysis-table small { font-size: var(--font-annotation); opacity: 1; color: var(--muted); }
+.cfop-breakdown.solve-analysis .phase-detail-trigger { display: flex; flex-direction: column; align-items: flex-end; width: 100%; min-width: 44px; min-height: 44px; padding: var(--space-1); background: transparent; border: 0; text-align: right; }
+.cfop-breakdown.solve-analysis .phase-detail-trigger[aria-expanded="true"] { box-shadow: inset 0 -3px var(--accent); }
+.cfop-breakdown.solve-analysis .phase-details { margin-top: var(--space-3); padding: var(--space-4); background: var(--soft); border: 1px solid var(--line); border-radius: var(--radius-panel); }
+.phase-details-heading { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.phase-details h3 { margin: 0; font-size: var(--font-body); }
+.phase-details .cfop-icon-well { margin: var(--space-3) 0; }
+.phase-detail-times { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-bottom: 0; font-variant-numeric: tabular-nums; }
+.phase-detail-times > div { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.phase-detail-times dt { text-transform: capitalize; color: var(--muted); }
+.phase-detail-times dd { margin: 0; }
+.cfop-breakdown.solve-analysis .cfop-cross-moves { justify-content: flex-start; flex-wrap: wrap; margin: var(--space-4) 0; border-radius: var(--radius-control); font-size: var(--font-control); }
+.cfop-breakdown.solve-analysis .cfop-cross-moves dt, .cfop-breakdown.solve-analysis .cfop-cross-caption { font-size: var(--font-control); }
+.cumulative-times { width: 100%; font-size: var(--font-control); font-variant-numeric: tabular-nums; border-collapse: collapse; margin-top: var(--space-4); }
+.cumulative-times th, .cumulative-times td { padding: var(--space-2); border-bottom: 1px solid var(--line); text-align: right; }
+.cumulative-times th:first-child { text-align: left; }
+.solve-detail .solve-detail-actions { flex-wrap: wrap; justify-content: space-between; margin-top: var(--space-4); }
+.solve-detail .solve-copy-note { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: var(--font-annotation); }
+.solve-detail .solve-scramble-error { color: var(--danger); }
+@media (max-width: 640px), (pointer: coarse) { .cfop-breakdown.solve-analysis .cfop-bar, .cfop-breakdown.solve-analysis .cfop-bar .cfop-segment { height: 44px; min-height: 44px; } }
+@media (max-width: 600px) { .cfop-breakdown.solve-analysis .metric-group { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cfop-breakdown.solve-analysis .cfop-cross-moves { white-space: normal; } }
+/* Live analysis scrolls in its own bounded area; the timer stays outside it. */
+.app-shell .workspace .practice-workspace[data-analysis="true"] .cube-view { height: clamp(120px, calc(100dvh - 700px), 200px); }
+.timing-feedback .cfop-breakdown.solve-analysis { max-height: min(320px, 28dvh); overflow: auto; overscroll-behavior: contain; padding: var(--space-2); scrollbar-gutter: stable; }
+.timing-feedback .cfop-breakdown.solve-analysis .metric-group { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.timing-feedback .cfop-breakdown.solve-analysis .metric dd { font-size: var(--font-body); }
+@media (max-width: 640px) { .app-shell .workspace .practice-workspace[data-analysis="true"] .cube-view { height: 200px; } .timing-feedback .cfop-breakdown.solve-analysis { max-height: 480px; } .timing-feedback .cfop-breakdown.solve-analysis .metric-group { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+
+
+.app-shell .practice-workspace[data-analysis="true"] .cube-camera { scale: .6; }
+@media (max-width: 640px) { .app-shell .practice-workspace[data-analysis="true"] .cube-camera { scale: .75; } }

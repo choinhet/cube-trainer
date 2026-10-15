@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 for (const mode of ['solve', 'cross'] as const) {
-  test(`${mode} history centers columns, fits rows to height, and anchors pagination`, async ({ page }) => {
+  test(`${mode} history aligns numeric columns, fits rows to height, and anchors pagination`, async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/');
     await expect(page.getByLabel('History session').first()).toHaveValue(/.+/);
@@ -37,12 +37,12 @@ for (const mode of ['solve', 'cross'] as const) {
         const footer = element.querySelector('.history-pagination')!.getBoundingClientRect();
         const cells = [...element.querySelectorAll('tbody tr:first-child td')].map(cell => cell.getBoundingClientRect());
         const buttons = [...element.querySelectorAll('.history-pagination button')].map(button => button.getBoundingClientRect().width);
-        return { bottomGap: panel.bottom - footer.bottom, columnGap: cells[1].x + cells[1].width / 2 - cells[0].x - cells[0].width / 2, buttons, centered: [...element.querySelectorAll('th')].every(head => getComputedStyle(head).textAlign === 'center'), overflow: element.querySelector('.history-table-area')!.scrollHeight > element.querySelector('.history-table-area')!.clientHeight + 1 };
+        return { bottomGap: panel.bottom - footer.bottom, columnGap: cells[1].x + cells[1].width / 2 - cells[0].x - cells[0].width / 2, buttons, numericAligned: [...element.querySelectorAll('.history-list th')].every(head => getComputedStyle(head).textAlign === 'right'), overflow: element.querySelector('.history-table-area')!.scrollHeight > element.querySelector('.history-table-area')!.clientHeight + 1 };
       });
       expect(geometry.bottomGap).toBeLessThanOrEqual(18);
       expect(geometry.columnGap).toBeLessThanOrEqual(100);
       expect(geometry.buttons.every(width => width >= 44)).toBe(true);
-      expect(geometry.centered).toBe(true);
+      expect(geometry.numericAligned).toBe(true);
       expect(geometry.overflow).toBe(false);
     };
     await checkGeometry();
@@ -53,16 +53,20 @@ for (const mode of ['solve', 'cross'] as const) {
     if (mode === 'solve') {
       await history.locator('tbody button').first().click();
       const dialog = page.getByRole('dialog', { name: 'Solve details' });
+      await dialog.getByRole('button', { name: 'Details', exact: true }).click();
       await expect(dialog.getByRole('table', { name: 'Solve details' })).toBeVisible();
       await expect(dialog.locator('time')).toContainText('Oct 13, 2026');
       await expect(dialog.getByRole('button', { name: '+2', exact: true })).toHaveAttribute('aria-pressed', 'false');
       await dialog.getByRole('button', { name: '+2', exact: true }).click();
-      await expect(dialog.getByRole('cell', { name: '4.00 (+2)', exact: true })).toBeVisible();
+      await expect(dialog.getByLabel('Total time')).toHaveText('4.00 (+2)');
       await expect(dialog.getByRole('button', { name: '+2', exact: true })).toBeEnabled();
       await page.screenshot({ path: 'test-results/solve-details.png' });
       await dialog.getByRole('button', { name: '+2', exact: true }).click();
-      await expect(dialog.getByRole('cell', { name: '2.00', exact: true })).toBeVisible();
+      await expect(dialog.getByLabel('Total time')).toHaveText('2.00');
       await expect(dialog.getByRole('button', { name: 'Delete result' })).toHaveText('');
     }
   });
 }
+
+
+

@@ -8,6 +8,7 @@ import { LocalRepository } from '../adapters/local-repository';
 import { SOLVED } from '../domain/cube';
 import { validateScramble } from '../domain/scramble';
 import type { Connection } from '../domain/session';
+vi.stubGlobal('ResizeObserver', class { observe() {} unobserve() {} disconnect() {} });
 afterEach(() => { cleanup(); window.location.hash = ''; });
 it('cancels pre-solve navigation, finalizes active navigation once as DNF, and owns one connection', async () => {
   let next: (event: GanCubeEvent) => void = () => {};

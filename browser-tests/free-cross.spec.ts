@@ -83,7 +83,9 @@ test('free cross retains completion, repeats the exact case, and advances only o
   await expect(app.getByLabel('Actual setup moves')).toBeVisible();
   await page.reload();
   await page.getByRole('region', { name: 'Cross practice history' }).getByRole('button', { name: '2.50', exact: true }).click();
-  await expect(page.getByRole('dialog')).toContainText('3 moves / optimum 1');
+  await expect(page.getByRole('dialog').getByText('Executed moves', { exact: true }).locator('..')).toHaveText('Executed moves3');
+  await expect(page.getByRole('dialog').getByText('Optimal moves', { exact: true }).locator('..')).toHaveText('Optimal moves1');
+  await expect(page.getByRole('dialog').getByText('Move difference', { exact: true }).locator('..')).toHaveText('Move difference2');
   await expect(page.getByRole('dialog')).toContainText('Unassisted');
   await page.getByRole('button', { name: 'Close', exact: true }).click();
   if (await page.getByRole('dialog').count()) await page.getByRole('button', { name: 'Close', exact: true }).click();
@@ -286,5 +288,3 @@ test('cross save failure retains a retryable checkpoint and cannot claim saved',
   expect(await records(page, 'crossAttempts')).toHaveLength(1);
   expect(await records(page, 'crossCheckpoints')).toEqual([]);
 });
-
-

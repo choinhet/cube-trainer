@@ -1,6 +1,7 @@
 import type { LiveSession } from '../../app/live-session';
 import { formatSolveTime } from '../../domain/timed-attempt';
 import { Button } from '../../components/ui/button';
+import { CFOPBreakdown } from './CFOPBreakdown';
 export function SolveTiming({ session }: { session: LiveSession }) {
   const timed = session.timed;
   const showPrevious = !timed || timed.phase === 'setup' || timed.phase === 'ready';
@@ -13,5 +14,6 @@ export function SolveTiming({ session }: { session: LiveSession }) {
     {timed?.result?.status === 'interrupted' && <p role="status">Interrupted: {timed.result.reason}.</p>}
     {timed?.saveState === 'failed' && <p role="alert">Result was not saved. {timed.error} <Button onClick={() => session.retrySave()}>Retry save</Button></p>}
     {timed?.checkpointError && <p role="alert">{timed.checkpointError}</p>}
+    {result && <CFOPBreakdown result={result} />}
   </div>;
 }

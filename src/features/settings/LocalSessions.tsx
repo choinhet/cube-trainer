@@ -1,3 +1,4 @@
+import { Disclosure, FieldRow } from '../../components/ModalPatterns';
 import { DEFAULT_VIEW_ANGLE, MIN_VIEW_ANGLE, MAX_VIEW_ANGLE, isValidViewAngle } from '../../domain/view-preferences';
 import { Button } from '../../components/ui/button';
 import { CubeView, type Quaternion } from '../../components/CubeView';
@@ -28,38 +29,38 @@ export function LocalSessions({ repository, onReady, onSettings, facelets, orien
   }
   function checkbox(key: 'inspection' | 'showFaceLabels' | 'mirroredCrossInstructions' | 'locked3dMode' | 'debug', text: string) {
     if (!data || !onSettings) return null;
-    return <label><input type="checkbox" checked={key === 'mirroredCrossInstructions' ? data.settings[key] !== false : !!data.settings[key]} disabled={busy} onChange={event => {
+    return <FieldRow><input type="checkbox" checked={key === 'mirroredCrossInstructions' ? data.settings[key] !== false : !!data.settings[key]} disabled={busy} onChange={event => {
       const settings = { ...data.settings, [key]: event.target.checked };
       setData({ ...data, settings });
       void save(async () => { await repository.saveSettings(settings); onSettings(settings); return { ...data, settings }; });
-    }} />{text}</label>;
+    }} /><span>{text}</span></FieldRow>;
   }
   return <section aria-labelledby="local-sessions"><h2 id="local-sessions">Preferences</h2>
-    {error && <p role="alert">{error}</p>}
+    {error && <p role="alert">{error}</p>}{data && busy && <p role="status">Saving preferences…</p>}
     {!data ? <><p>{busy ? 'Restoring local data…' : 'Local data unavailable; practice is blocked.'}</p><Button disabled={busy} onClick={() => void save(async () => { const restored = await (onSettings ? repository.initialize() : repository.load()); onSettings?.(restored.settings); return restored; })}>Retry local storage</Button></> : <>
       {onSettings && <div className="settings-options">
-        <details open aria-label="3D viewer"><summary>3D viewer</summary><div className="viewer-settings">
+        <Disclosure defaultOpen title="3D viewer"><div className="viewer-settings">
           <div className="viewer-controls">
             {checkbox('locked3dMode', 'Locked 3D mode')}
             {checkbox('showFaceLabels', 'Show cube face labels (U, F, R, D, L, B)')}
-            <label className="angle-control">Default angle (degrees)<input type="number" min={MIN_VIEW_ANGLE} max={MAX_VIEW_ANGLE} step="any" disabled={busy} value={angleDraft ?? String(data.settings.defaultAngle ?? DEFAULT_VIEW_ANGLE)} onChange={event => {
+            <FieldRow hint="Adjust the horizontal angle of the locked view.">Default angle (degrees)<input type="number" min={MIN_VIEW_ANGLE} max={MAX_VIEW_ANGLE} step="any" disabled={busy} value={angleDraft ?? String(data.settings.defaultAngle ?? DEFAULT_VIEW_ANGLE)} onChange={event => {
           const value = event.target.value;
           setAngleDraft(value);
           const defaultAngle = Number(value);
           if (!value.trim() || !isValidViewAngle(defaultAngle)) return;
           const settings = { ...data.settings, defaultAngle };
           void save(async () => { await repository.saveSettings(settings); onSettings(settings); return { ...data, settings }; }, () => setAngleDraft(null));
-            }} /></label>
-            <p className="settings-hint">Adjust the horizontal angle of the locked view.</p>
+            }} /></FieldRow>
+            
           </div>
           <figure className="settings-preview">
             <CubeView key={data.settings.defaultAngle ?? DEFAULT_VIEW_ANGLE} label="3D cube preview" facelets={facelets ?? SOLVED} orientation={orientation} locked3dMode={!!data.settings.locked3dMode} initialCameraAngle={data.settings.defaultAngle ?? DEFAULT_VIEW_ANGLE} defaultAngle={data.settings.defaultAngle ?? DEFAULT_VIEW_ANGLE} showFaceLabels={!!data.settings.showFaceLabels} />
             <figcaption>3D cube preview</figcaption>
           </figure>
-        </div></details>
-        <details open aria-label="Solve"><summary>Solve</summary>{checkbox('inspection', 'Use inspection (15 seconds, +2 until 17 seconds, then DNF)')}</details>
-        <details open aria-label="Cross Trainer"><summary>Cross Trainer</summary>{checkbox('mirroredCrossInstructions', 'Mirrored instructions for the cross trainer')}</details>
-        <details open aria-label="Advanced"><summary>Advanced</summary>{checkbox('debug', 'Enable Debug')}</details>
+        </div></Disclosure>
+        <Disclosure defaultOpen title="Solve">{checkbox('inspection', 'Use inspection (15 seconds, +2 until 17 seconds, then DNF)')}</Disclosure>
+        <Disclosure defaultOpen title="Cross Trainer">{checkbox('mirroredCrossInstructions', 'Mirrored instructions for the cross trainer')}</Disclosure>
+        <Disclosure defaultOpen title="Advanced">{checkbox('debug', 'Enable Debug')}</Disclosure>
       </div>}
     </>}
   </section>;

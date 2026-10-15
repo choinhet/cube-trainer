@@ -15,19 +15,19 @@ async function mountApp(page: Page): Promise<void> {
 async function gyro(page: Page, degrees: number): Promise<void> {
   await page.evaluate(d => window.lockedView.gyro({x:0,y:0,z:Math.sin(d*Math.PI/360),w:Math.cos(d*Math.PI/360)}),degrees);
 }
-const screenshots = 'test-results/locked-view';
+const screenshots = 'docs/design-review/screenshots/locked-view';
 test('grouped settings keep a live angle preview visible on desktop and mobile', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('link', { name: 'Settings', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Settings', exact: true });
   for (const name of ['3D viewer', 'Solve', 'Cross Trainer', 'Advanced']) {
     await expect(dialog.getByRole('group', { name, exact: true })).toBeVisible();
-    await expect(dialog.getByRole('group', { name, exact: true })).toHaveAttribute('open', '');
+    await expect(dialog.getByRole('button', { name, exact: true })).toHaveAttribute('aria-expanded', 'true');
   }
   const advanced = dialog.getByRole('group', { name: 'Advanced', exact: true });
-  await advanced.locator('summary').click();
+  await advanced.getByRole('button', { name: 'Advanced', exact: true }).click();
   await expect(dialog.getByRole('checkbox', { name: 'Enable Debug' })).toBeHidden();
-  await advanced.locator('summary').press('Enter');
+  await advanced.getByRole('button', { name: 'Advanced', exact: true }).press('Enter');
   await expect(dialog.getByRole('checkbox', { name: 'Enable Debug' })).toBeVisible();
   const angle = dialog.getByRole('spinbutton', { name: 'Default angle (degrees)' });
   const preview = dialog.getByRole('img', { name: '3D cube preview' });

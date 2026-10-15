@@ -624,5 +624,6 @@ it('keeps active solve timing through a checkpoint failure and saves the final r
   expect(session.timed?.phase).toBe('active'); expect(save).not.toHaveBeenCalled();
   now = 1100; deliver({ ...move(14, "R'"), localTimestamp: null, cubeTimestamp: null });
   await vi.waitFor(() => expect(save).toHaveBeenCalledOnce());
-  expect(session.timed?.result).toMatchObject({ status: 'completed', rawDurationMs: 1000 });
+  expect(session.timed?.result).toMatchObject({ status: 'completed', rawDurationMs: 1000, originalScramble: 'R2' });
 });
+

@@ -9,6 +9,8 @@ import { CrossAttempt } from '../../domain/cross-attempt';
 import { SOLVED, turn } from '../../domain/cube';
 import type { CrossPracticeController } from '../../domain/cross-practice';
 
+vi.stubGlobal('ResizeObserver', class { observe() {} unobserve() {} disconnect() {} });
+
 afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 function controller(): CrossPracticeController { return { cross: null, canPractice: true, activity: 'idle', preparation: null, startCrossPreparation: vi.fn(async () => {}), cancelCrossPractice: vi.fn(), replaceCrossPreparation: vi.fn(async () => {}), switchCrossMode: vi.fn(async () => {}), revealCrossSolution: vi.fn(async () => {}), retryCrossSave: vi.fn(), checkpointCross: vi.fn(), requireResynchronization: vi.fn() }; }
 
@@ -53,3 +55,18 @@ test('guided history hides legacy times and TPS', () => {
   expect(screen.getAllByRole('cell', { name: '—' })).toHaveLength(2);
 });
 
+
+test('Cross details immediately show executed and optimal moves with their difference, and explain unavailable timing', () => {
+  const attempt = new CrossAttempt('metrics', 'session', { caseId: 'r2', startingState: turn(SOLVED, 'R2'), originalScramble: 'R2', color: 'white', optimum: 1 });
+  attempt.arm();
+  attempt.receive({ move: 'D', serial: 1, hostMs: 10, deviceMs: null }, 1000);
+  const record = { ...attempt.abandon(30)!, mode: 'semi-guided' as const };
+  render(<CrossHistory records={[record]} error={null} compact />);
+  fireEvent.click(screen.getByRole('button', { name: '\u2014' }));
+  expect(screen.getByText('Executed moves').parentElement?.textContent).toBe('Executed moves1');
+  expect(screen.getByText('Optimal moves').parentElement?.textContent).toBe('Optimal moves1');
+  expect(screen.getByText('Move difference').parentElement?.textContent).toBe('Move difference0');
+  expect(screen.getByText('Not timed in guided practice')).toBeTruthy();
+  fireEvent.click(screen.getByRole('button', { name: 'Case and raw turns' }));
+  expect(screen.getByText(record.case.startingState)).toBeTruthy();
+});

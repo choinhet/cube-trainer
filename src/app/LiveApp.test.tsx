@@ -8,6 +8,7 @@ import { SOLVED, turn } from '../domain/cube';
 import { IDBFactory } from 'fake-indexeddb';
 import { LocalRepository } from '../adapters/local-repository';
 import { validateScramble } from '../domain/scramble';
+vi.stubGlobal('ResizeObserver', class { observe() {} unobserve() {} disconnect() {} });
 afterEach(() => { cleanup(); window.location.hash = ''; });
 it('allows unsolved synchronized preparation and labels original and actual setup while solving', async () => {
   let deliver: (event: GanCubeEvent) => void = () => {};
@@ -166,7 +167,7 @@ it('retains current and previous connection evidence for physical viewer verific
   fireEvent.click(screen.getByRole('button', { name: 'Connect Cube' }));
   await screen.findByRole('button', { name: 'Connected' });
   fireEvent.click(await screen.findByRole('link', { name: 'Debug' }));
-  fireEvent.click(screen.getByRole('button', { name: 'Viewer traces' }));
+  fireEvent.mouseDown(screen.getByRole('tab', { name: 'Viewer traces' }), { button: 0, ctrlKey: false });
   fireEvent.click(screen.getByRole('button', { name: 'Download viewer trace' }));
   expect(create).toHaveBeenCalledWith(expect.any(Blob));
   const blob = create.mock.calls[0][0] as Blob;
@@ -230,5 +231,17 @@ it('uses saved locked viewing preferences on both screens and clears manual rota
   fireEvent.click(screen.getByRole('button',{name:'Connect Cube'})); await screen.findByRole('button',{name:'Connected'});
   expect(screen.getByLabelText('Physical orientation').style.transform).toBe(initial);
   expect((await repository.load()).settings.defaultAngle).toBe(65);
+});
+
+
+it('exposes the selected diagnostic section and keeps diagnostic navigation keyboard accessible', async () => {
+  const repository = new LocalRepository(new IDBFactory());
+  await repository.initialize(); await repository.saveSettings({ reportingTimezone: 'UTC', debug: true });
+  render(<LiveApp connectCube={async () => { throw new Error('unused'); }} repository={repository} />);
+  fireEvent.click(await screen.findByRole('link', { name: 'Debug' }));
+  expect(screen.getByRole('tab', { name: 'Connection' }).getAttribute('aria-selected')).toBe('true');
+  fireEvent.mouseDown(screen.getByRole('tab', { name: 'Viewer traces' }), { button: 0, ctrlKey: false });
+  expect(screen.getByRole('tab', { name: 'Viewer traces' }).getAttribute('aria-selected')).toBe('true');
+  expect(screen.getByRole('tabpanel', { name: 'Viewer traces' }).textContent).toContain('Raw state');
 });
 

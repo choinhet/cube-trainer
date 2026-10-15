@@ -1,5 +1,42 @@
 import { expect, test } from '@playwright/test';
 
+test('four physical F2L pairs remain accessible after offline saved-history reopening on a narrow screen', async ({ page }) => {
+  const sequence = "R U R' L' U' L R' U' R L U L' R U R' U' R' F R2 U' R' U' R U R' F' U".split(' ');
+  const solution = sequence.flatMap(move => move.endsWith('2') ? [move[0], move[0]] : [move]);
+  const scramble = solution.slice().reverse().map(move => move.endsWith('2') ? move : move.endsWith("'") ? move[0] : `${move}'`);
+  const scrambleNotation = sequence.slice().reverse().map(move => move.endsWith('2') ? move : move.endsWith("'") ? move[0] : `${move}'`).join(' ');
+  await page.goto('/');
+  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await page.evaluate(async scramble => {
+    const path = '/browser-tests/timed-harness.tsx';
+    const harness = await import(/* @vite-ignore */ path) as typeof import('./timed-harness');
+    (window as unknown as { timedPhysical: ReturnType<typeof harness.mount> }).timedPhysical = harness.mount(null, scramble);
+  }, scrambleNotation);
+  await page.getByRole('button', { name: 'Connect Cube' }).click();
+  await expect(page.getByLabel('Actual setup moves')).toBeVisible({ timeout: 45_000 });
+  async function physical(move: string, ms: number) { await page.evaluate(({ move, ms }) => (window as unknown as { timedPhysical: (move: string, ms: number) => void }).timedPhysical(move, ms), { move, ms }); }
+  for (const [index, move] of scramble.entries()) await physical(move, 100 + index * 100);
+  for (const [index, move] of solution.entries()) await physical(move, 10000 + index * 100);
+  const current = page.getByRole('region', { name: 'CFOP phase timing' });
+  await expect(current.getByRole('button', { name: /F2L pair 1 execution:/ })).toHaveCSS('background-color', 'rgb(121, 214, 187)');
+  const pairControl = current.getByRole('button', { name: 'Show F2L pair 1 details' });
+  await expect(pairControl).toHaveCSS('min-height', '44px');
+  await expect(pairControl).toHaveCSS('min-width', '44px');
+  await expect(current.getByRole('row', { name: /^Execution/ }).locator('td').filter({ hasText: /^0.20$/ })).toHaveCount(4);
+  await page.getByRole('button', { name: 'Connected', exact: true }).click();
+  await page.reload();
+  await page.context().setOffline(true);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole('region', { name: 'Saved timed results' }).getByRole('button', { name: '2.70', exact: true }).click();
+  const saved = page.getByRole('dialog').getByRole('region', { name: 'CFOP phase timing' });
+  const recognitionCells = await saved.getByRole('row', { name: /^Recognition/ }).locator('td').allTextContents();
+  expect(recognitionCells.slice(1, 5)).toEqual(['0.00', '0.10', '0.10', '0.10']);
+  await saved.getByRole('button', { name: 'Show F2L pair 2 details' }).click();
+  await expect(saved.getByRole('region', { name: 'Phase details' })).toContainText('recognition: 0.10 s');
+  await expect(saved.getByRole('button', { name: 'Show PLL - T details' })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
 test('physical completion saves exact precision and captured session, then survives browser reopening', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
@@ -39,6 +76,8 @@ test('physical completion saves exact precision and captured session, then survi
   await physical("R'", 15200);
   await expect(app.getByRole('timer')).toHaveText('0.00');
   await physical("R'", 16434.567);
+  await expect(app.getByRole('region', { name: 'CFOP phase timing' })).toContainText('Orange cross');
+  await expect(app.getByRole('region', { name: 'CFOP phase timing' })).toContainText('1.23 s');
   await expect(app.getByRole('region', { name: 'Saved timed results' }).locator('tbody tr')).toBeVisible();
   await expect(app.getByLabel('Actual setup moves')).toBeVisible();
   // Close the newly prepared attempt so reopening recovers only the saved solve.
@@ -62,5 +101,52 @@ test('physical completion saves exact precision and captured session, then survi
     open.onerror = () => reject(open.error);
   }));
   expect(records).toEqual([expect.objectContaining({ sessionId: firstSession, startedAt: 1791850000000, rawDurationMs: 1234.566999999999, penalty: '+2', status: 'completed', timingBasis: 'host-monotonic-receipt' })]);
+  await page.getByRole('region', { name: 'Saved timed results' }).getByRole('button', { name: '3.23 (+2)', exact: true }).click();
+  const breakdown = page.getByRole('dialog').getByRole('region', { name: 'CFOP phase timing' });
+  await expect(breakdown).toContainText('Orange cross');
+  await breakdown.getByRole('button', { name: /PLL.*:/ }).focus();
+  await expect(breakdown.getByRole('status')).toContainText('PLL');
+  await page.getByRole('button', { name: '+2', exact: true }).click();
+  await expect(breakdown).toContainText('1.23 s');
 });
 
+
+
+
+
+test('legacy shared receipts recover offline history details and preserve raw timing through penalty edits', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await page.evaluate(async () => {
+    const path = '/src/adapters/local-repository.ts';
+    const { LocalRepository } = await import(/* @vite-ignore */ path) as typeof import('../src/adapters/local-repository');
+    const repository = new LocalRepository();
+    const session = await repository.createSession('Legacy practice');
+    const base = { sessionId: session.id, status: 'completed' as const, startedAt: 1790000000000, penalty: 'none' as const, timingBasis: 'host-monotonic-receipt' as const };
+    await repository.saveTimedResult({ ...base, id: 'legacy-recovery', rawDurationMs: 300.125, facelets: 'UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB', rawTurns: [
+      { move: 'U', serial: 255, hostMs: 100, deviceMs: null },
+      { move: 'U', serial: 0, hostMs: 400, deviceMs: null, recovered: true },
+      { move: 'U', serial: 1, hostMs: 400, deviceMs: null },
+    ] });
+    await repository.saveTimedResult({ ...base, id: 'legacy-total-only', rawDurationMs: 1234.567 });
+  });
+  await page.reload();
+  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByRole('button', { name: '0.30', exact: true })).toBeVisible();
+  await page.context().setOffline(true);
+  await page.getByRole('region', { name: 'Saved timed results' }).getByRole('button', { name: '0.30', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  const breakdown = dialog.getByRole('region', { name: 'CFOP phase timing' });
+  const execution = breakdown.getByRole('button', { name: /PLL - Unrecognized case execution: 0.30 seconds/ });
+  await execution.focus();
+  await expect(breakdown.getByRole('status')).toContainText('0.30 s');
+  await execution.click();
+  await expect(breakdown.getByRole('region', { name: 'Phase details' })).toContainText('PLL - Unrecognized case');
+  expect(await dialog.innerText()).not.toMatch(/estimat|reconstruct|uncertain|confidence/i);
+  await dialog.getByRole('button', { name: '+2', exact: true }).click();
+  await expect(dialog.getByText('2.30 (+2)', { exact: true })).toBeVisible();
+  await expect(execution).toBeVisible();
+  await dialog.getByRole('button', { name: 'Close', exact: true }).click();
+  await page.getByRole('region', { name: 'Saved timed results' }).getByRole('button', { name: '1.23', exact: true }).click();
+  await expect(dialog.getByText('Detailed timing unavailable', { exact: true })).toBeVisible();
+  await expect(dialog.getByText('1.23', { exact: true })).toBeVisible();
+});

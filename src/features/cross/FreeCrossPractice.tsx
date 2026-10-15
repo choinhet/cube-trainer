@@ -1,7 +1,10 @@
+import { ActionBar, Disclosure, FieldRow, Metric, MetricGroup } from '../../components/ModalPatterns';
+import { IconButton } from '../../components/IconButton';
+import './cross-design.css';
 import { NativeSelect } from '../../components/ui/native-select';
 import { ArrowRight, Check, Plus, RotateCcw } from 'lucide-react';
 import { createPortal } from 'react-dom';
-import { useEffect, useMemo, useReducer, useState, type ReactNode } from 'react';
+import { useEffect, useId, useMemo, useReducer, useRef, useState, type ReactNode } from 'react';
 import { CROSS_COLORS, type CrossColor } from '../../domain/cross';
 import type { CrossMode } from '../../domain/cross-guidance';
 import type { CrossRecord } from '../../domain/cross-attempt';
@@ -32,13 +35,24 @@ function ModeChanges({ record }: { record: CrossRecord }) {
   return record.mode === 'mixed' ? <><p>Mixed-mode attempt · excluded from Free timing statistics</p><ol aria-label="Mode changes">{record.modeChanges?.map((change, index) => <li key={index}>{change.mode} · {(change.elapsedMs / 1000).toFixed(2)} seconds · after {change.atMoveIndex} physical turns</li>)}</ol></> : null;
 }
 
+function CrossAttemptDetails({ record, sessionName }: { record: CrossRecord; sessionName: string }) {
+  const elapsed = record.startedAt === null ? 'No solve turn started' : record.mode === 'free' || record.mode === 'mixed' ? crossTime(record) : 'Not timed in guided practice';
+  return <article className="cross-attempt-details" aria-label="Cross attempt">
+    <header className="cross-result-header"><h3>{record.status[0].toUpperCase() + record.status.slice(1)}</h3><p>{record.case.color} cross · {record.mode === 'mixed' ? 'Mixed' : record.mode} · {record.assisted ? record.revealed ? 'Assisted (solution revealed)' : 'Assisted (guided algorithm)' : 'Unassisted'}</p><p>Session: {sessionName}</p>{record.reason && <p>{record.reason}</p>}</header>
+    <MetricGroup><Metric label="Executed moves" value={record.normalizedExecutedCount} /><Metric label="Optimal moves" value={record.case.optimum} /><Metric label="Move difference" value={record.normalizedExecutedCount - record.case.optimum} /><Metric label="Time" value={elapsed} /></MetricGroup>
+    <section aria-label="Cross analysis"><h3>Move analysis</h3><p>Move difference is executed moves minus optimum; unfinished attempts can be below optimum.</p><p>Performed moves: <code>{record.rawTrace.map(event => event.move).join(' ') || 'No turns recorded'}</code></p><p>Mistake episodes: {record.mistakeEpisodes}</p>{record.mode === 'mixed' && <p>Mixed-mode attempt · excluded from Free timing statistics</p>}</section>
+    <SharedCrossScramble caseData={record.case} />
+    <Disclosure title="Case and raw turns"><p>Full starting state: <code>{record.case.startingState}</code></p><p>{record.startedAt !== null ? new Date(record.startedAt).toISOString() : 'No solve turn started'}</p><p>Raw trace: <code>{record.rawTrace.map(event => event.move).join(' ') || '(none)'}</code></p><ModeChanges record={record} /><p>Timing basis: host monotonic receipt</p></Disclosure>
+  </article>;
+}
+
 export function CrossHistory({ records, error, compact = false, repository, sessionNames = {} }: { records: CrossRecord[]; error: string | null; compact?: boolean; repository?: LocalRepository; sessionNames?: Record<string, string> }) {
   const [selected, setSelected] = useState<string | null>(null);
   if (compact) return <section aria-label="Cross practice history" className="history-panel">
     {repository && <SessionPicker repository={repository} />}
     {error && <p role="alert">{error}</p>}
     {records.length ? <HistoryTable moves entries={records.slice().reverse().map(record => ({ id: record.id, tps: record.mode === 'free' ? resultTPS(record.status, record.rawDurationMs, record.rawTrace) : '—', time: record.mode === 'mixed' ? 'Mixed' : record.mode !== 'free' ? '—' : record.status === 'completed' ? (record.rawDurationMs / 1000).toFixed(2) : record.status, moves: `${record.normalizedExecutedCount}/${record.case.optimum}` }))} selected={selected} onSelect={setSelected} previousLabel="Previous cross result" nextLabel="Next cross result" /> : <p className="empty-history">No saved cross attempts.</p>}
-    <Overlay open={!!selected} onOpenChange={open => { if (!open) setSelected(null); }} title="Cross details">{records.filter(record => record.id === selected).map(record => <div key={record.id}><p>Session: {sessionNames[record.sessionId] ?? 'Unavailable session'}</p><p>{record.status} · {record.case.color} · {record.mode === 'mixed' ? 'Mixed' : record.mode}</p><p>{record.normalizedExecutedCount} moves / optimum {record.case.optimum} · {crossTime(record)}</p><p>{record.assisted ? 'Assisted' : 'Unassisted'}</p>{record.reason && <p>{record.reason}</p>}<SharedCrossScramble caseData={record.case} /><ModeChanges record={record} /></div>)}</Overlay>
+    <Overlay open={!!selected && records.some(record => record.id === selected)} onOpenChange={open => { if (!open) setSelected(null); }} title="Cross details" size="wide">{records.filter(record => record.id === selected).map(record => <CrossAttemptDetails key={record.id} record={record} sessionName={sessionNames[record.sessionId] ?? 'Unavailable session'} />)}</Overlay>
   </section>;
   return <section aria-label="Cross practice history"><h2>Cross practice history</h2>
     {compact && <a href="#/settings">Manage sessions</a>}
@@ -48,7 +62,7 @@ export function CrossHistory({ records, error, compact = false, repository, sess
       <p>{record.status} · {record.mode === 'mixed' ? 'Mixed' : record.mode} · {record.case.color} · {record.normalizedExecutedCount} moves / optimum {record.case.optimum} · {crossTime(record)} · {record.assisted ? record.revealed ? 'assisted (solution revealed)' : 'assisted (guided algorithm)' : 'unassisted'}</p>
       <p>Session: {sessionNames[record.sessionId] ?? 'Unavailable session'}{record.startedAt !== null ? ` · ${new Date(record.startedAt).toISOString()}` : ' · No solve turn started'}</p>
       {record.reason && <p>{record.reason}</p>}
-      {!compact && <details><summary>Case and raw turns</summary><SharedCrossScramble caseData={record.case} /><ModeChanges record={record} /><p>Full starting state: <code>{record.case.startingState}</code></p><p>Raw trace: <code>{record.rawTrace.map(event => event.move).join(' ') || '(none)'}</code></p><p>Mistake episodes: {record.mistakeEpisodes}</p></details>}
+      {!compact && <Disclosure title="Case and raw turns"><SharedCrossScramble caseData={record.case} /><ModeChanges record={record} /><p>Full starting state: <code>{record.case.startingState}</code></p><p>Raw trace: <code>{record.rawTrace.map(event => event.move).join(' ') || '(none)'}</code></p><p>Mistake episodes: {record.mistakeEpisodes}</p></Disclosure>}
     </li>)}</ol> : <p>No saved cross attempts.</p>}
   </section>;
 }
@@ -61,6 +75,13 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
   const [mode, setMode] = useState<CrossMode>('semi-guided');
   const [actionPending, setActionPending] = useState(false);
   const [restartRequested, setRestartRequested] = useState(false);
+  const importFormId = useId();
+  const importTrigger = useRef<HTMLButtonElement | null>(null);
+  const importOperation = useRef<AbortController | null>(null);
+  const [importCommitting, setImportCommitting] = useState(false);
+  const importCommitStarted = useRef(false);
+  const importVisible = useRef(false);
+  useEffect(() => () => { if (!importCommitStarted.current) importOperation.current?.abort(); }, []);
   const [importOpen, setImportOpen] = useState(false);
   const [importText, setImportText] = useState('');
   const [importColor, setImportColor] = useState<CrossColor>('white');
@@ -145,18 +166,27 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
     } catch (cause) { setError(String(cause)); }
     finally { setActionPending(false); }
   }
+  function dismissImport(open: boolean) {
+    if (!open && !importCommitStarted.current) importOperation.current?.abort();
+    importVisible.current = open; setImportOpen(open);
+  }
   async function importCase() {
+    if (importOperation.current || actionPending || !importText.trim() || !session.canPractice || !sessionReady || !historyReady) return;
+    const operation = new AbortController();
+    importOperation.current = operation;
     setActionPending(true); setImportError(null);
     try {
-      const caseData = await requestImportedCrossCase(importText, importColor, new AbortController().signal);
+      const caseData = await requestImportedCrossCase(importText, importColor, operation.signal);
       const data = await repository.load();
       if (!data.currentSessionId || !data.sessions.some(value => value.id === data.currentSessionId)) throw new Error('Select a saved session before importing a scramble');
+      if (operation.signal.aborted) return;
+      importCommitStarted.current = true; setImportCommitting(true);
       await session.replaceCrossPreparation();
       setColor(caseData.color); setDifficulty(caseData.optimum); setError(null);
       await session.startCrossPreparation(data.currentSessionId, caseData.color, caseData.optimum, store, async () => caseData, solve, { mode, imported: true });
-      setImportOpen(false); setImportText('');
-    } catch (cause) { setImportError(String(cause)); }
-    finally { setActionPending(false); }
+      importVisible.current = false; setImportOpen(false); setImportText('');
+    } catch (cause) { if (!operation.signal.aborted) { setImportError(`${String(cause)} Check the scramble and try again.`); if (!importVisible.current) setError(`Scramble import failed: ${String(cause)} Open Import shared scramble to retry with your saved input.`); } }
+    finally { importOperation.current = null; importCommitStarted.current = false; setImportCommitting(false); setActionPending(false); }
   }
   const autoReady = enabled && sessionReady && historyReady && session.canPractice && session.activity === 'idle' && !session.preparation && !cross && !actionPending && !restartRequested && !importOpen;
   useEffect(() => {
@@ -173,7 +203,7 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
       <label>Difficulty
         <span className="difficulty-value" aria-hidden="true">{difficulty} moves</span>
         <input type="range" aria-label="Difficulty" min={1} max={8} step={1} value={difficulty} aria-valuetext={`${difficulty} optimal moves`} disabled={locked} onChange={event => changeSettings(() => setDifficulty(Number(event.target.value)))} /></label>{' '}
-      <Button variant="outline" size="icon" aria-label="Import shared scramble" title="Import shared scramble" disabled={actionPending || restartRequested || cross?.revealing || cross?.saveState === 'pending' || cross?.saveState === 'failed'} onClick={() => { setImportColor(color); setImportError(null); setImportOpen(true); }}><Plus aria-hidden="true" /></Button>
+      <Button ref={importTrigger} variant="outline" aria-label="Import shared scramble" disabled={actionPending || restartRequested || cross?.revealing || cross?.saveState === 'pending' || cross?.saveState === 'failed'} onClick={() => { setImportColor(color); setImportError(null); dismissImport(true); }}><Plus aria-hidden="true" />Import scramble</Button>
       {error && <p role="alert">{error} <Button variant="outline" onClick={() => setError(null)}>Retry preparation</Button></p>}
       <Feedback target={feedbackTarget}>
         <div className="cross-timing">{timedMode && <p className="timer-value" aria-label="Cross time" role={cross?.phase === 'active' ? 'timer' : undefined}>{(elapsedMs / 1000).toFixed(2)}</p>}<div aria-label="Cross moves" className={timedMode ? 'cross-move-counts' : 'cross-focused-moves'}>{timedMode ? <p>{moveCount} moves executed</p> : <p className="timer-value">{moveCount}<span className="move-count-caption">moves executed</span></p>}<p>{optimum} optimal moves</p></div>{(activeAttempt ? cross.assisted : shownResult?.assisted ?? cross?.assisted) && <p>Assisted</p>}</div>
@@ -183,7 +213,7 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
         {cross.mode === 'free' && cross.solution && <p>Optimal solution from original starting state: <code>{cross.solution.map(move => mirrored ? bottomCrossMove(move, cross.case.color) : move).join(' ')}</code> · assisted. Hold {mirrored ? bottomCrossHolding(cross.case.color) : 'white on top, green in front'}.</p>}
         {cross.mode === 'free' && cross.phase !== 'setup' && !cross.solution && <Button disabled={cross.revealing || actionPending || restartRequested || cross.saveState === 'failed' || cross.saveState === 'pending'} onClick={() => void session.revealCrossSolution()}>Reveal cross solution</Button>}
         {cross.phase !== 'setup' && cross.phase !== 'finished' && cross.saveState !== 'failed' && cross.saveState !== 'pending' && <Button disabled={cross.revealing} onClick={() => session.cancelCrossPractice()}>Abandon cross practice</Button>}
-        {cross.phase === 'finished' && <><Button size="icon" aria-label="Retry same case" title="Retry same case" disabled={actionPending || cross.revealing || cross.saveState !== 'saved' || !session.canPractice} onClick={() => void repeatCase()}><RotateCcw aria-hidden="true" /></Button><Button size="icon" aria-label="Next case" title="Next case" disabled={actionPending || cross.revealing || cross.saveState !== 'saved'} onClick={() => session.cancelCrossPractice()}><ArrowRight aria-hidden="true" /></Button></>}
+        {cross.phase === 'finished' && <ActionBar><IconButton label="Retry same case" disabled={actionPending || cross.revealing || cross.saveState !== 'saved' || !session.canPractice} onClick={() => void repeatCase()}><RotateCcw aria-hidden="true" /></IconButton><IconButton label="Next case" disabled={actionPending || cross.revealing || cross.saveState !== 'saved'} onClick={() => session.cancelCrossPractice()}><ArrowRight aria-hidden="true" /></IconButton></ActionBar>}
         {cross.result && cross.saveState !== 'failed' && (cross.result.status === 'completed' ? <span className="cross-success-badge" role="status"><Check size={16} aria-hidden="true" />Completed {cross.guidance?.completedMoves.length ?? cross.case.optimum}/{cross.case.optimum}</span> : <p>{cross.result.status === 'interrupted' ? 'Interrupted' : 'Abandoned'}{!compact && cross.result.reason ? `: ${cross.result.reason}` : ''}</p>)}
         {cross.saveState === 'pending' && <p role="status">Saving cross attempt…</p>}
         {cross.error && <p role="alert">{cross.saveState === 'failed' ? 'Cross attempt was not saved. ' : ''}{cross.error}</p>}
@@ -191,15 +221,13 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
         </>}
       </Feedback>
     </section>
-    <Overlay open={importOpen} onOpenChange={open => { if (!actionPending) setImportOpen(open); }} title="Import shared scramble">
-      <form className="scramble-import" onSubmit={event => { event.preventDefault(); void importCase(); }}>
+    <Overlay open={importOpen} onOpenChange={dismissImport} title="Import shared scramble" size="medium" returnFocus={importTrigger} footer={<ActionBar><Button type="button" variant="outline" onClick={() => dismissImport(false)}>{importCommitting ? 'Close' : 'Cancel'}</Button><Button form={importFormId} type="submit" disabled={actionPending || !importText.trim() || !session.canPractice || !sessionReady || !historyReady}>Use scramble</Button></ActionBar>}>
+      <form id={importFormId} className="scramble-import" aria-busy={actionPending} onSubmit={event => { event.preventDefault(); void importCase(); }}>
         <p>Paste a scramble written for a solved cube with white on top and green in front. Setup will adapt it to your cube’s current position.</p>
-        <label>Shared scramble<textarea autoFocus rows={4} value={importText} disabled={actionPending} onChange={event => setImportText(event.target.value)} placeholder="R U2 F'…" /></label>
-        <label>Cross color<NativeSelect value={importColor} disabled={actionPending} onChange={event => setImportColor(event.target.value as CrossColor)}>{CROSS_COLORS.map(value => <option key={value} value={value}>{value}</option>)}</NativeSelect></label>
+        <FieldRow><span>Shared scramble</span><textarea autoFocus rows={4} value={importText} disabled={actionPending} aria-invalid={!!importError} aria-describedby={`${importFormId}-feedback`} onChange={event => setImportText(event.target.value)} placeholder="R U2 F'…" /></FieldRow>
+        <FieldRow><span>Cross color</span><NativeSelect value={importColor} disabled={actionPending} onChange={event => setImportColor(event.target.value as CrossColor)}>{CROSS_COLORS.map(value => <option key={value} value={value}>{value}</option>)}</NativeSelect></FieldRow>
         <p>Difficulty is calculated from the scramble. Importing replaces the current attempt and saves an unfinished solve as abandoned.</p>
-        {importError && <p role="alert">{importError}</p>}
-        {actionPending && <p role="status">Preparing imported scramble…</p>}
-        <Button type="submit" disabled={actionPending || !importText.trim() || !session.canPractice || !sessionReady || !historyReady}>Use scramble</Button>
+        <p id={`${importFormId}-feedback`} role={importError ? 'alert' : 'status'}>{importError ?? (importCommitting ? 'Finishing imported setup… Closing keeps preparation running.' : actionPending ? 'Preparing imported scramble… Cancel or close to stop computation.' : !session.canPractice ? 'Connect and synchronize your cube before importing.' : !sessionReady || !historyReady ? 'Wait for local sessions and history to finish loading.' : 'Enter a scramble, choose its cross color, then use it to begin setup.')}</p>
       </form>
     </Overlay>
     {historyTarget ? createPortal(<CrossHistory records={records} error={historyError} compact={compact} repository={repository} sessionNames={sessionNames} />, historyTarget) : <CrossHistory records={records} error={historyError} compact={compact} repository={repository} sessionNames={sessionNames} />}
@@ -209,5 +237,3 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
     }}>Retry cross history restoration</Button>}
   </>;
 }
-
-

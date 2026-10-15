@@ -79,7 +79,7 @@ test('cross inspector commits alternative optimal branches and restores exact ca
   await page.getByLabel('Enable Debug').click();
   if (await page.getByRole('dialog').count()) await page.getByRole('button', { name: 'Close', exact: true }).click();
   await page.getByRole('link', { name: 'Debug', exact: true }).click();
-  await page.getByRole('button', { name: 'Cross cases', exact: true }).click();
+  await page.getByRole('tab', { name: 'Cross cases', exact: true }).click();
   const section = page.getByRole('region', { name: 'Exact cross case inspector' });
   await expect(section.getByLabel('Cross color')).toHaveValue('white');
   await section.getByLabel('Exact difficulty').selectOption('8');

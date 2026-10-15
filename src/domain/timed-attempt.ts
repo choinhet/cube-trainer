@@ -13,6 +13,12 @@ export interface TimedResult {
   facelets?: string | null;
   rawTurns?: AttemptCheckpoint["rawTurns"];
   inspectionElapsedMs?: number;
+  /** Version of durable full-state/physical-trace inputs for offline analysis. */
+  analysisInputVersion?: 1 | 2;
+  /** Original generated scramble from solved, retained independently of solve moves. */
+  originalScramble?: string;
+  /** Monotonic host start, retained independently of any missing move timestamp. */
+  solveStartHostMs?: number;
 }
 export type AttemptPhase =
   | "setup"
@@ -77,6 +83,7 @@ export class TimedAttempt {
       reason,
       interruptionPhase: this.phase,
       solveStarted: this.phase === "active",
+      ...(this.phase === "active" ? { solveStartHostMs: this.startMs } : {}),
       inspectionElapsedMs: this.inspection
         ? this.phase === "active"
           ? this.startMs - this.armedMs
@@ -129,9 +136,11 @@ export class TimedAttempt {
       sessionId: this.sessionId,
       status: "completed",
       startedAt: this.wallStart,
+      solveStartHostMs: this.startMs,
       rawDurationMs: hostMs - this.startMs,
       penalty: this.penalty,
       timingBasis: "host-monotonic-receipt",
     };
   }
 }
+
