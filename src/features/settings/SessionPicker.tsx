@@ -8,6 +8,7 @@ const NEW_SESSION = '__new_session__';
 
 export function SessionPicker({ repository }: { repository: LocalRepository }) {
   const formId = useId();
+  const picker = useRef<HTMLSelectElement | null>(null);
   const submitting = useRef(false);
   const [creating, setCreating] = useState(false);
   const [name, setName] = useState('');
@@ -27,7 +28,7 @@ export function SessionPicker({ repository }: { repository: LocalRepository }) {
   }
   return <>
     <label className="session-picker">Session
-      <NativeSelect aria-label="History session" value={data?.currentSessionId ?? ''} onChange={event => {
+      <NativeSelect ref={picker} aria-label="History session" value={data?.currentSessionId ?? ''} onChange={event => {
         if (event.target.value === NEW_SESSION) {
           event.target.value = data?.currentSessionId ?? '';
           setError(null);
@@ -40,7 +41,7 @@ export function SessionPicker({ repository }: { repository: LocalRepository }) {
         <option value={NEW_SESSION}>New session</option>
       </NativeSelect>
     </label>
-    <Overlay open={creating} onOpenChange={setCreating} title="New session" size="small" footer={<ActionBar><Button type="button" variant="outline" onClick={() => setCreating(false)}>{busy ? 'Close' : 'Cancel'}</Button><Button type="submit" form={formId} disabled={busy || !name.trim()}>Create session</Button></ActionBar>}>
+    <Overlay open={creating} onOpenChange={setCreating} title="New session" size="small" returnFocus={picker} footer={<ActionBar><Button type="button" variant="outline" onClick={() => setCreating(false)}>{busy ? 'Close' : 'Cancel'}</Button><Button type="submit" form={formId} disabled={busy || !name.trim()}>Create session</Button></ActionBar>}>
       <form aria-label="New session" id={formId} onSubmit={event => { event.preventDefault(); void create(); }} aria-busy={busy}>
         <FieldRow hint="Choose a name to recognize this session in your history."><span>New session name</span><input autoFocus value={name} disabled={busy} aria-describedby={`${formId}-feedback`} aria-invalid={!!error} onChange={event => setName(event.target.value)} maxLength={120} /></FieldRow>
         <p id={`${formId}-feedback`} role={error ? 'alert' : 'status'}>{error ? `${error} Check browser storage and try again.` : busy ? 'Creating session… You can close this dialog while it saves.' : 'The new session will be selected automatically.'}</p>

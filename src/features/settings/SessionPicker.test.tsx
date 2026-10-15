@@ -22,3 +22,14 @@ it('prevents repeated form submission and retains the draft after a failed write
   expect((screen.getByLabelText('New session name') as HTMLInputElement).value).toBe('Morning practice');
 });
 
+it('restores the session picker after Escape from its automatically focused name field', async () => {
+  const repository = new LocalRepository(new IDBFactory()); await repository.initialize();
+  render(<SessionPicker repository={repository} />);
+  const picker = await screen.findByRole('combobox', { name: 'History session' });
+  picker.focus();
+  fireEvent.change(picker, { target: { value: '__new_session__' } });
+  const name = screen.getByLabelText('New session name');
+  fireEvent.keyDown(name, { key: 'Escape' });
+  await screen.findByRole('combobox', { name: 'History session' });
+  expect(document.activeElement).toBe(picker);
+});

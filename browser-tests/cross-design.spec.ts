@@ -41,7 +41,9 @@ test('Cross details expose metrics, supporting evidence and keyboard dismissal a
     await disclosure.focus();
     await disclosure.press('Enter');
     await expect(disclosure).toHaveAttribute('aria-expanded', 'true');
-    await expect(dialog.getByText(/^Case ID:/)).toContainText('technical-evidence-');
+    await expect(dialog.getByText(/^Full starting state:/)).toContainText(/[URFDLB]{54}/);
+    await expect(dialog.getByText(/^Raw trace:/)).toContainText("D D' R R");
+    await expect(dialog).not.toContainText('technical-evidence-');
     expect(await dialog.evaluate(element => element.scrollWidth <= element.clientWidth + 1)).toBe(true);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({ path: `test-results/cross-details-${width}.png`, fullPage: false, animations: 'disabled' });

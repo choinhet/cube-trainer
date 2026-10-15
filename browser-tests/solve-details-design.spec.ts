@@ -26,6 +26,9 @@ for (const width of [1280, 375]) {
     await expect(details).toHaveAttribute('aria-expanded', 'false');
     await expect(dialog.getByRole('table', { name: 'Solve details' })).toBeHidden();
     const phase = dialog.getByRole('button', { name: 'Show PLL - T details' });
+    const phaseBounds = await phase.boundingBox();
+    expect(phaseBounds!.width).toBeGreaterThanOrEqual(44);
+    expect(phaseBounds!.height).toBeGreaterThanOrEqual(44);
     await phase.focus(); await page.keyboard.press('Enter');
     await expect(dialog.getByRole('region', { name: 'Phase details', exact: true })).toBeVisible();
     await page.keyboard.press('Escape');
@@ -43,4 +46,3 @@ for (const width of [1280, 375]) {
     await page.keyboard.press('Escape'); await expect(opener).toBeFocused();
   });
 }
-

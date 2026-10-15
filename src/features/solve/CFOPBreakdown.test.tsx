@@ -15,3 +15,8 @@ it('keeps explicitly opened phase details available after pointer leave and dism
   expect(screen.queryByRole('region', { name: 'Phase details' })).toBeNull();
   expect(phase.getAttribute('aria-pressed')).toBe('false');
 });
+it('uses physical turn events for the same overall TPS shown in history', () => {
+  render(<CFOPBreakdown result={{ id: 's', sessionId: 's', status: 'completed', penalty: 'none', startedAt: 0, rawDurationMs: 1200, timingBasis: 'host-monotonic-receipt', facelets: SOLVED, rawTurns: ['U', 'U'].map((move, serial) => ({ move, serial, hostMs: serial * 1200, deviceMs: null })) }} />);
+  expect(screen.getByText('TPS (turns per second)').parentElement?.textContent).toBe('TPS (turns per second)1.67');
+  expect(screen.getByText('Turns').parentElement?.textContent).toBe('Turns2');
+});

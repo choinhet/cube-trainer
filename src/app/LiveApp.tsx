@@ -144,7 +144,7 @@ export function LiveApp({ connectCube, bluetoothAvailable = window.isSecureConte
           </Tabs>
         </div>}
 
-        {(contentPage === 'solve' || contentPage === 'cross') && <section className="practice-workspace" data-analysis={contentPage === 'solve' && !!(timed?.result ?? ((!timed || timed.phase === 'setup' || timed.phase === 'ready') ? session.previousSolve : null))} data-phase={contentPage === 'cross' ? session.cross?.phase : timed?.phase} aria-label={contentPage === 'cross' ? 'Cross workspace' : 'Solve workspace'}>
+        {(contentPage === 'solve' || contentPage === 'cross') && <section className="practice-workspace" data-analysis={contentPage === 'cross' ? !!session.cross?.result : !!(timed?.result ?? ((!timed || timed.phase === 'setup' || timed.phase === 'ready') ? session.previousSolve : null))} data-phase={contentPage === 'cross' ? session.cross?.phase : timed?.phase} aria-label={contentPage === 'cross' ? 'Cross workspace' : 'Solve workspace'}>
           <div className="practice-sequence">
             {contentPage === 'cross' && session.cross && <SharedCrossScramble caseData={session.cross.case}>
               {session.cross.phase === 'setup' && preparation?.guide ? <GuidanceSteps guide={preparation.guide} status={preparation.status} crossColor={session.cross.case.color} mirrored={settings?.mirroredCrossInstructions !== false} /> : undefined}
@@ -185,4 +185,3 @@ export function LiveApp({ connectCube, bluetoothAvailable = window.isSecureConte
     <Overlay open={page === 'settings'} onOpenChange={open => { if (!open) navigate('solve'); }} title="Settings" size="wide"><LocalSessions repository={repository} onReady={setSessionReady} onSettings={setSettings} facelets={snapshot.facelets} orientation={session.orientation} /></Overlay>
   </main>;
 }
-
