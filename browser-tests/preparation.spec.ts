@@ -39,7 +39,9 @@ test('real worker generates a random-state scramble and the browser guides corre
   await expect(app.getByLabel('Actual setup moves').locator('[aria-current=step]')).toHaveCount(0);
   await expect(app.getByLabel('Live 3D cube')).toHaveAttribute('data-state', target!);
   await expect(app.getByRole('button', { name: 'Generate practice scramble' })).toHaveCount(0);
-  await app.getByRole('button', { name: 'Cancel preparation' }).click();
+  await expect(app.getByRole('button', { name: 'Cancel preparation' })).toHaveCount(0);
+  await app.getByRole('link', { name: 'Insights', exact: true }).click();
+  await app.getByRole('link', { name: 'Solve', exact: true }).click();
   await expect(original).toBeVisible({ timeout: 45_000 });
   expect(errors).toEqual([]);
 });

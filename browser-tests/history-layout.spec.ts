@@ -37,7 +37,7 @@ for (const mode of ['solve', 'cross'] as const) {
         const footer = element.querySelector('.history-pagination')!.getBoundingClientRect();
         const cells = [...element.querySelectorAll('tbody tr:first-child td')].map(cell => cell.getBoundingClientRect());
         const buttons = [...element.querySelectorAll('.history-pagination button')].map(button => button.getBoundingClientRect().width);
-        return { bottomGap: panel.bottom - footer.bottom, columnGap: cells[1].x + cells[1].width / 2 - cells[0].x - cells[0].width / 2, buttons, numericAligned: [...element.querySelectorAll('.history-list th')].every(head => getComputedStyle(head).textAlign === 'right'), overflow: element.querySelector('.history-table-area')!.scrollHeight > element.querySelector('.history-table-area')!.clientHeight + 1 };
+        return { bottomGap: panel.bottom - footer.bottom, columnGap: cells[1].x + cells[1].width / 2 - cells[0].x - cells[0].width / 2, buttons, numericAligned: [...element.querySelectorAll('.history-list th, .history-list td')].every(head => getComputedStyle(head).textAlign === 'center'), overflow: element.querySelector('.history-table-area')!.scrollHeight > element.querySelector('.history-table-area')!.clientHeight + 1 };
       });
       expect(geometry.bottomGap).toBeLessThanOrEqual(18);
       expect(geometry.columnGap).toBeLessThanOrEqual(100);

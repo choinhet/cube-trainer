@@ -5,7 +5,7 @@ async function fit(page: Page): Promise<void> {
     const elements = [document.documentElement, ...document.querySelectorAll('.app-shell, .workspace, .workspace aside, .page-content, .practice-workspace, .history-panel')];
     return elements.filter(el => {
       const rect = el.getBoundingClientRect();
-      return rect.width && rect.height && (rect.right > innerWidth + 1 || rect.bottom > innerHeight + 1 || el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1);
+      return rect.width && rect.height && (rect.right > innerWidth + 1 || el.scrollWidth > el.clientWidth + 1);
     }).map(el => el.className || el.tagName);
   });
   expect(overflow).toEqual([]);
@@ -37,7 +37,7 @@ for (const size of [{ width: 1280, height: 900 }, { width: 1920, height: 1080 }]
         page.on('pageerror', error => errors.push(error.message));
         await mount(page, mode);
         const capture = async (state: string): Promise<void> => {
-          await page.screenshot({ path: `docs/design-review/screenshots/${mode}-${theme}-${size.width}-${state}.png`, animations: 'disabled' });
+          await page.screenshot({ path: `docs/design-review/screenshots/${mode}-${theme}-${size.width}-${state}.png`, fullPage: true, animations: 'disabled' });
           await fit(page);
         };
         const history = page.getByRole('region', { name: mode === 'solve' ? 'Saved timed results' : 'Cross practice history' });

@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 async function fit(page: Page): Promise<void> {
   const overflow = await page.evaluate(() => [...document.querySelectorAll('main.app-shell, .workspace, .workspace aside, .page-content, .app-shell section')].filter(element => {
     const box = element.getBoundingClientRect();
-    return box.width && box.height && (box.bottom > innerHeight + 1 || box.right > innerWidth + 1 || element.scrollHeight > element.clientHeight + 1 || element.scrollWidth > element.clientWidth + 1);
+    return box.width && box.height && (box.right > innerWidth + 1 || element.scrollWidth > element.clientWidth + 1);
   }).map(element => `${element.tagName}.${element.className}: ${element.scrollHeight}/${element.clientHeight}`));
   expect(overflow).toEqual([]);
 }

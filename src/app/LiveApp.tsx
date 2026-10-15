@@ -144,7 +144,7 @@ export function LiveApp({ connectCube, bluetoothAvailable = window.isSecureConte
           </Tabs>
         </div>}
 
-        {(contentPage === 'solve' || contentPage === 'cross') && <section className="practice-workspace" data-analysis={contentPage === 'cross' ? !!session.cross?.result : !!(timed?.result ?? ((!timed || timed.phase === 'setup' || timed.phase === 'ready') ? session.previousSolve : null))} data-phase={contentPage === 'cross' ? session.cross?.phase : timed?.phase} aria-label={contentPage === 'cross' ? 'Cross workspace' : 'Solve workspace'}>
+        {(contentPage === 'solve' || contentPage === 'cross') && <section className="practice-workspace" data-phase={contentPage === 'cross' ? session.cross?.phase : timed?.phase} aria-label={contentPage === 'cross' ? 'Cross workspace' : 'Solve workspace'}>
           <div className="practice-sequence">
             {contentPage === 'cross' && session.cross && <SharedCrossScramble caseData={session.cross.case}>
               {session.cross.phase === 'setup' && preparation?.guide ? <GuidanceSteps guide={preparation.guide} status={preparation.status} crossColor={session.cross.case.color} mirrored={settings?.mirroredCrossInstructions !== false} /> : undefined}
@@ -161,7 +161,7 @@ export function LiveApp({ connectCube, bluetoothAvailable = window.isSecureConte
           </div>
           <CubeView facelets={snapshot.facelets} orientation={session.orientation} turns={snapshot.turns} showFaceLabels={!!settings?.showFaceLabels} locked3dMode={!!settings?.locked3dMode} defaultAngle={settings?.defaultAngle ?? DEFAULT_VIEW_ANGLE} viewResetVersion={session.viewResetVersion} />
           {contentPage === 'solve' && <SolveTiming session={session} />}
-          {contentPage === 'cross' && <div ref={setCrossFeedbackTarget} />}
+          {contentPage === 'cross' && <div className="cross-feedback-slot" ref={setCrossFeedbackTarget} />}
 
         </section>}
       </div>
@@ -174,7 +174,7 @@ export function LiveApp({ connectCube, bluetoothAvailable = window.isSecureConte
           }}><Bluetooth aria-hidden="true" />{session.status === 'connected' ? 'Connected' : session.status === 'connecting' ? 'Connecting...' : 'Connect Cube'}</Button>
 
           <div className="practice-actions">
-            {contentPage === 'solve' && preparation && <Button variant="ghost" disabled={timed?.saveState === 'pending' || (timed?.saveState === 'failed' && !!timed.result)} onClick={() => session.cancelPreparation()}>{timed?.phase === 'active' ? 'Abandon solve (DNF)' : timed?.phase === 'completed' || timed?.phase === 'interrupted' ? 'Next scramble' : 'Cancel preparation'}</Button>}
+            {contentPage === 'solve' && preparation && timed && ['active', 'completed', 'interrupted'].includes(timed.phase) && <Button variant="ghost" disabled={timed.saveState === 'pending' || (timed.saveState === 'failed' && !!timed.result)} onClick={() => session.cancelPreparation()}>{timed.phase === 'active' ? 'Abandon solve (DNF)' : 'Next scramble'}</Button>}
             {contentPage === 'solve' && !preparation && timed?.result && <Button disabled={timed.saveState !== 'saved'} onClick={() => session.cancelPreparation()}>Next scramble</Button>}
           </div>
         </section>
