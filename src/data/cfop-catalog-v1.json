@@ -1,0 +1,3581 @@
+[
+  {
+    "id": "f2l-1",
+    "phase": "F2L",
+    "name": "1",
+    "look": "one-look",
+    "group": "Basic Insert",
+    "defaultVariantId": "f2l-1-1",
+    "variants": [
+      {
+        "id": "f2l-1-1",
+        "notation": "U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-2",
+    "phase": "F2L",
+    "name": "2",
+    "look": "one-look",
+    "group": "Basic Insert",
+    "defaultVariantId": "f2l-2-1",
+    "variants": [
+      {
+        "id": "f2l-2-1",
+        "notation": "y' U' R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-2-2",
+        "notation": "y U' L' U L",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-3",
+    "phase": "F2L",
+    "name": "3",
+    "look": "one-look",
+    "group": "Basic Insert",
+    "defaultVariantId": "f2l-3-1",
+    "variants": [
+      {
+        "id": "f2l-3-1",
+        "notation": "y' R' U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-3-2",
+        "notation": "y L' U' L",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-4",
+    "phase": "F2L",
+    "name": "4",
+    "look": "one-look",
+    "group": "Basic Insert",
+    "defaultVariantId": "f2l-4-1",
+    "variants": [
+      {
+        "id": "f2l-4-1",
+        "notation": "R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-5",
+    "phase": "F2L",
+    "name": "5",
+    "look": "one-look",
+    "group": "Different Facing Up",
+    "defaultVariantId": "f2l-5-1",
+    "variants": [
+      {
+        "id": "f2l-5-1",
+        "notation": "U' R U' R' U y' R' U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-5-2",
+        "notation": "y' U R' U' R U' R' U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-6",
+    "phase": "F2L",
+    "name": "6",
+    "look": "one-look",
+    "group": "Different Facing Up",
+    "defaultVariantId": "f2l-6-1",
+    "variants": [
+      {
+        "id": "f2l-6-1",
+        "notation": "U' R U R' U R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-7",
+    "phase": "F2L",
+    "name": "7",
+    "look": "one-look",
+    "group": "Different Facing Up",
+    "defaultVariantId": "f2l-7-1",
+    "variants": [
+      {
+        "id": "f2l-7-1",
+        "notation": "U' R U2' R' U y' R' U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-7-2",
+        "notation": "U' R U2' R' d R' U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-8",
+    "phase": "F2L",
+    "name": "8",
+    "look": "one-look",
+    "group": "Different Facing Up",
+    "defaultVariantId": "f2l-8-1",
+    "variants": [
+      {
+        "id": "f2l-8-1",
+        "notation": "R' U2' R2 U R2' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-8-2",
+        "notation": "y' U R' U2 R U' y R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "f2l-8-3",
+        "notation": "R U' R' U R U' R' U2 R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "f2l-9",
+    "phase": "F2L",
+    "name": "9",
+    "look": "one-look",
+    "group": "Different Facing Up",
+    "defaultVariantId": "f2l-9-1",
+    "variants": [
+      {
+        "id": "f2l-9-1",
+        "notation": "y' U R' U R U' R' U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-10",
+    "phase": "F2L",
+    "name": "10",
+    "look": "one-look",
+    "group": "Different Facing Up",
+    "defaultVariantId": "f2l-10-1",
+    "variants": [
+      {
+        "id": "f2l-10-1",
+        "notation": "U' R U' R' U R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-11",
+    "phase": "F2L",
+    "name": "11",
+    "look": "one-look",
+    "group": "Same Facing Up",
+    "defaultVariantId": "f2l-11-1",
+    "variants": [
+      {
+        "id": "f2l-11-1",
+        "notation": "U' R U R' U2 R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-12",
+    "phase": "F2L",
+    "name": "12",
+    "look": "one-look",
+    "group": "Same Facing Up",
+    "defaultVariantId": "f2l-12-1",
+    "variants": [
+      {
+        "id": "f2l-12-1",
+        "notation": "y' U R' U' R U2' R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-12-2",
+        "notation": "d R' U' R U2' R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-13",
+    "phase": "F2L",
+    "name": "13",
+    "look": "one-look",
+    "group": "Same Facing Up",
+    "defaultVariantId": "f2l-13-1",
+    "variants": [
+      {
+        "id": "f2l-13-1",
+        "notation": "U' R U2' R' U2 R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-14",
+    "phase": "F2L",
+    "name": "14",
+    "look": "one-look",
+    "group": "Same Facing Up",
+    "defaultVariantId": "f2l-14-1",
+    "variants": [
+      {
+        "id": "f2l-14-1",
+        "notation": "y' U R' U2 R U2' R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-14-2",
+        "notation": "d R' U2 R U2' R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-15",
+    "phase": "F2L",
+    "name": "15",
+    "look": "one-look",
+    "group": "White Facing Up",
+    "defaultVariantId": "f2l-15-1",
+    "variants": [
+      {
+        "id": "f2l-15-1",
+        "notation": "U R U2 R' U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-16",
+    "phase": "F2L",
+    "name": "16",
+    "look": "one-look",
+    "group": "White Facing Up",
+    "defaultVariantId": "f2l-16-1",
+    "variants": [
+      {
+        "id": "f2l-16-1",
+        "notation": "y' U' R' U2 R U' R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-17",
+    "phase": "F2L",
+    "name": "17",
+    "look": "one-look",
+    "group": "White Facing Up",
+    "defaultVariantId": "f2l-17-1",
+    "variants": [
+      {
+        "id": "f2l-17-1",
+        "notation": "U2 R U R' U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-17-2",
+        "notation": "R U' R' U2 R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-18",
+    "phase": "F2L",
+    "name": "18",
+    "look": "one-look",
+    "group": "White Facing Up",
+    "defaultVariantId": "f2l-18-1",
+    "variants": [
+      {
+        "id": "f2l-18-1",
+        "notation": "y' U2 R' U' R U' R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-19",
+    "phase": "F2L",
+    "name": "19",
+    "look": "one-look",
+    "group": "Incorrectly Connected",
+    "defaultVariantId": "f2l-19-1",
+    "variants": [
+      {
+        "id": "f2l-19-1",
+        "notation": "y' R' U R U2' y R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-19-2",
+        "notation": "R U R' U2 R U' R' U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-20",
+    "phase": "F2L",
+    "name": "20",
+    "look": "one-look",
+    "group": "Incorrectly Connected",
+    "defaultVariantId": "f2l-20-1",
+    "variants": [
+      {
+        "id": "f2l-20-1",
+        "notation": "R U' R' U2 y' R' U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-20-2",
+        "notation": "U F R U R' U' F' U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-21",
+    "phase": "F2L",
+    "name": "21",
+    "look": "one-look",
+    "group": "Incorrectly Connected",
+    "defaultVariantId": "f2l-21-1",
+    "variants": [
+      {
+        "id": "f2l-21-1",
+        "notation": "R U2 R' U' R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-22",
+    "phase": "F2L",
+    "name": "22",
+    "look": "one-look",
+    "group": "Incorrectly Connected",
+    "defaultVariantId": "f2l-22-1",
+    "variants": [
+      {
+        "id": "f2l-22-1",
+        "notation": "y' R' U2 R U R' U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-23",
+    "phase": "F2L",
+    "name": "23",
+    "look": "one-look",
+    "group": "Incorrectly Connected",
+    "defaultVariantId": "f2l-23-1",
+    "variants": [
+      {
+        "id": "f2l-23-1",
+        "notation": "U R U' R' U' R U' R' U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-23-2",
+        "notation": "R U R' U2' R U R' U' R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-24",
+    "phase": "F2L",
+    "name": "24",
+    "look": "one-look",
+    "group": "Incorrectly Connected",
+    "defaultVariantId": "f2l-24-1",
+    "variants": [
+      {
+        "id": "f2l-24-1",
+        "notation": "y' U' R' U R U R' U R U' R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-24-2",
+        "notation": "F U R U' R' F' R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-25",
+    "phase": "F2L",
+    "name": "25",
+    "look": "one-look",
+    "group": "Corner In Edge Out",
+    "defaultVariantId": "f2l-25-1",
+    "variants": [
+      {
+        "id": "f2l-25-1",
+        "notation": "U' F' R U R' U' R' F R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-25-2",
+        "notation": "R' F' R U R U' R' F",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-26",
+    "phase": "F2L",
+    "name": "26",
+    "look": "one-look",
+    "group": "Corner In Edge Out",
+    "defaultVariantId": "f2l-26-1",
+    "variants": [
+      {
+        "id": "f2l-26-1",
+        "notation": "U R U' R' U' F' U F",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-26-2",
+        "notation": "U R U' R' F R' F' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-27",
+    "phase": "F2L",
+    "name": "27",
+    "look": "one-look",
+    "group": "Corner In Edge Out",
+    "defaultVariantId": "f2l-27-1",
+    "variants": [
+      {
+        "id": "f2l-27-1",
+        "notation": "R U' R' U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-28",
+    "phase": "F2L",
+    "name": "28",
+    "look": "one-look",
+    "group": "Corner In Edge Out",
+    "defaultVariantId": "f2l-28-1",
+    "variants": [
+      {
+        "id": "f2l-28-1",
+        "notation": "y' R' U R U' R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-29",
+    "phase": "F2L",
+    "name": "29",
+    "look": "one-look",
+    "group": "Corner In Edge Out",
+    "defaultVariantId": "f2l-29-1",
+    "variants": [
+      {
+        "id": "f2l-29-1",
+        "notation": "y' R' U' R U R' U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-29-2",
+        "notation": "R' F R F' U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-30",
+    "phase": "F2L",
+    "name": "30",
+    "look": "one-look",
+    "group": "Corner In Edge Out",
+    "defaultVariantId": "f2l-30-1",
+    "variants": [
+      {
+        "id": "f2l-30-1",
+        "notation": "R U R' U' R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-31",
+    "phase": "F2L",
+    "name": "31",
+    "look": "one-look",
+    "group": "Edge In Corner Out",
+    "defaultVariantId": "f2l-31-1",
+    "variants": [
+      {
+        "id": "f2l-31-1",
+        "notation": "R U' R' U y' R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-31-2",
+        "notation": "U' R' F R F' R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-32",
+    "phase": "F2L",
+    "name": "32",
+    "look": "one-look",
+    "group": "Edge In Corner Out",
+    "defaultVariantId": "f2l-32-1",
+    "variants": [
+      {
+        "id": "f2l-32-1",
+        "notation": "U R U' R' U R U' R' U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-33",
+    "phase": "F2L",
+    "name": "33",
+    "look": "one-look",
+    "group": "Edge In Corner Out",
+    "defaultVariantId": "f2l-33-1",
+    "variants": [
+      {
+        "id": "f2l-33-1",
+        "notation": "U' R U' R' U2 R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-34",
+    "phase": "F2L",
+    "name": "34",
+    "look": "one-look",
+    "group": "Edge In Corner Out",
+    "defaultVariantId": "f2l-34-1",
+    "variants": [
+      {
+        "id": "f2l-34-1",
+        "notation": "U R U R' U2 R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-35",
+    "phase": "F2L",
+    "name": "35",
+    "look": "one-look",
+    "group": "Edge In Corner Out",
+    "defaultVariantId": "f2l-35-1",
+    "variants": [
+      {
+        "id": "f2l-35-1",
+        "notation": "U' R U R' U y' R' U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-36",
+    "phase": "F2L",
+    "name": "36",
+    "look": "one-look",
+    "group": "Edge In Corner Out",
+    "defaultVariantId": "f2l-36-1",
+    "variants": [
+      {
+        "id": "f2l-36-1",
+        "notation": "U F' U' F U' R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-37",
+    "phase": "F2L",
+    "name": "37",
+    "look": "one-look",
+    "group": "Both In Slot",
+    "defaultVariantId": "f2l-37-1",
+    "variants": [
+      {
+        "id": "f2l-37-1",
+        "notation": "R U' R' d R' U2 R U2' R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "f2l-38",
+    "phase": "F2L",
+    "name": "38",
+    "look": "one-look",
+    "group": "Both In Slot",
+    "defaultVariantId": "f2l-38-1",
+    "variants": [
+      {
+        "id": "f2l-38-1",
+        "notation": "R U' R' U' R U R' U2 R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-38-2",
+        "notation": "R U R' U' R U2 R' U' R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-39",
+    "phase": "F2L",
+    "name": "39",
+    "look": "one-look",
+    "group": "Both In Slot",
+    "defaultVariantId": "f2l-39-1",
+    "variants": [
+      {
+        "id": "f2l-39-1",
+        "notation": "R U' R' U R U2' R' U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-39-2",
+        "notation": "R U R' U2' R U' R' U R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-40",
+    "phase": "F2L",
+    "name": "40",
+    "look": "one-look",
+    "group": "Both In Slot",
+    "defaultVariantId": "f2l-40-1",
+    "variants": [
+      {
+        "id": "f2l-40-1",
+        "notation": "F' U F U2 R U R' U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "f2l-40-2",
+        "notation": "R U' R' F R U R' U' F' R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "f2l-41",
+    "phase": "F2L",
+    "name": "41",
+    "look": "one-look",
+    "group": "Both In Slot",
+    "defaultVariantId": "f2l-41-1",
+    "variants": [
+      {
+        "id": "f2l-41-1",
+        "notation": "R U R' U' R U' R' U2 y' R' U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-1",
+    "phase": "OLL",
+    "name": "1",
+    "look": "one-look",
+    "group": "Dot",
+    "defaultVariantId": "oll-1-1",
+    "variants": [
+      {
+        "id": "oll-1-1",
+        "notation": "R U2 R' R' F R F' U2 R' F R F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-2",
+    "phase": "OLL",
+    "name": "2",
+    "look": "one-look",
+    "group": "Dot",
+    "defaultVariantId": "oll-2-1",
+    "variants": [
+      {
+        "id": "oll-2-1",
+        "notation": "r U r' U2 r U2 R' U2 R U' r'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-2-2",
+        "notation": "y' F R U R' U' F' f R U R' U' f'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "oll-2-3",
+        "notation": "y' F R U R' U' S R U R' U' f'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "oll-3",
+    "phase": "OLL",
+    "name": "3",
+    "look": "one-look",
+    "group": "Dot",
+    "defaultVariantId": "oll-3-1",
+    "variants": [
+      {
+        "id": "oll-3-1",
+        "notation": "r' R2 U R' U r U2 r' U M'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-3-2",
+        "notation": "y F U R U' R' F' U F R U R' U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "oll-3-3",
+        "notation": "y' f R U R' U' f' U' F R U R' U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "oll-4",
+    "phase": "OLL",
+    "name": "4",
+    "look": "one-look",
+    "group": "Dot",
+    "defaultVariantId": "oll-4-1",
+    "variants": [
+      {
+        "id": "oll-4-1",
+        "notation": "M U' r U2 r' U' R U' R' M'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-4-2",
+        "notation": "y F U R U' R' F' U' F R U R' U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "oll-4-3",
+        "notation": "y' f R U R' U' f' U F R U R' U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "oll-5",
+    "phase": "OLL",
+    "name": "5",
+    "look": "one-look",
+    "group": "Square Shape",
+    "defaultVariantId": "oll-5-1",
+    "variants": [
+      {
+        "id": "oll-5-1",
+        "notation": "l' U2 L U L' U l",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-5-2",
+        "notation": "y2 r' U2 R U R' U r",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-6",
+    "phase": "OLL",
+    "name": "6",
+    "look": "one-look",
+    "group": "Square Shape",
+    "defaultVariantId": "oll-6-1",
+    "variants": [
+      {
+        "id": "oll-6-1",
+        "notation": "r U2 R' U' R U' r'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-7",
+    "phase": "OLL",
+    "name": "7",
+    "look": "one-look",
+    "group": "Small Lightning Bolt",
+    "defaultVariantId": "oll-7-1",
+    "variants": [
+      {
+        "id": "oll-7-1",
+        "notation": "r U R' U R U2 r'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-8",
+    "phase": "OLL",
+    "name": "8",
+    "look": "one-look",
+    "group": "Small Lightning Bolt",
+    "defaultVariantId": "oll-8-1",
+    "variants": [
+      {
+        "id": "oll-8-1",
+        "notation": "l' U' L U' L' U2 l",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-8-2",
+        "notation": "R U2 R' U2 R' F R F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "oll-8-3",
+        "notation": "y2 r' U' R U' R' U2 r",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "oll-9",
+    "phase": "OLL",
+    "name": "9",
+    "look": "one-look",
+    "group": "Fish Shape",
+    "defaultVariantId": "oll-9-1",
+    "variants": [
+      {
+        "id": "oll-9-1",
+        "notation": "R U R' U' R' F R2 U R' U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-10",
+    "phase": "OLL",
+    "name": "10",
+    "look": "one-look",
+    "group": "Fish Shape",
+    "defaultVariantId": "oll-10-1",
+    "variants": [
+      {
+        "id": "oll-10-1",
+        "notation": "R U R' U R' F R F' R U2 R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-10-2",
+        "notation": "y2 r U R' U R U' R' U' r' R U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-11",
+    "phase": "OLL",
+    "name": "11",
+    "look": "one-look",
+    "group": "Small Lightning Bolt",
+    "defaultVariantId": "oll-11-1",
+    "variants": [
+      {
+        "id": "oll-11-1",
+        "notation": "r U R' U R' F R F' R U2 r'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-11-2",
+        "notation": "y2 r' R2 U R' U R U2 R' U M'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-12",
+    "phase": "OLL",
+    "name": "12",
+    "look": "one-look",
+    "group": "Small Lightning Bolt",
+    "defaultVariantId": "oll-12-1",
+    "variants": [
+      {
+        "id": "oll-12-1",
+        "notation": "M' R' U' R U' R' U2 R U' R r'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-13",
+    "phase": "OLL",
+    "name": "13",
+    "look": "one-look",
+    "group": "Knight Move Shape",
+    "defaultVariantId": "oll-13-1",
+    "variants": [
+      {
+        "id": "oll-13-1",
+        "notation": "F U R U' R2 F' R U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-13-2",
+        "notation": "r U' r' U' r U r' y' R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-14",
+    "phase": "OLL",
+    "name": "14",
+    "look": "one-look",
+    "group": "Knight Move Shape",
+    "defaultVariantId": "oll-14-1",
+    "variants": [
+      {
+        "id": "oll-14-1",
+        "notation": "R' F R U R' F' R F U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-15",
+    "phase": "OLL",
+    "name": "15",
+    "look": "one-look",
+    "group": "Knight Move Shape",
+    "defaultVariantId": "oll-15-1",
+    "variants": [
+      {
+        "id": "oll-15-1",
+        "notation": "l' U' l L' U' L U l' U l",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-15-2",
+        "notation": "y2 r' U' r R' U' R U r' U r",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-16",
+    "phase": "OLL",
+    "name": "16",
+    "look": "one-look",
+    "group": "Knight Move Shape",
+    "defaultVariantId": "oll-16-1",
+    "variants": [
+      {
+        "id": "oll-16-1",
+        "notation": "r U r' R U R' U' r U' r'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-17",
+    "phase": "OLL",
+    "name": "17",
+    "look": "one-look",
+    "group": "Dot",
+    "defaultVariantId": "oll-17-1",
+    "variants": [
+      {
+        "id": "oll-17-1",
+        "notation": "F R' F' R2 r' U R U' R' U' M'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-17-2",
+        "notation": "y2 R U R' U R' F R F' U2 R' F R F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-18",
+    "phase": "OLL",
+    "name": "18",
+    "look": "one-look",
+    "group": "Dot",
+    "defaultVariantId": "oll-18-1",
+    "variants": [
+      {
+        "id": "oll-18-1",
+        "notation": "r U R' U R U2 r' r' U' R U' R' U2 r",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-18-2",
+        "notation": "y R U2 R' R' F R F' U2 M' U R U' r'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-19",
+    "phase": "OLL",
+    "name": "19",
+    "look": "one-look",
+    "group": "Dot",
+    "defaultVariantId": "oll-19-1",
+    "variants": [
+      {
+        "id": "oll-19-1",
+        "notation": "r' R U R U R' U' M' R' F R F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-20",
+    "phase": "OLL",
+    "name": "20",
+    "look": "one-look",
+    "group": "Dot",
+    "defaultVariantId": "oll-20-1",
+    "variants": [
+      {
+        "id": "oll-20-1",
+        "notation": "r U R' U' M2 U R U' R' U' M'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-20-2",
+        "notation": "r' R U R U R' U' M2 U R U' r'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-21",
+    "phase": "OLL",
+    "name": "21",
+    "look": "one-look",
+    "group": "Cross",
+    "defaultVariantId": "oll-21-1",
+    "variants": [
+      {
+        "id": "oll-21-1",
+        "notation": "R U2 R' U' R U R' U' R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-21-2",
+        "notation": "y R U R' U R U' R' U R U2 R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-22",
+    "phase": "OLL",
+    "name": "22",
+    "look": "one-look",
+    "group": "Cross",
+    "defaultVariantId": "oll-22-1",
+    "variants": [
+      {
+        "id": "oll-22-1",
+        "notation": "R U2 R2 U' R2 U' R2 U2 R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-23",
+    "phase": "OLL",
+    "name": "23",
+    "look": "one-look",
+    "group": "Cross",
+    "defaultVariantId": "oll-23-1",
+    "variants": [
+      {
+        "id": "oll-23-1",
+        "notation": "R2 D' R U2 R' D R U2 R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-23-2",
+        "notation": "y2 R2 D R' U2 R D' R' U2 R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-24",
+    "phase": "OLL",
+    "name": "24",
+    "look": "one-look",
+    "group": "Cross",
+    "defaultVariantId": "oll-24-1",
+    "variants": [
+      {
+        "id": "oll-24-1",
+        "notation": "r U R' U' r' F R F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-24-2",
+        "notation": "y R U R D R' U' R D' R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-25",
+    "phase": "OLL",
+    "name": "25",
+    "look": "one-look",
+    "group": "Cross",
+    "defaultVariantId": "oll-25-1",
+    "variants": [
+      {
+        "id": "oll-25-1",
+        "notation": "F' r U R' U' r' F R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-25-2",
+        "notation": "y' R' F R B' R' F' R B",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-26",
+    "phase": "OLL",
+    "name": "26",
+    "look": "one-look",
+    "group": "Cross",
+    "defaultVariantId": "oll-26-1",
+    "variants": [
+      {
+        "id": "oll-26-1",
+        "notation": "R U2 R' U' R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-26-2",
+        "notation": "y' R' U' R U' R' U2 R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-27",
+    "phase": "OLL",
+    "name": "27",
+    "look": "one-look",
+    "group": "Cross",
+    "defaultVariantId": "oll-27-1",
+    "variants": [
+      {
+        "id": "oll-27-1",
+        "notation": "R U R' U R U2 R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-27-2",
+        "notation": "y' R' U2 R U R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-28",
+    "phase": "OLL",
+    "name": "28",
+    "look": "one-look",
+    "group": "Corners Oriented",
+    "defaultVariantId": "oll-28-1",
+    "variants": [
+      {
+        "id": "oll-28-1",
+        "notation": "r U R' U' r' R U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-29",
+    "phase": "OLL",
+    "name": "29",
+    "look": "one-look",
+    "group": "Awkward Shape",
+    "defaultVariantId": "oll-29-1",
+    "variants": [
+      {
+        "id": "oll-29-1",
+        "notation": "R U R' U' R U' R' F' U' F R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-30",
+    "phase": "OLL",
+    "name": "30",
+    "look": "one-look",
+    "group": "Awkward Shape",
+    "defaultVariantId": "oll-30-1",
+    "variants": [
+      {
+        "id": "oll-30-1",
+        "notation": "F R' F R2 U' R' U' R U R' F2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-30-2",
+        "notation": "F U R U2 R' U' R U2 R' U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-31",
+    "phase": "OLL",
+    "name": "31",
+    "look": "one-look",
+    "group": "P Shape",
+    "defaultVariantId": "oll-31-1",
+    "variants": [
+      {
+        "id": "oll-31-1",
+        "notation": "R' U' F U R U' R' F' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-32",
+    "phase": "OLL",
+    "name": "32",
+    "look": "one-look",
+    "group": "P Shape",
+    "defaultVariantId": "oll-32-1",
+    "variants": [
+      {
+        "id": "oll-32-1",
+        "notation": "L U F' U' L' U L F L'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-33",
+    "phase": "OLL",
+    "name": "33",
+    "look": "one-look",
+    "group": "T Shape",
+    "defaultVariantId": "oll-33-1",
+    "variants": [
+      {
+        "id": "oll-33-1",
+        "notation": "R U R' U' R' F R F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-34",
+    "phase": "OLL",
+    "name": "34",
+    "look": "one-look",
+    "group": "C Shape",
+    "defaultVariantId": "oll-34-1",
+    "variants": [
+      {
+        "id": "oll-34-1",
+        "notation": "R U R2 U' R' F R U R U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-34-2",
+        "notation": "R U R' U' B' R' F R F' B",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-35",
+    "phase": "OLL",
+    "name": "35",
+    "look": "one-look",
+    "group": "Fish Shape",
+    "defaultVariantId": "oll-35-1",
+    "variants": [
+      {
+        "id": "oll-35-1",
+        "notation": "R U2 R' R' F R F' R U2 R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-36",
+    "phase": "OLL",
+    "name": "36",
+    "look": "one-look",
+    "group": "W Shape",
+    "defaultVariantId": "oll-36-1",
+    "variants": [
+      {
+        "id": "oll-36-1",
+        "notation": "L' U' L U' L' U L U L F' L' F",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-36-2",
+        "notation": "y2 R' U' R U' R' U R U R B' R' B",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-37",
+    "phase": "OLL",
+    "name": "37",
+    "look": "one-look",
+    "group": "Fish Shape",
+    "defaultVariantId": "oll-37-1",
+    "variants": [
+      {
+        "id": "oll-37-1",
+        "notation": "F R' F' R U R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-37-2",
+        "notation": "F R U' R' U' R U R' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-38",
+    "phase": "OLL",
+    "name": "38",
+    "look": "one-look",
+    "group": "W Shape",
+    "defaultVariantId": "oll-38-1",
+    "variants": [
+      {
+        "id": "oll-38-1",
+        "notation": "R U R' U R U' R' U' R' F R F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-39",
+    "phase": "OLL",
+    "name": "39",
+    "look": "one-look",
+    "group": "Big Lightning Bolt",
+    "defaultVariantId": "oll-39-1",
+    "variants": [
+      {
+        "id": "oll-39-1",
+        "notation": "L F' L' U' L U F U' L'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-39-2",
+        "notation": "y2 R B' R' U' R U B U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-40",
+    "phase": "OLL",
+    "name": "40",
+    "look": "one-look",
+    "group": "Big Lightning Bolt",
+    "defaultVariantId": "oll-40-1",
+    "variants": [
+      {
+        "id": "oll-40-1",
+        "notation": "R' F R U R' U' F' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-41",
+    "phase": "OLL",
+    "name": "41",
+    "look": "one-look",
+    "group": "Awkward Shape",
+    "defaultVariantId": "oll-41-1",
+    "variants": [
+      {
+        "id": "oll-41-1",
+        "notation": "R U R' U R U2 R' F R U R' U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-42",
+    "phase": "OLL",
+    "name": "42",
+    "look": "one-look",
+    "group": "Awkward Shape",
+    "defaultVariantId": "oll-42-1",
+    "variants": [
+      {
+        "id": "oll-42-1",
+        "notation": "R' U' R U' R' U2 R F R U R' U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-43",
+    "phase": "OLL",
+    "name": "43",
+    "look": "one-look",
+    "group": "P Shape",
+    "defaultVariantId": "oll-43-1",
+    "variants": [
+      {
+        "id": "oll-43-1",
+        "notation": "F' U' L' U L F",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-43-2",
+        "notation": "R' U' F R' F' R U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-44",
+    "phase": "OLL",
+    "name": "44",
+    "look": "one-look",
+    "group": "P Shape",
+    "defaultVariantId": "oll-44-1",
+    "variants": [
+      {
+        "id": "oll-44-1",
+        "notation": "F U R U' R' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-44-2",
+        "notation": "y2 f R U R' U' f'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-45",
+    "phase": "OLL",
+    "name": "45",
+    "look": "one-look",
+    "group": "T Shape",
+    "defaultVariantId": "oll-45-1",
+    "variants": [
+      {
+        "id": "oll-45-1",
+        "notation": "F R U R' U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-46",
+    "phase": "OLL",
+    "name": "46",
+    "look": "one-look",
+    "group": "C Shape",
+    "defaultVariantId": "oll-46-1",
+    "variants": [
+      {
+        "id": "oll-46-1",
+        "notation": "R' U' R' F R F' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-47",
+    "phase": "OLL",
+    "name": "47",
+    "look": "one-look",
+    "group": "Small L Shape",
+    "defaultVariantId": "oll-47-1",
+    "variants": [
+      {
+        "id": "oll-47-1",
+        "notation": "R' U' R' F R F' R' F R F' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-47-2",
+        "notation": "F' L' U' L U L' U' L U F",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "oll-47-3",
+        "notation": "y' F U R U' R' F' R U R' U R U2 R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "oll-48",
+    "phase": "OLL",
+    "name": "48",
+    "look": "one-look",
+    "group": "Small L Shape",
+    "defaultVariantId": "oll-48-1",
+    "variants": [
+      {
+        "id": "oll-48-1",
+        "notation": "F R U R' U' R U R' U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-49",
+    "phase": "OLL",
+    "name": "49",
+    "look": "one-look",
+    "group": "Small L Shape",
+    "defaultVariantId": "oll-49-1",
+    "variants": [
+      {
+        "id": "oll-49-1",
+        "notation": "r U' r2 U r2 U r2 U' r",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-50",
+    "phase": "OLL",
+    "name": "50",
+    "look": "one-look",
+    "group": "Small L Shape",
+    "defaultVariantId": "oll-50-1",
+    "variants": [
+      {
+        "id": "oll-50-1",
+        "notation": "r' U r2 U' r2 U' r2 U r'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "oll-51",
+    "phase": "OLL",
+    "name": "51",
+    "look": "one-look",
+    "group": "I Shape",
+    "defaultVariantId": "oll-51-1",
+    "variants": [
+      {
+        "id": "oll-51-1",
+        "notation": "F U R U' R' U R U' R' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-51-2",
+        "notation": "y2 f R U R' U' R U R' U' f'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-52",
+    "phase": "OLL",
+    "name": "52",
+    "look": "one-look",
+    "group": "I Shape",
+    "defaultVariantId": "oll-52-1",
+    "variants": [
+      {
+        "id": "oll-52-1",
+        "notation": "R U R' U R U' B U' B' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-52-2",
+        "notation": "R' F' U' F U' R U R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "oll-52-3",
+        "notation": "R U R' U R U' y R U' R' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "oll-53",
+    "phase": "OLL",
+    "name": "53",
+    "look": "one-look",
+    "group": "Small L Shape",
+    "defaultVariantId": "oll-53-1",
+    "variants": [
+      {
+        "id": "oll-53-1",
+        "notation": "l' U2 L U L' U' L U L' U l",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-53-2",
+        "notation": "y2 r' U2 R U R' U' R U R' U r",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "oll-53-3",
+        "notation": "y r' U' R U' R' U R U' R' U2 r",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "oll-54",
+    "phase": "OLL",
+    "name": "54",
+    "look": "one-look",
+    "group": "Small L Shape",
+    "defaultVariantId": "oll-54-1",
+    "variants": [
+      {
+        "id": "oll-54-1",
+        "notation": "r U2 R' U' R U R' U' R U' r'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-54-2",
+        "notation": "y r U R' U R U' R' U R U2 r'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-55",
+    "phase": "OLL",
+    "name": "55",
+    "look": "one-look",
+    "group": "I Shape",
+    "defaultVariantId": "oll-55-1",
+    "variants": [
+      {
+        "id": "oll-55-1",
+        "notation": "R' F R U R U' R2 F' R2 U' R' U R U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-55-2",
+        "notation": "y R U2 R2 U' R U' R' U2 F R F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "oll-56",
+    "phase": "OLL",
+    "name": "56",
+    "look": "one-look",
+    "group": "I Shape",
+    "defaultVariantId": "oll-56-1",
+    "variants": [
+      {
+        "id": "oll-56-1",
+        "notation": "r' U' r U' R' U R U' R' U R r' U r",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "oll-56-2",
+        "notation": "r U r' U R U' R' U R U' R' r U' r'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "oll-56-3",
+        "notation": "r U r' U R U' R' U R U' M' U' r'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "oll-57",
+    "phase": "OLL",
+    "name": "57",
+    "look": "one-look",
+    "group": "Corners Oriented",
+    "defaultVariantId": "oll-57-1",
+    "variants": [
+      {
+        "id": "oll-57-1",
+        "notation": "R U R' U' M' U R U' r'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "pll-H",
+    "phase": "PLL",
+    "name": "H",
+    "look": "one-look",
+    "group": "Edges Only",
+    "defaultVariantId": "pll-H-1",
+    "variants": [
+      {
+        "id": "pll-H-1",
+        "notation": "M2 U M2 U2 M2 U M2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-H-2",
+        "notation": "M2 U' M2 U2 M2 U' M2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "pll-Z",
+    "phase": "PLL",
+    "name": "Z",
+    "look": "one-look",
+    "group": "Edges Only",
+    "defaultVariantId": "pll-Z-1",
+    "variants": [
+      {
+        "id": "pll-Z-1",
+        "notation": "M' U M2 U M2 U M' U2 M2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Z-2",
+        "notation": "y M' U' M2 U' M2 U' M' U2 M2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "pll-Z-3",
+        "notation": "y M2 U M2 U M' U2 M2 U2 M'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      },
+      {
+        "id": "pll-Z-4",
+        "notation": "M2 U' M2 U' M' U2 M2 U2 M'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "pll-Ua",
+    "phase": "PLL",
+    "name": "Ua",
+    "look": "one-look",
+    "group": "Edges Only",
+    "defaultVariantId": "pll-Ua-1",
+    "variants": [
+      {
+        "id": "pll-Ua-1",
+        "notation": "M2 U M U2 M' U M2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Ua-2",
+        "notation": "R U' R U R U R U' R' U' R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "pll-Ua-3",
+        "notation": "y2 R2 U' R' U' R U R U R U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "pll-Ub",
+    "phase": "PLL",
+    "name": "Ub",
+    "look": "one-look",
+    "group": "Edges Only",
+    "defaultVariantId": "pll-Ub-1",
+    "variants": [
+      {
+        "id": "pll-Ub-1",
+        "notation": "M2 U' M U2 M' U' M2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Ub-2",
+        "notation": "R2 U R U R' U' R' U' R' U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "pll-Ub-3",
+        "notation": "y2 R' U R' U' R' U' R' U R U R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      },
+      {
+        "id": "pll-Ub-4",
+        "notation": "y2 R' U R' U' R3 U' R' U R U R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "pll-Aa",
+    "phase": "PLL",
+    "name": "Aa",
+    "look": "one-look",
+    "group": "Adjacent Corner Swap",
+    "defaultVariantId": "pll-Aa-1",
+    "variants": [
+      {
+        "id": "pll-Aa-1",
+        "notation": "x L2 D2 L' U' L D2 L' U L'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Aa-2",
+        "notation": "y' x' L' U L' D2 L U' L' D2 L2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "pll-Aa-3",
+        "notation": "y x R' U R' D2 R U' R' D2 R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      },
+      {
+        "id": "pll-Aa-4",
+        "notation": "y2 x' R2 D2 R' U' R D2 R' U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "pll-Ab",
+    "phase": "PLL",
+    "name": "Ab",
+    "look": "one-look",
+    "group": "Adjacent Corner Swap",
+    "defaultVariantId": "pll-Ab-1",
+    "variants": [
+      {
+        "id": "pll-Ab-1",
+        "notation": "x' L2 D2 L U L' D2 L U' L",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Ab-2",
+        "notation": "y x L U' L D2 L' U L D2 L2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "pll-Ab-3",
+        "notation": "y2 x R2 D2 R U R' D2 R U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      },
+      {
+        "id": "pll-Ab-4",
+        "notation": "y' x' R U' R D2 R' U R D2 R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "pll-E",
+    "phase": "PLL",
+    "name": "E",
+    "look": "one-look",
+    "group": "Diagonal Corner Swap",
+    "defaultVariantId": "pll-E-1",
+    "variants": [
+      {
+        "id": "pll-E-1",
+        "notation": "x' L' U L D' L' U' L D L' U' L D' L' U L D",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-E-2",
+        "notation": "x' R U' R' D R U R' D' R U R' D R U' R' D'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "pll-F",
+    "phase": "PLL",
+    "name": "F",
+    "look": "one-look",
+    "group": "Adjacent Corner Swap",
+    "defaultVariantId": "pll-F-1",
+    "variants": [
+      {
+        "id": "pll-F-1",
+        "notation": "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "pll-Ja",
+    "phase": "PLL",
+    "name": "Ja",
+    "look": "one-look",
+    "group": "Adjacent Corner Swap",
+    "defaultVariantId": "pll-Ja-1",
+    "variants": [
+      {
+        "id": "pll-Ja-1",
+        "notation": "x R2 F R F' R U2 r' U r U2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Ja-2",
+        "notation": "y2 L' U' L F L' U' L U L F' L2 U L",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "pll-Ja-3",
+        "notation": "y' R' U L' U2 R U' R' U2 R L",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "pll-Jb",
+    "phase": "PLL",
+    "name": "Jb",
+    "look": "one-look",
+    "group": "Adjacent Corner Swap",
+    "defaultVariantId": "pll-Jb-1",
+    "variants": [
+      {
+        "id": "pll-Jb-1",
+        "notation": "R U R' F' R U R' U' R' F R2 U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "pll-Ra",
+    "phase": "PLL",
+    "name": "Ra",
+    "look": "one-look",
+    "group": "Adjacent Corner Swap",
+    "defaultVariantId": "pll-Ra-1",
+    "variants": [
+      {
+        "id": "pll-Ra-1",
+        "notation": "R U' R' U' R U R D R' U' R D' R' U2 R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Ra-2",
+        "notation": "R U R' F' R U2 R' U2 R' F R U R U2 R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "pll-Ra-3",
+        "notation": "y' L U2 L' U2 L F' L' U' L U L F L2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "pll-Rb",
+    "phase": "PLL",
+    "name": "Rb",
+    "look": "one-look",
+    "group": "Adjacent Corner Swap",
+    "defaultVariantId": "pll-Rb-1",
+    "variants": [
+      {
+        "id": "pll-Rb-1",
+        "notation": "R2 F R U R U' R' F' R U2 R' U2 R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Rb-2",
+        "notation": "y' R' U2 R U2 R' F R U R' U' R' F' R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "pll-Rb-3",
+        "notation": "R' U2 R' D' R U' R' D R U R U' R' U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "pll-T",
+    "phase": "PLL",
+    "name": "T",
+    "look": "one-look",
+    "group": "Adjacent Corner Swap",
+    "defaultVariantId": "pll-T-1",
+    "variants": [
+      {
+        "id": "pll-T-1",
+        "notation": "R U R' U' R' F R2 U' R' U' R U R' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "pll-Y",
+    "phase": "PLL",
+    "name": "Y",
+    "look": "one-look",
+    "group": "Diagonal Corner Swap",
+    "defaultVariantId": "pll-Y-1",
+    "variants": [
+      {
+        "id": "pll-Y-1",
+        "notation": "F R U' R' U' R U R' F' R U R' U' R' F R F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Y-2",
+        "notation": "F R' F R2 U' R' U' R U R' F' R U R' U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "pll-V",
+    "phase": "PLL",
+    "name": "V",
+    "look": "one-look",
+    "group": "Diagonal Corner Swap",
+    "defaultVariantId": "pll-V-1",
+    "variants": [
+      {
+        "id": "pll-V-1",
+        "notation": "R' U R' U' y R' F' R2 U' R' U R' F R F",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-V-2",
+        "notation": "R' U R' U' R D' R' D R' U D' R2 U' R2 D R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "pll-V-3",
+        "notation": "z D' R2 D R2 U R' D' R U' R U R' D R U' z'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      },
+      {
+        "id": "pll-V-4",
+        "notation": "R U2 R' D R U' R U' R U R2 D R' U' R D2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 4
+      },
+      {
+        "id": "pll-V-5",
+        "notation": "x' R' F R F' U R U2 R' U' R U' R' U2 R U R' U'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 5
+      }
+    ]
+  },
+  {
+    "id": "pll-Na",
+    "phase": "PLL",
+    "name": "Na",
+    "look": "one-look",
+    "group": "Diagonal Corner Swap",
+    "defaultVariantId": "pll-Na-1",
+    "variants": [
+      {
+        "id": "pll-Na-1",
+        "notation": "R U R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Na-2",
+        "notation": "z U R' D R2 U' R D' U R' D R2 U' R D'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "pll-Nb",
+    "phase": "PLL",
+    "name": "Nb",
+    "look": "one-look",
+    "group": "Diagonal Corner Swap",
+    "defaultVariantId": "pll-Nb-1",
+    "variants": [
+      {
+        "id": "pll-Nb-1",
+        "notation": "R' U R U' R' F' U' F R U R' F R' F' R U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Nb-2",
+        "notation": "z D' R U' R2 D R' U D' R U' R2 D R' U",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "pll-Ga",
+    "phase": "PLL",
+    "name": "Ga",
+    "look": "one-look",
+    "group": "Adjacent Corner Swap",
+    "defaultVariantId": "pll-Ga-1",
+    "variants": [
+      {
+        "id": "pll-Ga-1",
+        "notation": "R2 U R' U R' U' R U' R2 U' D R' U R D'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Ga-2",
+        "notation": "R2 u R' U R' U' R u' R2 y' R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "pll-Gb",
+    "phase": "PLL",
+    "name": "Gb",
+    "look": "one-look",
+    "group": "Adjacent Corner Swap",
+    "defaultVariantId": "pll-Gb-1",
+    "variants": [
+      {
+        "id": "pll-Gb-1",
+        "notation": "R' U' R U D' R2 U R' U R U' R U' R2 D",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Gb-2",
+        "notation": "y F' U' F R2 u R' U R U' R u' R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "pll-Gc",
+    "phase": "PLL",
+    "name": "Gc",
+    "look": "one-look",
+    "group": "Adjacent Corner Swap",
+    "defaultVariantId": "pll-Gc-1",
+    "variants": [
+      {
+        "id": "pll-Gc-1",
+        "notation": "R2 U' R U' R U R' U R2 U D' R U' R' D",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Gc-2",
+        "notation": "y2 R2 F2 R U2 R U2 R' F R U R' U' R' F R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "pll-Gc-3",
+        "notation": "R2 u' R U' R U R' u R2 y R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "pll-Gd",
+    "phase": "PLL",
+    "name": "Gd",
+    "look": "one-look",
+    "group": "Adjacent Corner Swap",
+    "defaultVariantId": "pll-Gd-1",
+    "variants": [
+      {
+        "id": "pll-Gd-1",
+        "notation": "R U R' U' D R2 U' R U' R' U R' U R2 D'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "pll-Gd-2",
+        "notation": "R U R' y' R2 u' R U' R' U R' u R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "2look-oll-27",
+    "phase": "OLL",
+    "name": "Sune",
+    "look": "two-look",
+    "step": "corners",
+    "group": "Two-look",
+    "defaultVariantId": "2look-oll-27-1",
+    "variants": [
+      {
+        "id": "2look-oll-27-1",
+        "notation": "R U R' U R U2 R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "2look-oll-27-2",
+        "notation": "y' R' U2 R U R' U R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "2look-oll-26",
+    "phase": "OLL",
+    "name": "Anti-Sune",
+    "look": "two-look",
+    "step": "corners",
+    "group": "Two-look",
+    "defaultVariantId": "2look-oll-26-1",
+    "variants": [
+      {
+        "id": "2look-oll-26-1",
+        "notation": "R U2 R' U' R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "2look-oll-26-2",
+        "notation": "y' R' U' R U' R' U2 R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "2look-oll-21",
+    "phase": "OLL",
+    "name": "H",
+    "look": "two-look",
+    "step": "corners",
+    "group": "Two-look",
+    "defaultVariantId": "2look-oll-21-1",
+    "variants": [
+      {
+        "id": "2look-oll-21-1",
+        "notation": "R U2 R' U' R U R' U' R U' R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "2look-oll-21-2",
+        "notation": "y R U R' U R U' R' U R U2 R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "2look-oll-22",
+    "phase": "OLL",
+    "name": "Pi",
+    "look": "two-look",
+    "step": "corners",
+    "group": "Two-look",
+    "defaultVariantId": "2look-oll-22-1",
+    "variants": [
+      {
+        "id": "2look-oll-22-1",
+        "notation": "R U2 R2 U' R2 U' R2 U2 R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "2look-oll-23",
+    "phase": "OLL",
+    "name": "U",
+    "look": "two-look",
+    "step": "corners",
+    "group": "Two-look",
+    "defaultVariantId": "2look-oll-23-1",
+    "variants": [
+      {
+        "id": "2look-oll-23-1",
+        "notation": "R2 D' R U2 R' D R U2 R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "2look-oll-23-2",
+        "notation": "y2 R2 D R' U2 R D' R' U2 R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "2look-oll-24",
+    "phase": "OLL",
+    "name": "T",
+    "look": "two-look",
+    "step": "corners",
+    "group": "Two-look",
+    "defaultVariantId": "2look-oll-24-1",
+    "variants": [
+      {
+        "id": "2look-oll-24-1",
+        "notation": "r U R' U' r' F R F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "2look-oll-24-2",
+        "notation": "y R U R D R' U' R D' R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "2look-oll-25",
+    "phase": "OLL",
+    "name": "L",
+    "look": "two-look",
+    "step": "corners",
+    "group": "Two-look",
+    "defaultVariantId": "2look-oll-25-1",
+    "variants": [
+      {
+        "id": "2look-oll-25-1",
+        "notation": "F' r U R' U' r' F R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "2look-oll-25-2",
+        "notation": "y' R' F R B' R' F' R B",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "2look-oll-line",
+    "phase": "OLL",
+    "name": "Line",
+    "look": "two-look",
+    "step": "edges",
+    "group": "Two-look",
+    "defaultVariantId": "2look-oll-line-1",
+    "variants": [
+      {
+        "id": "2look-oll-line-1",
+        "notation": "F R U R' U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "2look-oll-l",
+    "phase": "OLL",
+    "name": "L shape",
+    "look": "two-look",
+    "step": "edges",
+    "group": "Two-look",
+    "defaultVariantId": "2look-oll-l-1",
+    "variants": [
+      {
+        "id": "2look-oll-l-1",
+        "notation": "F U R U' R' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "2look-oll-l-2",
+        "notation": "y2 f R U R' U' f'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "2look-oll-dot",
+    "phase": "OLL",
+    "name": "Dot",
+    "look": "two-look",
+    "step": "edges",
+    "group": "Two-look",
+    "defaultVariantId": "2look-oll-dot-1",
+    "variants": [
+      {
+        "id": "2look-oll-dot-1",
+        "notation": "F R U R' U' F' f R U R' U' f'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "catalog-composition"
+      }
+    ]
+  },
+  {
+    "id": "2look-pll-T",
+    "phase": "PLL",
+    "name": "T",
+    "look": "two-look",
+    "step": "corners",
+    "group": "Two-look",
+    "defaultVariantId": "2look-pll-T-1",
+    "variants": [
+      {
+        "id": "2look-pll-T-1",
+        "notation": "R U R' U' R' F R2 U' R' U' R U R' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      }
+    ]
+  },
+  {
+    "id": "2look-pll-Y",
+    "phase": "PLL",
+    "name": "Y",
+    "look": "two-look",
+    "step": "corners",
+    "group": "Two-look",
+    "defaultVariantId": "2look-pll-Y-1",
+    "variants": [
+      {
+        "id": "2look-pll-Y-1",
+        "notation": "F R U' R' U' R U R' F' R U R' U' R' F R F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "2look-pll-Y-2",
+        "notation": "F R' F R2 U' R' U' R U R' F' R U R' U' F'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "2look-pll-Ua",
+    "phase": "PLL",
+    "name": "Ua",
+    "look": "two-look",
+    "step": "edges",
+    "group": "Two-look",
+    "defaultVariantId": "2look-pll-Ua-1",
+    "variants": [
+      {
+        "id": "2look-pll-Ua-1",
+        "notation": "M2 U M U2 M' U M2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "2look-pll-Ua-2",
+        "notation": "R U' R U R U R U' R' U' R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "2look-pll-Ua-3",
+        "notation": "y2 R2 U' R' U' R U R U R U' R",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      }
+    ]
+  },
+  {
+    "id": "2look-pll-Ub",
+    "phase": "PLL",
+    "name": "Ub",
+    "look": "two-look",
+    "step": "edges",
+    "group": "Two-look",
+    "defaultVariantId": "2look-pll-Ub-1",
+    "variants": [
+      {
+        "id": "2look-pll-Ub-1",
+        "notation": "M2 U' M U2 M' U' M2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "2look-pll-Ub-2",
+        "notation": "R2 U R U R' U' R' U' R' U R'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "2look-pll-Ub-3",
+        "notation": "y2 R' U R' U' R' U' R' U R U R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      },
+      {
+        "id": "2look-pll-Ub-4",
+        "notation": "y2 R' U R' U' R3 U' R' U R U R2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "2look-pll-H",
+    "phase": "PLL",
+    "name": "H",
+    "look": "two-look",
+    "step": "edges",
+    "group": "Two-look",
+    "defaultVariantId": "2look-pll-H-1",
+    "variants": [
+      {
+        "id": "2look-pll-H-1",
+        "notation": "M2 U M2 U2 M2 U M2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "2look-pll-H-2",
+        "notation": "M2 U' M2 U2 M2 U' M2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      }
+    ]
+  },
+  {
+    "id": "2look-pll-Z",
+    "phase": "PLL",
+    "name": "Z",
+    "look": "two-look",
+    "step": "edges",
+    "group": "Two-look",
+    "defaultVariantId": "2look-pll-Z-1",
+    "variants": [
+      {
+        "id": "2look-pll-Z-1",
+        "notation": "M' U M2 U M2 U M' U2 M2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 1
+      },
+      {
+        "id": "2look-pll-Z-2",
+        "notation": "y M' U' M2 U' M2 U' M' U2 M2",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 2
+      },
+      {
+        "id": "2look-pll-Z-3",
+        "notation": "y M2 U M2 U M' U2 M2 U2 M'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 3
+      },
+      {
+        "id": "2look-pll-Z-4",
+        "notation": "M2 U' M2 U' M' U2 M2 U2 M'",
+        "sourceIds": [
+          "cube-coach"
+        ],
+        "sourceRecommendation": "not-stated",
+        "sourceOrder": 4
+      }
+    ]
+  }
+]
