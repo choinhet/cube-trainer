@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test';
 
+test.use({ colorScheme: 'dark' });
+
 test('Insights and diagnostic tabs fit narrow, desktop and enlarged text layouts', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('link', { name: 'Settings', exact: true }).click();
@@ -19,6 +21,6 @@ test('Insights and diagnostic tabs fit narrow, desktop and enlarged text layouts
     await page.getByRole('tab', { name: 'Viewer traces', exact: true }).click();
     await expect(page.getByRole('tabpanel', { name: 'Viewer traces' })).toContainText('Raw state');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await page.screenshot({ path: `test-results/navigation-${width}.png`, fullPage: true });
+    await page.screenshot({ path: `test-results/navigation-${width}.png`, fullPage: false, animations: 'disabled' });
   }
 });

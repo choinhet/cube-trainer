@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test';
 
+test.use({ colorScheme: 'dark' });
+
 test('Cross details expose metrics, supporting evidence and keyboard dismissal across viewport sizes', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByLabel('History session').first()).toHaveValue(/.+/);
@@ -42,7 +44,7 @@ test('Cross details expose metrics, supporting evidence and keyboard dismissal a
     await expect(dialog.getByText(/^Case ID:/)).toContainText('technical-evidence-');
     expect(await dialog.evaluate(element => element.scrollWidth <= element.clientWidth + 1)).toBe(true);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await page.screenshot({ path: `test-results/cross-details-${width}.png`, fullPage: true });
+    await page.screenshot({ path: `test-results/cross-details-${width}.png`, fullPage: false, animations: 'disabled' });
     await page.keyboard.press('Escape');
     await expect(dialog).toHaveCount(0);
     await expect(result).toBeFocused();
