@@ -54,7 +54,7 @@ for (const width of [375, 640]) {
     const opener = page.getByRole('button', { name: 'Import shared scramble', exact: true });
     await opener.click();
     const dialog = page.getByRole('dialog', { name: 'Import shared scramble', exact: true });
-    const input = dialog.getByLabel('Shared scramble', { exact: true });
+    const input = dialog.getByRole('textbox', { name: 'Shared scramble', exact: true });
     const invalid = `${"R U2 F' ".repeat(16)}INVALID`;
     await input.fill(invalid);
     const submit = dialog.getByRole('button', { name: 'Use scramble', exact: true });
