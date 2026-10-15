@@ -25,6 +25,7 @@ it("arms once, starts from a subsequent physical event, and completes once with 
     id: "attempt",
     sessionId: "session",
     startedAt: 123456,
+    solveStartHostMs: 15100,
     penalty: "+2",
   });
   expect(result!.rawDurationMs).toBeCloseTo(1334.567, 8);

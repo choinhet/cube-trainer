@@ -1,3 +1,4 @@
+import { reconstructMoveTiming } from "./cfop-timing";
 import { catalogMatches } from "./cfop-algorithm-matches";
 import { FACES, isFacelets, normals, SOLVED, stickers, turn } from "./cube";
 import {
@@ -22,6 +23,8 @@ export interface CFOPAnalysis {
   phases: CFOPPhase[];
   states: string[];
   moveTimesMs: number[];
+  /** Internal repeatability diagnostics; presentation uses phase/case durations only. */
+  timing: { version: 1; sources: ("host" | "device" | "order")[] };
 }
 const inverse = (move: string) =>
   move.endsWith("2") ? move : move.endsWith("'") ? move[0] : `${move}'`;
@@ -97,15 +100,14 @@ export function analyzeCFOP(result: TimedResult): CFOPAnalysis | null {
         !Number.isInteger(move.serial) ||
         move.serial < 0 ||
         move.serial > 255 ||
-        !Number.isFinite(move.hostMs) ||
         (i > 0 &&
-          (move.serial !== (moves[i - 1].serial + 1) % 256 ||
-            move.hostMs < moves[i - 1].hostMs)),
+          move.serial !== (moves[i - 1].serial + 1) % 256),
     )
   )
     return null;
-  const moveTimesMs = moves.map((move) => move.hostMs - moves[0].hostMs);
-  if (moveTimesMs.at(-1)! > result.rawDurationMs) return null;
+  const timing = reconstructMoveTiming(result);
+  if (!timing) return null;
+  const { moveTimesMs } = timing;
   const states = Array<string>(moves.length + 1);
   states[moves.length] = result.facelets;
   for (let i = moves.length - 1; i >= 0; i--)
@@ -284,5 +286,6 @@ export function analyzeCFOP(result: TimedResult): CFOPAnalysis | null {
     phases,
     states,
     moveTimesMs,
+    timing: { version: timing.version, sources: timing.sources },
   };
 }

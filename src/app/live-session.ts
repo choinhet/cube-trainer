@@ -217,7 +217,7 @@ export class LiveSession extends DiagnosticSession {
   }
   private completeTimed(result: TimedResult): void {
     const snapshot = this.diagnostic.snapshot();
-    result = { ...result, analysisInputVersion: 1, facelets: result.facelets ?? snapshot.facelets, rawTurns: result.rawTurns ?? snapshot.turns.slice(this.solveTurnOffset ?? this.attemptTurnOffset) };
+    result = { ...result, analysisInputVersion: 2, facelets: result.facelets ?? snapshot.facelets, rawTurns: result.rawTurns ?? snapshot.turns.slice(this.solveTurnOffset ?? this.attemptTurnOffset) };
     this.completedResult = result;
     if (result.status === 'completed') this.previousTimedResult = result;
     this.saveState = 'pending';
@@ -506,5 +506,3 @@ export class LiveSession extends DiagnosticSession {
     this.notify();
   }
 }
-
-

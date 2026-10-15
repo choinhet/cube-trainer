@@ -113,3 +113,40 @@ test('physical completion saves exact precision and captured session, then survi
 
 
 
+
+test('legacy shared receipts recover offline history details and preserve raw timing through penalty edits', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await page.evaluate(async () => {
+    const path = '/src/adapters/local-repository.ts';
+    const { LocalRepository } = await import(/* @vite-ignore */ path) as typeof import('../src/adapters/local-repository');
+    const repository = new LocalRepository();
+    const session = await repository.createSession('Legacy practice');
+    const base = { sessionId: session.id, status: 'completed' as const, startedAt: 1790000000000, penalty: 'none' as const, timingBasis: 'host-monotonic-receipt' as const };
+    await repository.saveTimedResult({ ...base, id: 'legacy-recovery', rawDurationMs: 300.125, facelets: 'UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB', rawTurns: [
+      { move: 'U', serial: 255, hostMs: 100, deviceMs: null },
+      { move: 'U', serial: 0, hostMs: 400, deviceMs: null, recovered: true },
+      { move: 'U', serial: 1, hostMs: 400, deviceMs: null },
+    ] });
+    await repository.saveTimedResult({ ...base, id: 'legacy-total-only', rawDurationMs: 1234.567 });
+  });
+  await page.reload();
+  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByRole('button', { name: '0.30', exact: true })).toBeVisible();
+  await page.context().setOffline(true);
+  await page.getByRole('region', { name: 'Saved timed results' }).getByRole('button', { name: '0.30', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  const breakdown = dialog.getByRole('region', { name: 'CFOP phase timing' });
+  const execution = breakdown.getByRole('button', { name: /PLL - Unrecognized execution: 0.300125 seconds/ });
+  await execution.focus();
+  await expect(breakdown.getByRole('status')).toContainText('0.300125 s');
+  await execution.click();
+  await expect(breakdown.getByRole('status')).toContainText('PLL - Unrecognized execution');
+  expect(await dialog.innerText()).not.toMatch(/estimat|reconstruct|uncertain|confidence/i);
+  await dialog.getByRole('button', { name: '+2', exact: true }).click();
+  await expect(dialog.getByText('2.30 (+2)', { exact: true })).toBeVisible();
+  await expect(execution).toBeVisible();
+  await dialog.getByRole('button', { name: 'Close', exact: true }).click();
+  await page.getByRole('region', { name: 'Saved timed results' }).getByRole('button', { name: '1.23', exact: true }).click();
+  await expect(dialog.getByText('Detailed timing unavailable', { exact: true })).toBeVisible();
+  await expect(dialog.getByText('1.23', { exact: true })).toBeVisible();
+});
