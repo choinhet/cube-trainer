@@ -1,3 +1,4 @@
+import { Button } from "../../components/ui/button";
 import { useReducer, useState } from "react";
 import { DiagnosticSession, type Connection } from "../../domain/session";
 import { DiagnosticText } from "./DiagnosticText";
@@ -82,7 +83,7 @@ export function App({
     }
   }
   return (
-    <main>
+    <div className="diagnostic-content">
       <header>
         <p className="eyebrow">CUBE TRAINER · HARDWARE FEASIBILITY</p>
         <h1>GAN device diagnostic</h1>
@@ -129,32 +130,32 @@ export function App({
           </label>
         </div>
         <div className="buttons">
-          <button
+          <Button variant="outline"
             disabled={!bluetoothAvailable || session.status !== "disconnected"}
             onClick={() => void session.connect()}
           >
             Connect cube
-          </button>
-          <button
+          </Button>
+          <Button variant="outline"
             disabled={!connected}
             onClick={() => void session.disconnect()}
           >
             Disconnect
-          </button>
-          <button
+          </Button>
+          <Button variant="outline"
             disabled={!connected}
             onClick={() => void session.request("REQUEST_HARDWARE")}
           >
             Request hardware
-          </button>
-          <button
+          </Button>
+          <Button variant="outline"
             disabled={!connected}
             onClick={() => void session.request("REQUEST_BATTERY")}
           >
             Request battery
-          </button>
+          </Button>
         </div>
-        <p>
+        <p role="status">
           Connection: <strong>{session.status}</strong> ·{" "}
           <span>{session.deviceName ?? "No device selected"}</span>
         </p>
@@ -182,15 +183,15 @@ export function App({
           letters use the device’s fixed center reference.
         </p>
         <div className="buttons">
-          <button
+          <Button variant="outline"
             disabled={!connected}
             onClick={() => void session.request("REQUEST_FACELETS")}
           >
             Request state
-          </button>
-          <button disabled={!connected || !reportedState} onClick={confirm}>
+          </Button>
+          <Button variant="outline" disabled={!connected || !reportedState} onClick={confirm}>
             Confirm reported state matches physical cube
-          </button>
+          </Button>
         </div>
         <p>
           Tracking: <strong>{snapshot.tracking}</strong>
@@ -272,7 +273,7 @@ export function App({
           />
         </label>
         <div className="buttons">
-          <button
+          <Button variant="outline"
             onClick={() =>
               setAnnotations((previous) => [
                 ...previous,
@@ -281,10 +282,10 @@ export function App({
             }
           >
             Add timestamped observation
-          </button>
-          <button onClick={capture}>Download diagnostic trace</button>
+          </Button>
+          <Button variant="outline" onClick={capture}>Download diagnostic trace</Button>
         </div>
-        <p>
+        <p role="status">
           {annotations.length} observations · {trace.length} events this run ·{" "}
           {session.previousRuns.length} previous runs retained in memory.
           Download before closing or reloading.
@@ -310,21 +311,21 @@ export function App({
         {sharedSession ? (
           <div>
             <div className="buttons">
-              <button
+              <Button variant="outline"
                 disabled={eventPage === 0}
                 onClick={() => setEventPage(eventPage - 1)}
               >
                 Previous event
-              </button>
+              </Button>
               <span>
                 Event {Math.min(eventPage + 1, trace.length)} / {trace.length}
               </span>
-              <button
+              <Button variant="outline"
                 disabled={eventPage + 1 >= trace.length}
                 onClick={() => setEventPage(eventPage + 1)}
               >
                 Next event
-              </button>
+              </Button>
             </div>
             <DiagnosticText
               label="event lines"
@@ -344,6 +345,6 @@ export function App({
           </details>
         )}
       </section>
-    </main>
+    </div>
   );
 }
