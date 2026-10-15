@@ -48,7 +48,7 @@ function caseKey(c: CatalogCase,v: CatalogVariant){const outcome=p.defaultPatter
  const keys: string[]=[];for(const y of ['','y','y2',"y'"])for(const u of ['','U','U2',"U'"]){const d=p.defaultPattern().applyAlg(y).applyTransformation(t).applyAlg(new Alg(y).invert()).applyAlg(u).patternData;
  if(c.phase==='OLL')keys.push(JSON.stringify([d.CORNERS.orientation.slice(0,4),d.EDGES.orientation.slice(0,4)]));
  else if(c.phase==='PLL')for(const pre of ['','U','U2',"U'"]){const x=p.defaultPattern().applyAlg(pre).applyAlg(y).applyTransformation(t).applyAlg(new Alg(y).invert()).applyAlg(u).patternData;keys.push(JSON.stringify([x.CORNERS.pieces,x.EDGES.pieces]));}
- else{const badC=[4,5,6,7].find(i=>d.CORNERS.pieces[i]!==i||d.CORNERS.orientation[i]);const badE=[8,9,10,11].find(i=>d.EDGES.pieces[i]!==i||d.EDGES.orientation[i]); const cPiece=badC??(badE!-8+4);const ePiece=badE??(badC!-4+8);keys.push(JSON.stringify([cPiece,d.CORNERS.pieces.indexOf(cPiece),d.CORNERS.orientation[d.CORNERS.pieces.indexOf(cPiece)],ePiece,d.EDGES.pieces.indexOf(ePiece),d.EDGES.orientation[d.EDGES.pieces.indexOf(ePiece)]]));}
+ else{const badC=[4,5,6,7].find(i=>d.CORNERS.pieces[i]!==i||d.CORNERS.orientation[i]);const badE=[8,9,10,11].find(i=>d.EDGES.pieces[i]!==i||d.EDGES.orientation[i]); const cPiece=badC??([8,9,11,10].indexOf(badE!)+4);const ePiece=badE??([8,9,11,10][badC!-4]);keys.push(JSON.stringify([cPiece,d.CORNERS.pieces.indexOf(cPiece),d.CORNERS.orientation[d.CORNERS.pieces.indexOf(cPiece)],ePiece,d.EDGES.pieces.indexOf(ePiece),d.EDGES.orientation[d.EDGES.pieces.indexOf(ePiece)]]));}
  }return keys.sort()[0];}
 
  for(const phase of ['OLL','PLL','F2L']){
@@ -61,6 +61,7 @@ function caseKey(c: CatalogCase,v: CatalogVariant){const outcome=p.defaultPatter
   }
  }
 });
+
 
 
 
