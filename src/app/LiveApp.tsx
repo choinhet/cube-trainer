@@ -1,3 +1,4 @@
+import { DiagnosticText } from '../features/diagnostics/DiagnosticText';
 import { DEFAULT_VIEW_ANGLE } from '../domain/view-preferences';
 import { useEffect, useReducer, useState } from 'react';
 import { App } from '../features/diagnostics/App';
@@ -133,8 +134,15 @@ export function LiveApp({ connectCube, bluetoothAvailable = window.isSecureConte
       {(contentPage === 'solve' || contentPage === 'insights') && <aside><TimedHistory repository={repository} refreshKey={savedAttempt ?? undefined} compact /></aside>}
       {contentPage === 'cross' && <aside ref={setCrossHistoryTarget} />}
       <div className="page-content">
-        {contentPage === 'insights' && <section aria-label="Insights" className="insights-panel"><Tabs defaultValue="Overview"><TabsList>{['Overview', 'Graphs', 'Results'].map(tab => <TabsTrigger value={tab} key={tab}>{tab}</TabsTrigger>)}</TabsList>{['Overview', 'Graphs', 'Results'].map(tab => <TabsContent value={tab} key={tab}><h2>{tab}</h2><p>{tab === 'Graphs' ? 'Progress graphs are not available yet.' : tab === 'Overview' ? 'Review your saved timed results. Averages and milestones are not available yet.' : 'Select a result to review and edit its saved details.'}</p></TabsContent>)}</Tabs></section>}
-        {settings?.debug && <div hidden={page !== 'debug'} className="debug-page" data-step={debugStep}><div className="buttons">{['Connection', 'State', 'Evidence', 'Viewer traces', 'Cross cases'].map((label, i) => <Button variant="outline" key={label} onClick={() => setDebugStep(i+1)}>{label}</Button>)}</div><div hidden={debugStep > 3}><App sharedSession={session} bluetoothAvailable={bluetoothAvailable} /></div>{debugStep === 5 ? <CrossCases /> : debugStep === 4 ? <section><h2>Viewer traces</h2><p>{session.timingBasis}</p><p>Gyro quaternion: {JSON.stringify(snapshot.orientation)}</p><p>Raw state: {snapshot.facelets}</p><Button onClick={downloadTrace}>Download viewer trace</Button></section> : null}</div>}
+        {contentPage === 'insights' && <section aria-label="Insights" className="insights-panel"><Tabs defaultValue="Overview"><TabsList aria-label="Insights views" variant="line">{['Overview', 'Graphs', 'Results'].map(tab => <TabsTrigger value={tab} key={tab}>{tab}</TabsTrigger>)}</TabsList>{['Overview', 'Graphs', 'Results'].map(tab => <TabsContent value={tab} key={tab}><h2>{tab}</h2><p className="insights-empty-state">{tab === 'Graphs' ? 'Progress graphs are not available yet.' : tab === 'Overview' ? 'Review your saved timed results. Averages and milestones are not available yet.' : 'Select a result to review and edit its saved details.'}</p></TabsContent>)}</Tabs></section>}
+        {settings?.debug && <div hidden={page !== 'debug'} className="debug-page" data-step={debugStep}>
+          <Tabs value={String(debugStep)} onValueChange={value => setDebugStep(Number(value))}>
+            <TabsList aria-label="Diagnostic sections" variant="line">{['Connection', 'State', 'Evidence', 'Viewer traces', 'Cross cases'].map((label, i) => <TabsTrigger key={label} value={String(i + 1)}>{label}</TabsTrigger>)}</TabsList>
+            <TabsContent value={String(Math.min(debugStep, 3))} forceMount hidden={debugStep > 3}><App sharedSession={session} bluetoothAvailable={bluetoothAvailable} /></TabsContent>
+            <TabsContent value="4"><section aria-label="Viewer traces"><h2>Viewer traces</h2><p>{session.timingBasis}</p><p>Gyro quaternion: {JSON.stringify(snapshot.orientation)}</p><DiagnosticText label="Raw state" text={`Raw state: ${snapshot.facelets ?? 'No tracked state available'}`} /><Button onClick={downloadTrace}>Download viewer trace</Button></section></TabsContent>
+            <TabsContent value="5"><CrossCases /></TabsContent>
+          </Tabs>
+        </div>}
 
         {(contentPage === 'solve' || contentPage === 'cross') && <section className="practice-workspace" data-phase={contentPage === 'cross' ? session.cross?.phase : timed?.phase} aria-label={contentPage === 'cross' ? 'Cross workspace' : 'Solve workspace'}>
           <div className="practice-sequence">

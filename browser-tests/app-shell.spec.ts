@@ -32,7 +32,7 @@ test('fresh storage, gated routes, persistent settings, tabs and viewport fit', 
   if (await page.getByRole('dialog').count()) await page.getByRole('button', { name: 'Close', exact: true }).click();
   await page.getByRole('link', { name: 'Debug', exact: true, includeHidden: true }).click();
   for (const step of ['Connection', 'State', 'Evidence', 'Viewer traces', 'Cross cases']) {
-    await page.getByRole('button', { name: step, exact: true }).click();
+    await page.getByRole('tab', { name: step, exact: true }).click();
     await fit(page);
   }
   await page.getByRole('link', { name: 'Settings', exact: true }).click();
