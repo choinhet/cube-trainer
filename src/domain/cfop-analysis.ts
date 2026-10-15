@@ -188,17 +188,44 @@ export function analyzeCFOP(result: TimedResult): CFOPAnalysis | null {
         ? [index]
         : [],
     );
-    const cross = progress[0].cross
-      ? 0
-      : (checkpoints.find((index) =>
-          checkpoints
-            .filter((next) => next >= index)
-            .every((next) =>
-              progress[index].pairs.every(
-                (solved, pair) => !solved || progress[next].pairs[pair],
-              ),
+    // An identical-state return that broke Cross is a transient completion,
+    // unless every disruption belongs to an already supported case execution.
+    // U U' keeps Cross solved and therefore remains recognition instead.
+    let crossRecoveryIndex = 0;
+    const previousCrossStates = new Map<string, number>();
+    for (const endIndex of checkpoints) {
+      const startIndex = previousCrossStates.get(states[endIndex]);
+      if (
+        startIndex !== undefined &&
+        progress.some(
+          (value, index) =>
+            index > startIndex &&
+            index < endIndex &&
+            !value.cross &&
+            !supported.some(
+              (envelope) =>
+                envelope.startIndex < index && index < envelope.endIndex,
             ),
-        ) ?? moves.length);
+        )
+      ) {
+        crossRecoveryIndex = endIndex;
+      }
+      previousCrossStates.set(states[endIndex], endIndex);
+    }
+    const cross =
+      progress[0].cross && crossRecoveryIndex === 0
+        ? 0
+        : (checkpoints.find(
+            (index) =>
+              index >= crossRecoveryIndex &&
+              checkpoints
+                .filter((next) => next >= index)
+                .every((next) =>
+                  progress[index].pairs.every(
+                    (solved, pair) => !solved || progress[next].pairs[pair],
+                  ),
+                ),
+          ) ?? moves.length);
     const f2l =
       checkpoints.find(
         (index) =>
@@ -217,15 +244,17 @@ export function analyzeCFOP(result: TimedResult): CFOPAnalysis | null {
             .filter((next) => next >= index)
             .every((next) => progress[next].oll),
       ) ?? moves.length;
-    return { color, cross, f2l, oll };
+    return { color, cross, f2l, oll, crossRecoveryIndex };
   }).filter(
     (candidate) =>
       candidate.cross <= candidate.f2l &&
       candidate.f2l <= candidate.oll &&
       candidate.cross < moves.length &&
-      (candidate.cross === 0 || candidate.cross < candidate.f2l),
+      (candidate.cross === 0 ||
+        candidate.cross < candidate.f2l ||
+        (candidate.crossRecoveryIndex ?? 0) > 0),
   );
-  candidates.sort((a, b) => a.cross - b.cross || a.f2l - b.f2l);
+  candidates.sort((a, b) => a.f2l - b.f2l || a.cross - b.cross);
   const selected = candidates[0];
   if (!selected) return null;
   const boundaries = [
