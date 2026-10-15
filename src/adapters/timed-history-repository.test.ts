@@ -97,3 +97,26 @@ it("finalization and recovery invalidate derived consumers after persistence, ob
   unsubscribe();
   stopBroken();
 });
+
+it('durably reproduces recovered legacy timing offline without altering move data, precision, session or penalty semantics', async () => {
+  const { factory, repository, session, result } = await fixture();
+  const { SOLVED } = await import('../domain/cube');
+  const { analyzeCFOP } = await import('../domain/cfop-analysis');
+  const legacy: TimedResult = { ...result, id: 'legacy-timing', rawDurationMs: 300.125, facelets: SOLVED, rawTurns: [
+    { move: 'U', serial: 255, hostMs: 100, deviceMs: null },
+    { move: 'U', serial: 0, hostMs: 400, deviceMs: null, recovered: true },
+    { move: 'U', serial: 1, hostMs: 400, deviceMs: null },
+  ] };
+  const expected = analyzeCFOP(legacy)!;
+  expect(expected.moveTimesMs).toEqual([0, 150, 300]);
+  await repository.saveTimedResult(legacy);
+  repository.close();
+  const reopened = new LocalRepository(factory);
+  await reopened.editTimedPenalty(legacy.id, '+2');
+  const saved = (await reopened.listTimedResults()).find(value => value.id === legacy.id)!;
+  expect(saved).toEqual({ ...legacy, penalty: '+2' });
+  expect(saved.sessionId).toBe(session.id);
+  expect(analyzeCFOP(saved)).toEqual(expected);
+  await reopened.editTimedPenalty(legacy.id, 'dnf');
+  expect(analyzeCFOP((await reopened.listTimedResults()).find(value => value.id === legacy.id)!)).toEqual(expected);
+});
