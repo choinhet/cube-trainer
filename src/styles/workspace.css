@@ -279,3 +279,6 @@ select[data-slot="native-select"], .app-shell select[data-slot="native-select"] 
 .cfop-oll { --cfop-color: #eed475; }
 .cfop-pll { --cfop-color: #d8a5ed; }
 .cfop-recognition { background: color-mix(in srgb, var(--cfop-color) 50%, black); filter: none; color: white; }
+.cfop-bar .cfop-segment { background: var(--cfop-fill, var(--cfop-color)); height: 44px; min-height: 44px; border: 0; border-radius: 0; padding: 0; white-space: nowrap; color: #17202b; font-size: .7rem; }
+.cfop-bar .cfop-recognition { --cfop-fill: color-mix(in srgb, var(--cfop-color) 50%, black); color: white; }
+.cfop-bar .cfop-segment:hover:enabled, .app-shell .cfop-bar .cfop-segment:hover:enabled { background: var(--cfop-fill, var(--cfop-color)); }
