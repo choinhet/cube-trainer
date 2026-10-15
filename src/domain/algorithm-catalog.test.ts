@@ -23,6 +23,7 @@ test('independent cubing cubie behavior validates every claimed phase effect',as
  for(const c of ALGORITHM_CATALOG)for(const v of c.variants){
   const outcome=p.defaultPattern().applyAlg(v.notation);
   const normalized=rotations.map(r=>outcome.applyAlg(r)).find(s=>s.patternData.CENTERS.pieces.every((v,i)=>v===i))!;
+  expect(p.defaultPattern().applyAlg(v.physicalTurns.join(' ')).isIdentical(normalized),v.id).toBe(true);
   const d=normalized.experimentalToTransformation()!.invert().toKPattern().patternData;
   const corners=[4,5,6,7].filter(i=>d.CORNERS.pieces[i]!==i||d.CORNERS.orientation[i]);
   const edges=[4,5,6,7,8,9,10,11].filter(i=>d.EDGES.pieces[i]!==i||d.EDGES.orientation[i]);
@@ -60,5 +61,6 @@ function caseKey(c: CatalogCase,v: CatalogVariant){const outcome=p.defaultPatter
   }
  }
 });
+
 
 
