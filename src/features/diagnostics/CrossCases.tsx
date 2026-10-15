@@ -1,3 +1,4 @@
+import { Disclosure } from "../../components/ModalPatterns";
 import { Button } from "../../components/ui/button";
 import { useEffect, useRef, useState } from "react";
 import { turn } from "../../domain/cube";
@@ -121,8 +122,7 @@ export function CrossCases() {
             Original whole-cube scramble:{" "}
             <code>{caseData.originalScramble}</code>
           </p>
-          <details>
-            <summary>Stable case ID and full target</summary>
+          <Disclosure title="Stable case ID and full target">
             <p>
               <code>{caseData.caseId}</code>
             </p>
@@ -132,7 +132,7 @@ export function CrossCases() {
             <p>
               Inspected state: <code>{state}</code>
             </p>
-          </details>
+          </Disclosure>
           <p>
             Committed prefix: <code>{prefix.join(" ") || "(empty)"}</code>
           </p>

@@ -1,3 +1,4 @@
+import { Disclosure } from "../../components/ModalPatterns";
 import { Button } from "../../components/ui/button";
 import { useReducer, useState } from "react";
 import { DiagnosticSession, type Connection } from "../../domain/session";
@@ -162,8 +163,7 @@ export function App({
         {(session.error || uiError) && (
           <p role="alert">{session.error || uiError}</p>
         )}
-        <details>
-          <summary>Browser and reported hardware</summary>
+        <Disclosure title="Browser and reported hardware">
           <p>{navigator.userAgent}</p>
           <DiagnosticText
             label="hardware lines"
@@ -173,7 +173,7 @@ export function App({
                 : "No hardware response observed. Requesting a capability does not prove support."
             }
           />
-        </details>
+        </Disclosure>
       </section>
       <section aria-labelledby="state-title">
         <h2 id="state-title">2. Check state and physical face mapping</h2>
@@ -303,10 +303,9 @@ export function App({
             : `${timing.hostSpanMs.toFixed(2)} ms`}
         </p>
         {!sharedSession && (
-          <details>
-            <summary>Clock interval comparison (last 20 pairs)</summary>
+          <Disclosure title="Clock interval comparison (last 20 pairs)">
             <pre>{JSON.stringify(timing.intervals.slice(-20), null, 2)}</pre>
-          </details>
+          </Disclosure>
         )}
         {sharedSession ? (
           <div>
@@ -337,12 +336,9 @@ export function App({
             />
           </div>
         ) : (
-          <details>
-            <summary>
-              Recent raw events (last 12; download contains all)
-            </summary>
+          <Disclosure title="Recent raw events (last 12; download contains all)">
             <pre>{JSON.stringify(trace.slice(-12), null, 2)}</pre>
-          </details>
+          </Disclosure>
         )}
       </section>
     </div>
