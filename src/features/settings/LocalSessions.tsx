@@ -33,7 +33,7 @@ export function LocalSessions({ repository, onReady, onSettings, facelets, orien
       const settings = { ...data.settings, [key]: event.target.checked };
       setData({ ...data, settings });
       void save(async () => { await repository.saveSettings(settings); onSettings(settings); return { ...data, settings }; });
-    }} />{text}</FieldRow>;
+    }} /><span>{text}</span></FieldRow>;
   }
   return <section aria-labelledby="local-sessions"><h2 id="local-sessions">Preferences</h2>
     {error && <p role="alert">{error}</p>}{data && busy && <p role="status">Saving preferences…</p>}

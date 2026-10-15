@@ -76,6 +76,7 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
   const [actionPending, setActionPending] = useState(false);
   const [restartRequested, setRestartRequested] = useState(false);
   const importFormId = useId();
+  const importTrigger = useRef<HTMLButtonElement | null>(null);
   const importOperation = useRef<AbortController | null>(null);
   const [importCommitting, setImportCommitting] = useState(false);
   const importCommitStarted = useRef(false);
@@ -202,7 +203,7 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
       <label>Difficulty
         <span className="difficulty-value" aria-hidden="true">{difficulty} moves</span>
         <input type="range" aria-label="Difficulty" min={1} max={8} step={1} value={difficulty} aria-valuetext={`${difficulty} optimal moves`} disabled={locked} onChange={event => changeSettings(() => setDifficulty(Number(event.target.value)))} /></label>{' '}
-      <Button variant="outline" size="icon" aria-label="Import shared scramble" title="Import shared scramble" disabled={actionPending || restartRequested || cross?.revealing || cross?.saveState === 'pending' || cross?.saveState === 'failed'} onClick={() => { setImportColor(color); setImportError(null); dismissImport(true); }}><Plus aria-hidden="true" /></Button>
+      <Button ref={importTrigger} variant="outline" aria-label="Import shared scramble" disabled={actionPending || restartRequested || cross?.revealing || cross?.saveState === 'pending' || cross?.saveState === 'failed'} onClick={() => { setImportColor(color); setImportError(null); dismissImport(true); }}><Plus aria-hidden="true" />Import scramble</Button>
       {error && <p role="alert">{error} <Button variant="outline" onClick={() => setError(null)}>Retry preparation</Button></p>}
       <Feedback target={feedbackTarget}>
         <div className="cross-timing">{timedMode && <p className="timer-value" aria-label="Cross time" role={cross?.phase === 'active' ? 'timer' : undefined}>{(elapsedMs / 1000).toFixed(2)}</p>}<div aria-label="Cross moves" className={timedMode ? 'cross-move-counts' : 'cross-focused-moves'}>{timedMode ? <p>{moveCount} moves executed</p> : <p className="timer-value">{moveCount}<span className="move-count-caption">moves executed</span></p>}<p>{optimum} optimal moves</p></div>{(activeAttempt ? cross.assisted : shownResult?.assisted ?? cross?.assisted) && <p>Assisted</p>}</div>
@@ -220,7 +221,7 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
         </>}
       </Feedback>
     </section>
-    <Overlay open={importOpen} onOpenChange={dismissImport} title="Import shared scramble" size="medium" footer={<ActionBar><Button type="button" variant="outline" onClick={() => dismissImport(false)}>{importCommitting ? 'Close' : 'Cancel'}</Button><Button form={importFormId} type="submit" disabled={actionPending || !importText.trim() || !session.canPractice || !sessionReady || !historyReady}>Use scramble</Button></ActionBar>}>
+    <Overlay open={importOpen} onOpenChange={dismissImport} title="Import shared scramble" size="medium" returnFocus={importTrigger} footer={<ActionBar><Button type="button" variant="outline" onClick={() => dismissImport(false)}>{importCommitting ? 'Close' : 'Cancel'}</Button><Button form={importFormId} type="submit" disabled={actionPending || !importText.trim() || !session.canPractice || !sessionReady || !historyReady}>Use scramble</Button></ActionBar>}>
       <form id={importFormId} className="scramble-import" aria-busy={actionPending} onSubmit={event => { event.preventDefault(); void importCase(); }}>
         <p>Paste a scramble written for a solved cube with white on top and green in front. Setup will adapt it to your cube’s current position.</p>
         <FieldRow><span>Shared scramble</span><textarea autoFocus rows={4} value={importText} disabled={actionPending} aria-invalid={!!importError} aria-describedby={`${importFormId}-feedback`} onChange={event => setImportText(event.target.value)} placeholder="R U2 F'…" /></FieldRow>
@@ -236,5 +237,3 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
     }}>Retry cross history restoration</Button>}
   </>;
 }
-
-
