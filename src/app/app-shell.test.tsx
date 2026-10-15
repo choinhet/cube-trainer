@@ -1,3 +1,5 @@
+import { beforeAll } from 'vitest';
+beforeAll(() => { globalThis.ResizeObserver = class { observe() {} unobserve() {} disconnect() {} }; });
 // @vitest-environment jsdom
 import { IDBFactory } from 'fake-indexeddb';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';

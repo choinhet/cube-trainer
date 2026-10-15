@@ -181,7 +181,7 @@ export function LiveApp({ connectCube, bluetoothAvailable = window.isSecureConte
         <div hidden={contentPage !== 'cross'} className="cross-controls"><FreeCrossPractice enabled={contentPage === 'cross' && !deviceOpen} session={session} repository={repository} sessionReady={sessionReady && recoveryReady} generate={generateCross} solve={solveSetup} compact historyTarget={crossHistoryTarget} feedbackTarget={crossFeedbackTarget} mirrored={settings?.mirroredCrossInstructions !== false} /></div>
       </aside>
     </div>
-    <Overlay open={deviceOpen} onOpenChange={open => { setDeviceOpen(open); if (!open && session.solvedResetPending) session.cancelSolvedReset(); }} title="Device"><DeviceControls key={session.solvedResetVersion} session={session} bluetoothAvailable={bluetoothAvailable} confirm={confirm} /></Overlay>
-    <Overlay open={page === 'settings'} onOpenChange={open => { if (!open) navigate('solve'); }} title="Settings"><LocalSessions repository={repository} onReady={setSessionReady} onSettings={setSettings} facelets={snapshot.facelets} orientation={session.orientation} /></Overlay>
+    <Overlay open={deviceOpen} onOpenChange={open => { setDeviceOpen(open); if (!open && session.solvedResetPending) session.cancelSolvedReset(); }} title="Device" size="small"><DeviceControls key={session.solvedResetVersion} session={session} bluetoothAvailable={bluetoothAvailable} confirm={confirm} /></Overlay>
+    <Overlay open={page === 'settings'} onOpenChange={open => { if (!open) navigate('solve'); }} title="Settings" size="wide"><LocalSessions repository={repository} onReady={setSessionReady} onSettings={setSettings} facelets={snapshot.facelets} orientation={session.orientation} /></Overlay>
   </main>;
 }
