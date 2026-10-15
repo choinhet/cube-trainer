@@ -6,6 +6,17 @@ import { TimedHistory } from './TimedHistory';
 import { LocalRepository } from '../../adapters/local-repository';
 import { SOLVED } from '../../domain/cube';
 afterEach(cleanup);
+it('reopens named last-layer algorithms offline alongside the original saved solve', async () => {
+  const factory = new IDBFactory(); const repository = new LocalRepository(factory);
+  const session = await repository.createSession('Algorithms');
+  const moves = "R U R' R U R' U R U2 R' R U R' U' R' F R2 U' R' U' R U R' F' U".split(' ');
+  await repository.saveTimedResult({ id: 'named', sessionId: session.id, status: 'completed', startedAt: 1000, rawDurationMs: 2400, penalty: 'none', timingBasis: 'host-monotonic-receipt', facelets: SOLVED, rawTurns: moves.map((move, serial) => ({ move, serial, hostMs: serial * 100, deviceMs: null })) });
+  render(<TimedHistory repository={new LocalRepository(factory)} />);
+  fireEvent.click(await screen.findByText('Algorithm details'));
+  expect(screen.getByText('PLL - T')).toBeTruthy();
+  expect(screen.queryByText(/estimated|reconstructed/i)).toBeNull();
+  expect((await repository.listTimedResults())[0].rawTurns?.map(move => move.move)).toEqual(moves);
+});
 it('reopens offline F2L pair details with recognition and execution while keeping penalties separate', async () => {
   const factory = new IDBFactory(); const repository = new LocalRepository(factory);
   const session = await repository.createSession('Pairs');
@@ -14,12 +25,14 @@ it('reopens offline F2L pair details with recognition and execution while keepin
   render(<TimedHistory repository={new LocalRepository(factory)} />);
   const summary = await screen.findByText('F2L pair details');
   fireEvent.click(summary);
+  const pairDetails = within(summary.closest('details')!);
   expect(screen.getByText('F2L pair 4')).toBeTruthy();
-  expect(screen.getAllByText('Recognition: 0.1 s')).toHaveLength(3);
-  expect(screen.getAllByText('Execution: 0.2 s')).toHaveLength(4);
+  expect(pairDetails.getAllByText('Recognition: 0.1 s')).toHaveLength(3);
+  expect(pairDetails.getAllByText('Execution: 0.2 s')).toHaveLength(4);
+  expect(within(screen.getByRole('group', { name: 'F2L phase' })).getAllByRole('button')).toHaveLength(7);
   fireEvent.click(screen.getByRole('button', { name: '+2' }));
   await screen.findByText('3.20 (+2)');
-  expect(screen.getAllByText('Execution: 0.2 s')).toHaveLength(4);
+  expect(pairDetails.getAllByText('Execution: 0.2 s')).toHaveLength(4);
 });
 async function fixture() {
   const factory = new IDBFactory(); const repository = new LocalRepository(factory);

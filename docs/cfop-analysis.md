@@ -28,3 +28,11 @@ move history and displays **Detailed timing unavailable**.
 
 See the [catalog research](research/cfop-catalog.md) for coverage, source
 attribution, variants, and validation.
+
+## Offline algorithm identification
+
+`analyzeLLAlgorithms(result, analysis)` returns the same case timing shape as F2L pair analysis, including stable catalog case and variant IDs when identified. It retains encompassing Unrecognized sections when a sequence cannot support a catalog split. Edge orientation supplies an independent two-look OLL boundary even for unknown sequences; a pause supplies none. Final alignment remains PLL execution.
+
+Catalog notation is converted offline into intrinsic physical outer turns. The producer removes holding rotations and expands wide/slice equivalents; independent cubing transformations verify the physical sequence against every source variant. The runtime matcher accepts all four holdings around the automatically inferred cross axis, U setup/AUF, commuting opposite faces and equivalent quarter/half-turn spelling. It preserves the original move trace.
+
+Milestone checks ignore the interiors of supported algorithm cores and independently evidenced state excursions that restore F2L/OLL with an orientation/permutation advance. Identity detours supply no advancement evidence. This distinguishes known algorithm-internal regressions from transient completion while retaining phase progress for unknown last-layer operations. Matching is bounded to 90 physical turns per candidate operation; longer unsupported operations retain state-based phase analysis and an encompassing Unrecognized section. A bounded cache reuses matches between phase and detail analysis.

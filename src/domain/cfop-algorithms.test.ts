@@ -111,3 +111,17 @@ test("rejects a transient F2L completion that returns through an unsupported ide
   const analysis = analyzeCFOP(input)!;
   expect(analysis.phases.map((p) => p.endIndex)).toEqual([0, 6, 13, 27]);
 });
+test("an alignment-only PLL interval is execution through the authoritative stop", () => {
+  const input = result(`${sune} U`);
+  const analysis = analyzeCFOP(input)!;
+  const alignment = analyzeLLAlgorithms(input, analysis).find(
+    (c) => c.phase === "PLL",
+  )!;
+  expect(alignment.recognitionMs).toBe(0);
+  expect(alignment.executionMs).toBe(analysis.phases[3].durationMs);
+});
+test("keeps OLL and PLL skipped when the final F2L insertion solves the cube", () => {
+  const analysis = analyzeCFOP(result("R U R'"))!;
+  expect(analysis.phases.map((p) => p.endIndex)).toEqual([0, 3, 3, 3]);
+  expect(analyzeLLAlgorithms(result("R U R'"), analysis)).toEqual([]);
+});

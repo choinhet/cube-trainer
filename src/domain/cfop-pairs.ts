@@ -1,5 +1,7 @@
 import { cfopProgress, type CFOPAnalysis } from './cfop-analysis';
 import type { TimedResult } from './timed-attempt';
+import { FACES, normals } from './cube';
+import { COLOR_FACE } from './cross';
 
 export interface CFOPCase {
   id: string;
@@ -13,11 +15,15 @@ export interface CFOPCase {
   endMs: number;
   recognitionMs: number;
   executionMs: number;
+  catalogCaseId?: string;
+  variantId?: string;
 }
 /** Cases are bounded by restored Cross checkpoints, permitting insertion turns. */
 export function analyzeF2LPairs(result: TimedResult, analysis: CFOPAnalysis): CFOPCase[] {
   const phase = analysis.phases.find(value => value.phase === 'F2L')!;
   const progress = analysis.states.map(state => cfopProgress(state, analysis.crossColor));
+  const axis = normals[FACES.indexOf(COLOR_FACE[analysis.crossColor])];
+  const top = FACES[normals.findIndex(normal => normal.every((value, i) => value === -axis[i]))];
   const checkpoints = progress.flatMap((value, index) => index >= phase.startIndex && index <= phase.endIndex && value.cross ? [index] : []);
   const completed = [0, 1, 2, 3].map(pair => ({ pair, index: checkpoints.find(index => progress[index].pairs[pair] && checkpoints.filter(next => next >= index).every(next => progress[next].pairs[pair])) ?? phase.endIndex })).sort((a, b) => a.index - b.index || a.pair - b.pair);
   let previousIndex = phase.startIndex;
@@ -28,7 +34,7 @@ export function analyzeF2LPairs(result: TimedResult, analysis: CFOPAnalysis): CF
     while (solutionStartIndex + 2 < index) {
       const first = result.rawTurns?.[solutionStartIndex]?.move;
       const second = result.rawTurns?.[solutionStartIndex + 1]?.move;
-      if (!((first === 'U' && second === "U'") || (first === "U'" && second === 'U')) || analysis.states[solutionStartIndex] !== analysis.states[solutionStartIndex + 2]) break;
+      if (!((first === top && second === `${top}'`) || (first === `${top}'` && second === top)) || analysis.states[solutionStartIndex] !== analysis.states[solutionStartIndex + 2]) break;
       solutionStartIndex += 2;
     }
     const executionStartMs = index === previousIndex ? previousMs : analysis.moveTimesMs[solutionStartIndex];

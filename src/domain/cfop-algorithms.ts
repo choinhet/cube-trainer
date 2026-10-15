@@ -141,8 +141,15 @@ export function analyzeLLAlgorithms(
           : "Unrecognized");
       const startMs = time(section.start),
         endMs = time(section.end);
-      const executionStartMs =
-        section.solution === section.end
+      const alignmentOnly =
+        phaseName === "PLL" &&
+        section.solution === section.start &&
+        moves
+          .slice(section.start, section.end)
+          .every((move) => move[0] === top);
+      const executionStartMs = alignmentOnly
+        ? startMs
+        : section.solution === section.end
           ? endMs
           : analysis.moveTimesMs[section.solution];
       output.push({
