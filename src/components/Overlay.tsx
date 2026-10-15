@@ -6,7 +6,8 @@ import './modal-patterns.css';
 export function Overlay({ open, onOpenChange, title, children, size = 'medium', footer }: { open: boolean; onOpenChange: (open: boolean) => void; title: string; children: ReactNode; size?: 'small' | 'medium' | 'wide'; footer?: ReactNode }) {
   const opener = useRef<HTMLElement | null>(null);
   return <Dialog open={open} onOpenChange={onOpenChange}><DialogContent aria-describedby={undefined} className="workspace-dialog modal-shell" data-size={size} showCloseButton={false} onOpenAutoFocus={() => { opener.current = document.activeElement as HTMLElement; }} onCloseAutoFocus={event => { event.preventDefault(); const target = opener.current?.isConnected && opener.current !== document.body ? opener.current : document.querySelector<HTMLElement>('.brand'); target?.focus(); }}>
-    <header className="modal-header"><DialogTitle>{title}</DialogTitle><DialogClose asChild><IconButton label="Close"><X aria-hidden="true" /></IconButton></DialogClose></header>
+    <header className="modal-header"><DialogTitle>{title}</DialogTitle><DialogClose asChild><IconButton label="Close" onKeyDown={event => { if (event.key === 'Escape') onOpenChange(false); }}><X aria-hidden="true" /></IconButton></DialogClose></header>
     <div className="modal-body">{children}</div>{footer && <footer className="modal-footer">{footer}</footer>}
   </DialogContent></Dialog>;
 }
+

@@ -42,7 +42,7 @@ function CrossAttemptDetails({ record, sessionName }: { record: CrossRecord; ses
     <MetricGroup><Metric label="Executed moves" value={record.normalizedExecutedCount} /><Metric label="Optimal moves" value={record.case.optimum} /><Metric label="Move difference" value={record.normalizedExecutedCount - record.case.optimum} /><Metric label="Time" value={elapsed} /></MetricGroup>
     <section aria-label="Cross analysis"><h3>Move analysis</h3><p>Move difference is executed moves minus optimum; unfinished attempts can be below optimum.</p><p>Performed moves: <code>{record.rawTrace.map(event => event.move).join(' ') || 'No turns recorded'}</code></p><p>Mistake episodes: {record.mistakeEpisodes}</p>{record.mode === 'mixed' && <p>Mixed-mode attempt · excluded from Free timing statistics</p>}</section>
     <SharedCrossScramble caseData={record.case} />
-    <Disclosure title="Case and raw turns"><p>Full starting state: <code>{record.case.startingState}</code></p><p>Case ID: <code>{record.case.caseId}</code></p><p>{record.startedAt !== null ? new Date(record.startedAt).toISOString() : 'No solve turn started'}</p><p>Raw trace: <code>{record.rawTrace.map(event => event.move).join(' ') || '(none)'}</code></p><ModeChanges record={record} /><p>Timing basis: host monotonic receipt</p></Disclosure>
+    <Disclosure title="Case and raw turns"><p>Full starting state: <code>{record.case.startingState}</code></p><p>{record.startedAt !== null ? new Date(record.startedAt).toISOString() : 'No solve turn started'}</p><p>Raw trace: <code>{record.rawTrace.map(event => event.move).join(' ') || '(none)'}</code></p><ModeChanges record={record} /><p>Timing basis: host monotonic receipt</p></Disclosure>
   </article>;
 }
 
@@ -236,4 +236,5 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
     }}>Retry cross history restoration</Button>}
   </>;
 }
+
 
