@@ -1,3 +1,4 @@
+import { IconButton } from '../../components/IconButton';
 import { useEffect, useState, type ReactNode } from 'react';
 import { Check, Copy } from 'lucide-react';
 import type { CrossCase } from '../../domain/cross';
@@ -33,7 +34,7 @@ export function SharedCrossScramble({ caseData, children }: { caseData: CrossCas
     catch { setError(children ? 'Copy failed. Try again or copy the scramble from the saved case details.' : 'Copy failed. Select the scramble text and copy it manually.'); }
   }
   return <div className="shared-cross-scramble">
-    <div className="scramble-heading"><span>Scramble</span><Button variant="ghost" size="icon" aria-label="Copy scramble" title="Copy scramble" disabled={!scramble} onClick={() => void copy()}>{copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}</Button></div>
+    <div className="scramble-heading"><span>Scramble</span><IconButton label="Copy scramble" disabled={!scramble} onClick={() => void copy()}>{copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}</IconButton></div>
     {children ?? (scramble ? <code className="scramble-text">{scramble}</code> : !error && <p role="status">Preparing shareable scramble…</p>)}
     {!children && <p className="holding-instructions">From solved: white on top, green in front.</p>}
     {copied && <span role="status">Scramble copied</span>}

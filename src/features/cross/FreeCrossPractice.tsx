@@ -1,3 +1,6 @@
+import { ActionBar, Disclosure, Metric, MetricGroup } from '../../components/ModalPatterns';
+import { IconButton } from '../../components/IconButton';
+import './cross-design.css';
 import { NativeSelect } from '../../components/ui/native-select';
 import { ArrowRight, Check, Plus, RotateCcw } from 'lucide-react';
 import { createPortal } from 'react-dom';
@@ -32,13 +35,24 @@ function ModeChanges({ record }: { record: CrossRecord }) {
   return record.mode === 'mixed' ? <><p>Mixed-mode attempt · excluded from Free timing statistics</p><ol aria-label="Mode changes">{record.modeChanges?.map((change, index) => <li key={index}>{change.mode} · {(change.elapsedMs / 1000).toFixed(2)} seconds · after {change.atMoveIndex} physical turns</li>)}</ol></> : null;
 }
 
+function CrossAttemptDetails({ record, sessionName }: { record: CrossRecord; sessionName: string }) {
+  const elapsed = record.startedAt === null ? 'No solve turn started' : record.mode === 'free' || record.mode === 'mixed' ? crossTime(record) : 'Not timed in guided practice';
+  return <article className="cross-attempt-details" aria-label="Cross attempt">
+    <header className="cross-result-header"><h3>{record.status[0].toUpperCase() + record.status.slice(1)}</h3><p>{record.case.color} cross · {record.mode === 'mixed' ? 'Mixed' : record.mode} · {record.assisted ? record.revealed ? 'Assisted (solution revealed)' : 'Assisted (guided algorithm)' : 'Unassisted'}</p><p>Session: {sessionName}</p>{record.reason && <p>{record.reason}</p>}</header>
+    <MetricGroup><Metric label="Executed moves" value={record.normalizedExecutedCount} /><Metric label="Optimal moves" value={record.case.optimum} /><Metric label="Move difference" value={record.normalizedExecutedCount - record.case.optimum} /><Metric label="Time" value={elapsed} /></MetricGroup>
+    <section aria-label="Cross analysis"><h3>Move analysis</h3><p>Move difference is executed moves minus optimum; unfinished attempts can be below optimum.</p><p>Performed moves: <code>{record.rawTrace.map(event => event.move).join(' ') || 'No turns recorded'}</code></p><p>Mistake episodes: {record.mistakeEpisodes}</p>{record.mode === 'mixed' && <p>Mixed-mode attempt · excluded from Free timing statistics</p>}</section>
+    <SharedCrossScramble caseData={record.case} />
+    <Disclosure title="Case and raw turns"><p>Full starting state: <code>{record.case.startingState}</code></p><p>Case ID: <code>{record.case.caseId}</code></p><p>{record.startedAt !== null ? new Date(record.startedAt).toISOString() : 'No solve turn started'}</p><p>Raw trace: <code>{record.rawTrace.map(event => event.move).join(' ') || '(none)'}</code></p><ModeChanges record={record} /><p>Timing basis: host monotonic receipt</p></Disclosure>
+  </article>;
+}
+
 export function CrossHistory({ records, error, compact = false, repository, sessionNames = {} }: { records: CrossRecord[]; error: string | null; compact?: boolean; repository?: LocalRepository; sessionNames?: Record<string, string> }) {
   const [selected, setSelected] = useState<string | null>(null);
   if (compact) return <section aria-label="Cross practice history" className="history-panel">
     {repository && <SessionPicker repository={repository} />}
     {error && <p role="alert">{error}</p>}
     {records.length ? <HistoryTable moves entries={records.slice().reverse().map(record => ({ id: record.id, tps: record.mode === 'free' ? resultTPS(record.status, record.rawDurationMs, record.rawTrace) : '—', time: record.mode === 'mixed' ? 'Mixed' : record.mode !== 'free' ? '—' : record.status === 'completed' ? (record.rawDurationMs / 1000).toFixed(2) : record.status, moves: `${record.normalizedExecutedCount}/${record.case.optimum}` }))} selected={selected} onSelect={setSelected} previousLabel="Previous cross result" nextLabel="Next cross result" /> : <p className="empty-history">No saved cross attempts.</p>}
-    <Overlay open={!!selected} onOpenChange={open => { if (!open) setSelected(null); }} title="Cross details">{records.filter(record => record.id === selected).map(record => <div key={record.id}><p>Session: {sessionNames[record.sessionId] ?? 'Unavailable session'}</p><p>{record.status} · {record.case.color} · {record.mode === 'mixed' ? 'Mixed' : record.mode}</p><p>{record.normalizedExecutedCount} moves / optimum {record.case.optimum} · {crossTime(record)}</p><p>{record.assisted ? 'Assisted' : 'Unassisted'}</p>{record.reason && <p>{record.reason}</p>}<SharedCrossScramble caseData={record.case} /><ModeChanges record={record} /></div>)}</Overlay>
+    <Overlay open={!!selected && records.some(record => record.id === selected)} onOpenChange={open => { if (!open) setSelected(null); }} title="Cross details" size="wide">{records.filter(record => record.id === selected).map(record => <CrossAttemptDetails key={record.id} record={record} sessionName={sessionNames[record.sessionId] ?? 'Unavailable session'} />)}</Overlay>
   </section>;
   return <section aria-label="Cross practice history"><h2>Cross practice history</h2>
     {compact && <a href="#/settings">Manage sessions</a>}
@@ -48,7 +62,7 @@ export function CrossHistory({ records, error, compact = false, repository, sess
       <p>{record.status} · {record.mode === 'mixed' ? 'Mixed' : record.mode} · {record.case.color} · {record.normalizedExecutedCount} moves / optimum {record.case.optimum} · {crossTime(record)} · {record.assisted ? record.revealed ? 'assisted (solution revealed)' : 'assisted (guided algorithm)' : 'unassisted'}</p>
       <p>Session: {sessionNames[record.sessionId] ?? 'Unavailable session'}{record.startedAt !== null ? ` · ${new Date(record.startedAt).toISOString()}` : ' · No solve turn started'}</p>
       {record.reason && <p>{record.reason}</p>}
-      {!compact && <details><summary>Case and raw turns</summary><SharedCrossScramble caseData={record.case} /><ModeChanges record={record} /><p>Full starting state: <code>{record.case.startingState}</code></p><p>Raw trace: <code>{record.rawTrace.map(event => event.move).join(' ') || '(none)'}</code></p><p>Mistake episodes: {record.mistakeEpisodes}</p></details>}
+      {!compact && <Disclosure title="Case and raw turns"><SharedCrossScramble caseData={record.case} /><ModeChanges record={record} /><p>Full starting state: <code>{record.case.startingState}</code></p><p>Raw trace: <code>{record.rawTrace.map(event => event.move).join(' ') || '(none)'}</code></p><p>Mistake episodes: {record.mistakeEpisodes}</p></Disclosure>}
     </li>)}</ol> : <p>No saved cross attempts.</p>}
   </section>;
 }
@@ -183,7 +197,7 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
         {cross.mode === 'free' && cross.solution && <p>Optimal solution from original starting state: <code>{cross.solution.map(move => mirrored ? bottomCrossMove(move, cross.case.color) : move).join(' ')}</code> · assisted. Hold {mirrored ? bottomCrossHolding(cross.case.color) : 'white on top, green in front'}.</p>}
         {cross.mode === 'free' && cross.phase !== 'setup' && !cross.solution && <Button disabled={cross.revealing || actionPending || restartRequested || cross.saveState === 'failed' || cross.saveState === 'pending'} onClick={() => void session.revealCrossSolution()}>Reveal cross solution</Button>}
         {cross.phase !== 'setup' && cross.phase !== 'finished' && cross.saveState !== 'failed' && cross.saveState !== 'pending' && <Button disabled={cross.revealing} onClick={() => session.cancelCrossPractice()}>Abandon cross practice</Button>}
-        {cross.phase === 'finished' && <><Button size="icon" aria-label="Retry same case" title="Retry same case" disabled={actionPending || cross.revealing || cross.saveState !== 'saved' || !session.canPractice} onClick={() => void repeatCase()}><RotateCcw aria-hidden="true" /></Button><Button size="icon" aria-label="Next case" title="Next case" disabled={actionPending || cross.revealing || cross.saveState !== 'saved'} onClick={() => session.cancelCrossPractice()}><ArrowRight aria-hidden="true" /></Button></>}
+        {cross.phase === 'finished' && <ActionBar><IconButton label="Retry same case" disabled={actionPending || cross.revealing || cross.saveState !== 'saved' || !session.canPractice} onClick={() => void repeatCase()}><RotateCcw aria-hidden="true" /></IconButton><IconButton label="Next case" disabled={actionPending || cross.revealing || cross.saveState !== 'saved'} onClick={() => session.cancelCrossPractice()}><ArrowRight aria-hidden="true" /></IconButton></ActionBar>}
         {cross.result && cross.saveState !== 'failed' && (cross.result.status === 'completed' ? <span className="cross-success-badge" role="status"><Check size={16} aria-hidden="true" />Completed {cross.guidance?.completedMoves.length ?? cross.case.optimum}/{cross.case.optimum}</span> : <p>{cross.result.status === 'interrupted' ? 'Interrupted' : 'Abandoned'}{!compact && cross.result.reason ? `: ${cross.result.reason}` : ''}</p>)}
         {cross.saveState === 'pending' && <p role="status">Saving cross attempt…</p>}
         {cross.error && <p role="alert">{cross.saveState === 'failed' ? 'Cross attempt was not saved. ' : ''}{cross.error}</p>}
