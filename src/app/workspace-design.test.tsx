@@ -1,3 +1,5 @@
+import { beforeAll } from 'vitest';
+beforeAll(() => { globalThis.ResizeObserver = class { observe() {} unobserve() {} disconnect() {} }; });
 // @vitest-environment jsdom
 import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, expect, it } from 'vitest';
@@ -24,10 +26,10 @@ it('provides home navigation and contextual device/settings dialogs', async () =
   act(() => deliver({ type: 'BATTERY', timestamp: 1, batteryLevel: 82 }));
   fireEvent.click(screen.getByRole('button', { name: 'Connected' }));
   expect(screen.getByRole('dialog', { name: 'Device' })).toBeTruthy();
-  expect(screen.getByText('Battery: 82%')).toBeTruthy();
+  expect(screen.getByText('82%')).toBeTruthy();
   expect(screen.getByText(/Test cube/)).toBeTruthy();
   expect(screen.getByRole('button', { name: 'Reset gyro (U4)' })).toBeTruthy();
-  fireEvent.click(screen.getByRole('button', { name: 'Close' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Close Device' }));
   fireEvent.click(screen.getByRole('link', { name: 'Settings' }));
   expect(screen.getByRole('dialog', { name: 'Settings' })).toBeTruthy();
 });

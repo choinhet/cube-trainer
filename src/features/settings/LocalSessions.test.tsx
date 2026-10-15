@@ -128,3 +128,14 @@ it('restores the saved angle and reports a failed settings write without propaga
   expect((await repository.load()).settings.defaultAngle).toBe(25);
   expect(onSettings).toHaveBeenCalledOnce();
 });
+it('announces disclosure state and hides supporting settings until expanded', async () => {
+  const repository = new LocalRepository(new IDBFactory());
+  render(<LocalSessions repository={repository} onReady={() => {}} onSettings={() => {}} />);
+  const trigger = await screen.findByRole('button', { name: 'Advanced' });
+  expect(trigger.getAttribute('aria-expanded')).toBe('true');
+  fireEvent.click(trigger);
+  expect(trigger.getAttribute('aria-expanded')).toBe('false');
+  expect(screen.queryByRole('checkbox', { name: 'Enable Debug' })).toBeNull();
+  fireEvent.click(trigger);
+  expect(screen.getByRole('checkbox', { name: 'Enable Debug' })).toBeTruthy();
+});
