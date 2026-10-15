@@ -10,7 +10,6 @@ it('keeps the dialog title and close action outside overflowing content and expo
   const dialog = screen.getByRole('dialog', { name: 'Preferences' });
   expect(dialog.getAttribute('data-size')).toBe('wide');
   expect(screen.getByRole('heading', { name: 'Preferences' }).closest('header')).toBeTruthy();
-  fireEvent.click(screen.getByRole('button', { name: 'Close Preferences' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Close' }));
   expect(change).toHaveBeenCalledWith(false);
 });
-

@@ -1,10 +1,10 @@
-import { ActionBar, Disclosure, Metric, MetricGroup } from '../../components/ModalPatterns';
+import { ActionBar, Disclosure, FieldRow, Metric, MetricGroup } from '../../components/ModalPatterns';
 import { IconButton } from '../../components/IconButton';
 import './cross-design.css';
 import { NativeSelect } from '../../components/ui/native-select';
 import { ArrowRight, Check, Plus, RotateCcw } from 'lucide-react';
 import { createPortal } from 'react-dom';
-import { useEffect, useMemo, useReducer, useState, type ReactNode } from 'react';
+import { useEffect, useId, useMemo, useReducer, useRef, useState, type ReactNode } from 'react';
 import { CROSS_COLORS, type CrossColor } from '../../domain/cross';
 import type { CrossMode } from '../../domain/cross-guidance';
 import type { CrossRecord } from '../../domain/cross-attempt';
@@ -75,6 +75,12 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
   const [mode, setMode] = useState<CrossMode>('semi-guided');
   const [actionPending, setActionPending] = useState(false);
   const [restartRequested, setRestartRequested] = useState(false);
+  const importFormId = useId();
+  const importOperation = useRef<AbortController | null>(null);
+  const [importCommitting, setImportCommitting] = useState(false);
+  const importCommitStarted = useRef(false);
+  const importVisible = useRef(false);
+  useEffect(() => () => { if (!importCommitStarted.current) importOperation.current?.abort(); }, []);
   const [importOpen, setImportOpen] = useState(false);
   const [importText, setImportText] = useState('');
   const [importColor, setImportColor] = useState<CrossColor>('white');
@@ -159,18 +165,27 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
     } catch (cause) { setError(String(cause)); }
     finally { setActionPending(false); }
   }
+  function dismissImport(open: boolean) {
+    if (!open && !importCommitStarted.current) importOperation.current?.abort();
+    importVisible.current = open; setImportOpen(open);
+  }
   async function importCase() {
+    if (importOperation.current || actionPending || !importText.trim() || !session.canPractice || !sessionReady || !historyReady) return;
+    const operation = new AbortController();
+    importOperation.current = operation;
     setActionPending(true); setImportError(null);
     try {
-      const caseData = await requestImportedCrossCase(importText, importColor, new AbortController().signal);
+      const caseData = await requestImportedCrossCase(importText, importColor, operation.signal);
       const data = await repository.load();
       if (!data.currentSessionId || !data.sessions.some(value => value.id === data.currentSessionId)) throw new Error('Select a saved session before importing a scramble');
+      if (operation.signal.aborted) return;
+      importCommitStarted.current = true; setImportCommitting(true);
       await session.replaceCrossPreparation();
       setColor(caseData.color); setDifficulty(caseData.optimum); setError(null);
       await session.startCrossPreparation(data.currentSessionId, caseData.color, caseData.optimum, store, async () => caseData, solve, { mode, imported: true });
-      setImportOpen(false); setImportText('');
-    } catch (cause) { setImportError(String(cause)); }
-    finally { setActionPending(false); }
+      importVisible.current = false; setImportOpen(false); setImportText('');
+    } catch (cause) { if (!operation.signal.aborted) { setImportError(`${String(cause)} Check the scramble and try again.`); if (!importVisible.current) setError(`Scramble import failed: ${String(cause)} Open Import shared scramble to retry with your saved input.`); } }
+    finally { importOperation.current = null; importCommitStarted.current = false; setImportCommitting(false); setActionPending(false); }
   }
   const autoReady = enabled && sessionReady && historyReady && session.canPractice && session.activity === 'idle' && !session.preparation && !cross && !actionPending && !restartRequested && !importOpen;
   useEffect(() => {
@@ -187,7 +202,7 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
       <label>Difficulty
         <span className="difficulty-value" aria-hidden="true">{difficulty} moves</span>
         <input type="range" aria-label="Difficulty" min={1} max={8} step={1} value={difficulty} aria-valuetext={`${difficulty} optimal moves`} disabled={locked} onChange={event => changeSettings(() => setDifficulty(Number(event.target.value)))} /></label>{' '}
-      <Button variant="outline" size="icon" aria-label="Import shared scramble" title="Import shared scramble" disabled={actionPending || restartRequested || cross?.revealing || cross?.saveState === 'pending' || cross?.saveState === 'failed'} onClick={() => { setImportColor(color); setImportError(null); setImportOpen(true); }}><Plus aria-hidden="true" /></Button>
+      <Button variant="outline" size="icon" aria-label="Import shared scramble" title="Import shared scramble" disabled={actionPending || restartRequested || cross?.revealing || cross?.saveState === 'pending' || cross?.saveState === 'failed'} onClick={() => { setImportColor(color); setImportError(null); dismissImport(true); }}><Plus aria-hidden="true" /></Button>
       {error && <p role="alert">{error} <Button variant="outline" onClick={() => setError(null)}>Retry preparation</Button></p>}
       <Feedback target={feedbackTarget}>
         <div className="cross-timing">{timedMode && <p className="timer-value" aria-label="Cross time" role={cross?.phase === 'active' ? 'timer' : undefined}>{(elapsedMs / 1000).toFixed(2)}</p>}<div aria-label="Cross moves" className={timedMode ? 'cross-move-counts' : 'cross-focused-moves'}>{timedMode ? <p>{moveCount} moves executed</p> : <p className="timer-value">{moveCount}<span className="move-count-caption">moves executed</span></p>}<p>{optimum} optimal moves</p></div>{(activeAttempt ? cross.assisted : shownResult?.assisted ?? cross?.assisted) && <p>Assisted</p>}</div>
@@ -205,15 +220,13 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
         </>}
       </Feedback>
     </section>
-    <Overlay open={importOpen} onOpenChange={open => { if (!actionPending) setImportOpen(open); }} title="Import shared scramble">
-      <form className="scramble-import" onSubmit={event => { event.preventDefault(); void importCase(); }}>
+    <Overlay open={importOpen} onOpenChange={dismissImport} title="Import shared scramble" size="medium" footer={<ActionBar><Button type="button" variant="outline" onClick={() => dismissImport(false)}>{importCommitting ? 'Close' : 'Cancel'}</Button><Button form={importFormId} type="submit" disabled={actionPending || !importText.trim() || !session.canPractice || !sessionReady || !historyReady}>Use scramble</Button></ActionBar>}>
+      <form id={importFormId} className="scramble-import" aria-busy={actionPending} onSubmit={event => { event.preventDefault(); void importCase(); }}>
         <p>Paste a scramble written for a solved cube with white on top and green in front. Setup will adapt it to your cube’s current position.</p>
-        <label>Shared scramble<textarea autoFocus rows={4} value={importText} disabled={actionPending} onChange={event => setImportText(event.target.value)} placeholder="R U2 F'…" /></label>
-        <label>Cross color<NativeSelect value={importColor} disabled={actionPending} onChange={event => setImportColor(event.target.value as CrossColor)}>{CROSS_COLORS.map(value => <option key={value} value={value}>{value}</option>)}</NativeSelect></label>
+        <FieldRow><span>Shared scramble</span><textarea autoFocus rows={4} value={importText} disabled={actionPending} aria-invalid={!!importError} aria-describedby={`${importFormId}-feedback`} onChange={event => setImportText(event.target.value)} placeholder="R U2 F'…" /></FieldRow>
+        <FieldRow><span>Cross color</span><NativeSelect value={importColor} disabled={actionPending} onChange={event => setImportColor(event.target.value as CrossColor)}>{CROSS_COLORS.map(value => <option key={value} value={value}>{value}</option>)}</NativeSelect></FieldRow>
         <p>Difficulty is calculated from the scramble. Importing replaces the current attempt and saves an unfinished solve as abandoned.</p>
-        {importError && <p role="alert">{importError}</p>}
-        {actionPending && <p role="status">Preparing imported scramble…</p>}
-        <Button type="submit" disabled={actionPending || !importText.trim() || !session.canPractice || !sessionReady || !historyReady}>Use scramble</Button>
+        <p id={`${importFormId}-feedback`} role={importError ? 'alert' : 'status'}>{importError ?? (importCommitting ? 'Finishing imported setup… Closing keeps preparation running.' : actionPending ? 'Preparing imported scramble… Cancel or close to stop computation.' : !session.canPractice ? 'Connect and synchronize your cube before importing.' : !sessionReady || !historyReady ? 'Wait for local sessions and history to finish loading.' : 'Enter a scramble, choose its cross color, then use it to begin setup.')}</p>
       </form>
     </Overlay>
     {historyTarget ? createPortal(<CrossHistory records={records} error={historyError} compact={compact} repository={repository} sessionNames={sessionNames} />, historyTarget) : <CrossHistory records={records} error={historyError} compact={compact} repository={repository} sessionNames={sessionNames} />}
@@ -223,5 +236,4 @@ export function FreeCrossPractice({ session, repository, sessionReady, generate,
     }}>Retry cross history restoration</Button>}
   </>;
 }
-
 

@@ -8,6 +8,7 @@ import { SOLVED, turn } from '../domain/cube';
 import { IDBFactory } from 'fake-indexeddb';
 import { LocalRepository } from '../adapters/local-repository';
 import { validateScramble } from '../domain/scramble';
+vi.stubGlobal('ResizeObserver', class { observe() {} unobserve() {} disconnect() {} });
 afterEach(() => { cleanup(); window.location.hash = ''; });
 it('allows unsolved synchronized preparation and labels original and actual setup while solving', async () => {
   let deliver: (event: GanCubeEvent) => void = () => {};
@@ -243,3 +244,4 @@ it('exposes the selected diagnostic section and keeps diagnostic navigation keyb
   expect(screen.getByRole('tab', { name: 'Viewer traces' }).getAttribute('aria-selected')).toBe('true');
   expect(screen.getByRole('tabpanel', { name: 'Viewer traces' }).textContent).toContain('Raw state');
 });
+
