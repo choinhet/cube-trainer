@@ -14,7 +14,7 @@ it('reopens named last-layer algorithms offline alongside the original saved sol
   await repository.saveTimedResult({ id: 'named', sessionId: session.id, status: 'completed', startedAt: 1000, rawDurationMs: 2400, penalty: 'none', timingBasis: 'host-monotonic-receipt', facelets: SOLVED, rawTurns: moves.map((move, serial) => ({ move, serial, hostMs: serial * 100, deviceMs: null })) });
   render(<TimedHistory repository={new LocalRepository(factory)} />);
   await screen.findByRole('table', { name: 'Step analysis' });
-  expect(screen.getByText('PLL - T')).toBeTruthy();
+  expect(within(screen.getByRole('table', { name: 'Step analysis' })).getByText('PLL - T')).toBeTruthy();
   const pll = screen.getByRole('button', { name: /PLL - T execution:/ });
   fireEvent.mouseEnter(pll);
   expect(screen.getAllByRole('group', { name: /optimal \/ \d+ executed cross moves/ })).toHaveLength(1);
@@ -50,7 +50,7 @@ it('reopens offline F2L pair details with recognition and execution while keepin
   render(<TimedHistory repository={new LocalRepository(factory)} />);
   const table = await screen.findByRole('table', { name: 'Step analysis' });
   const pairDetails = within(table);
-  expect(screen.getByText('F2L pair 4')).toBeTruthy();
+  expect(pairDetails.getByText('F2L pair 4')).toBeTruthy();
   expect(within(pairDetails.getByRole('row', { name: /^Recognition/ })).getAllByText('0.10')).toHaveLength(3);
   expect(within(pairDetails.getByRole('row', { name: /^Execution/ })).getAllByText('0.20')).toHaveLength(4);
   expect(within(screen.getByRole('group', { name: 'F2L phase' })).getAllByRole('button')).toHaveLength(7);
@@ -133,6 +133,7 @@ it('automatically saves both penalty toggles, toggles them off, and formats the 
   await screen.findByText('1.23');
   expect((await repository.listTimedResults())[0]).toMatchObject({ penalty: 'none', rawDurationMs: 1234.567 });
 });
+
 
 
 

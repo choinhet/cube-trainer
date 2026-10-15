@@ -53,17 +53,20 @@ for (const mode of ['solve', 'cross'] as const) {
     if (mode === 'solve') {
       await history.locator('tbody button').first().click();
       const dialog = page.getByRole('dialog', { name: 'Solve details' });
+      await dialog.getByRole('button', { name: 'Details', exact: true }).click();
       await expect(dialog.getByRole('table', { name: 'Solve details' })).toBeVisible();
       await expect(dialog.locator('time')).toContainText('Oct 13, 2026');
       await expect(dialog.getByRole('button', { name: '+2', exact: true })).toHaveAttribute('aria-pressed', 'false');
       await dialog.getByRole('button', { name: '+2', exact: true }).click();
-      await expect(dialog.getByRole('cell', { name: '4.00 (+2)', exact: true })).toBeVisible();
+      await expect(dialog.getByLabel('Total time')).toHaveText('4.00 (+2)');
       await expect(dialog.getByRole('button', { name: '+2', exact: true })).toBeEnabled();
       await page.screenshot({ path: 'test-results/solve-details.png' });
       await dialog.getByRole('button', { name: '+2', exact: true }).click();
-      await expect(dialog.getByRole('cell', { name: '2.00', exact: true })).toBeVisible();
+      await expect(dialog.getByLabel('Total time')).toHaveText('2.00');
       await expect(dialog.getByRole('button', { name: 'Delete result' })).toHaveText('');
     }
   });
 }
+
+
 
