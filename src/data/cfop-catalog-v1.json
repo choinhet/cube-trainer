@@ -14,7 +14,13 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -33,7 +39,13 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U'",
+          "F'",
+          "U",
+          "F"
+        ]
       },
       {
         "id": "f2l-2-2",
@@ -42,7 +54,13 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "U'",
+          "F'",
+          "U",
+          "F"
+        ]
       }
     ]
   },
@@ -61,7 +79,12 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F'",
+          "U'",
+          "F"
+        ]
       },
       {
         "id": "f2l-3-2",
@@ -70,7 +93,12 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F'",
+          "U'",
+          "F"
+        ]
       }
     ]
   },
@@ -89,7 +117,12 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'"
+        ]
       }
     ]
   },
@@ -108,7 +141,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U'",
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "F'",
+          "U'",
+          "F"
+        ]
       },
       {
         "id": "f2l-5-2",
@@ -117,7 +160,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "U",
+          "F'",
+          "U'",
+          "F",
+          "U'",
+          "F'",
+          "U'",
+          "F"
+        ]
       }
     ]
   },
@@ -136,7 +189,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "U",
+          "R",
+          "U",
+          "R'"
+        ]
       }
     ]
   },
@@ -155,7 +218,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U'",
+          "R",
+          "U2",
+          "R'",
+          "U",
+          "F'",
+          "U'",
+          "F"
+        ]
       },
       {
         "id": "f2l-7-2",
@@ -164,7 +237,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "U'",
+          "R",
+          "U2",
+          "R'",
+          "U",
+          "F'",
+          "U'",
+          "F"
+        ]
       }
     ]
   },
@@ -183,7 +266,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "U2",
+          "R2",
+          "U",
+          "R2",
+          "U",
+          "R"
+        ]
       },
       {
         "id": "f2l-8-2",
@@ -192,7 +284,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "U",
+          "F'",
+          "U2",
+          "F",
+          "U'",
+          "R",
+          "U",
+          "R'"
+        ]
       },
       {
         "id": "f2l-8-3",
@@ -201,7 +303,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "U2",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -220,7 +335,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U",
+          "F'",
+          "U",
+          "F",
+          "U'",
+          "F'",
+          "U'",
+          "F"
+        ]
       }
     ]
   },
@@ -239,7 +364,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U'",
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U",
+          "R'"
+        ]
       }
     ]
   },
@@ -258,7 +393,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "U2",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -277,7 +422,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U",
+          "F'",
+          "U'",
+          "F",
+          "U2",
+          "F'",
+          "U",
+          "F"
+        ]
       },
       {
         "id": "f2l-12-2",
@@ -286,7 +441,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "U",
+          "F'",
+          "U'",
+          "F",
+          "U2",
+          "F'",
+          "U",
+          "F"
+        ]
       }
     ]
   },
@@ -305,7 +470,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U'",
+          "R",
+          "U2",
+          "R'",
+          "U2",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -324,7 +499,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U",
+          "F'",
+          "U2",
+          "F",
+          "U2",
+          "F'",
+          "U",
+          "F"
+        ]
       },
       {
         "id": "f2l-14-2",
@@ -333,7 +518,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "U",
+          "F'",
+          "U2",
+          "F",
+          "U2",
+          "F'",
+          "U",
+          "F"
+        ]
       }
     ]
   },
@@ -352,7 +547,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U",
+          "R",
+          "U2",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -371,7 +576,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U'",
+          "F'",
+          "U2",
+          "F",
+          "U'",
+          "F'",
+          "U",
+          "F"
+        ]
       }
     ]
   },
@@ -390,7 +605,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U2",
+          "R",
+          "U",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'"
+        ]
       },
       {
         "id": "f2l-17-2",
@@ -399,7 +624,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "U'",
+          "R'",
+          "U2",
+          "R",
+          "U",
+          "R'"
+        ]
       }
     ]
   },
@@ -418,7 +652,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U2",
+          "F'",
+          "U'",
+          "F",
+          "U'",
+          "F'",
+          "U",
+          "F"
+        ]
       }
     ]
   },
@@ -437,7 +681,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F'",
+          "U",
+          "F",
+          "U2",
+          "R",
+          "U",
+          "R'"
+        ]
       },
       {
         "id": "f2l-19-2",
@@ -446,7 +699,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U2",
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -465,7 +731,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U'",
+          "R'",
+          "U2",
+          "F'",
+          "U'",
+          "F"
+        ]
       },
       {
         "id": "f2l-20-2",
@@ -474,7 +749,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "U",
+          "F",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "F'",
+          "U",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -493,7 +781,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U2",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'"
+        ]
       }
     ]
   },
@@ -512,7 +809,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F'",
+          "U2",
+          "F",
+          "U",
+          "F'",
+          "U'",
+          "F"
+        ]
       }
     ]
   },
@@ -531,7 +837,21 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "U'",
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'"
+        ]
       },
       {
         "id": "f2l-23-2",
@@ -540,7 +860,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U2",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'"
+        ]
       }
     ]
   },
@@ -559,7 +892,21 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U'",
+          "F'",
+          "U",
+          "F",
+          "U",
+          "F'",
+          "U",
+          "F",
+          "U'",
+          "F'",
+          "U",
+          "F"
+        ]
       },
       {
         "id": "f2l-24-2",
@@ -568,7 +915,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "F'",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -587,7 +945,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U'",
+          "F'",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R'",
+          "F",
+          "R"
+        ]
       },
       {
         "id": "f2l-25-2",
@@ -596,7 +965,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R'",
+          "F'",
+          "R",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "F"
+        ]
       }
     ]
   },
@@ -615,7 +994,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "U'",
+          "F'",
+          "U",
+          "F"
+        ]
       },
       {
         "id": "f2l-26-2",
@@ -624,7 +1013,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "F",
+          "R'",
+          "F'",
+          "R"
+        ]
       }
     ]
   },
@@ -643,7 +1042,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -662,7 +1070,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F'",
+          "U",
+          "F",
+          "U'",
+          "F'",
+          "U",
+          "F"
+        ]
       }
     ]
   },
@@ -681,7 +1098,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F'",
+          "U'",
+          "F",
+          "U",
+          "F'",
+          "U'",
+          "F"
+        ]
       },
       {
         "id": "f2l-29-2",
@@ -690,7 +1116,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R'",
+          "F",
+          "R",
+          "F'",
+          "U",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -709,7 +1145,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'"
+        ]
       }
     ]
   },
@@ -728,7 +1173,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "F'",
+          "U",
+          "F"
+        ]
       },
       {
         "id": "f2l-31-2",
@@ -737,7 +1191,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "U'",
+          "R'",
+          "F",
+          "R",
+          "F'",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -756,7 +1220,21 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -775,7 +1253,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U'",
+          "R",
+          "U'",
+          "R'",
+          "U2",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -794,7 +1282,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U",
+          "R",
+          "U",
+          "R'",
+          "U2",
+          "R",
+          "U",
+          "R'"
+        ]
       }
     ]
   },
@@ -813,7 +1311,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "U",
+          "F'",
+          "U'",
+          "F"
+        ]
       }
     ]
   },
@@ -832,7 +1340,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "U",
+          "F'",
+          "U'",
+          "F",
+          "U'",
+          "R",
+          "U",
+          "R'"
+        ]
       }
     ]
   },
@@ -851,7 +1369,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "F'",
+          "U2",
+          "F",
+          "U2",
+          "F'",
+          "U",
+          "F"
+        ]
       }
     ]
   },
@@ -870,7 +1401,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U'",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "U2",
+          "R",
+          "U'",
+          "R'"
+        ]
       },
       {
         "id": "f2l-38-2",
@@ -879,7 +1423,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R",
+          "U2",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'"
+        ]
       }
     ]
   },
@@ -898,7 +1455,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U2",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'"
+        ]
       },
       {
         "id": "f2l-39-2",
@@ -907,7 +1477,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U2",
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U",
+          "R'"
+        ]
       }
     ]
   },
@@ -926,7 +1509,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F'",
+          "U",
+          "F",
+          "U2",
+          "R",
+          "U",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'"
+        ]
       },
       {
         "id": "f2l-40-2",
@@ -935,7 +1531,21 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "U'",
+          "R'",
+          "F",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "F'",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -954,7 +1564,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R",
+          "U'",
+          "R'",
+          "U2",
+          "F'",
+          "U'",
+          "F"
+        ]
       }
     ]
   },
@@ -973,7 +1596,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U2",
+          "R2",
+          "F",
+          "R",
+          "F'",
+          "U2",
+          "R'",
+          "F",
+          "R",
+          "F'"
+        ]
       }
     ]
   },
@@ -992,7 +1628,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L",
+          "F",
+          "L'",
+          "U2",
+          "L",
+          "F2",
+          "R'",
+          "F2",
+          "R",
+          "F'",
+          "L'"
+        ]
       },
       {
         "id": "oll-2-2",
@@ -1001,7 +1650,21 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "L",
+          "F",
+          "U",
+          "F'",
+          "U'",
+          "L'",
+          "R",
+          "U",
+          "B",
+          "U'",
+          "B'",
+          "R'"
+        ]
       },
       {
         "id": "oll-2-3",
@@ -1010,7 +1673,21 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "L",
+          "F",
+          "U",
+          "F'",
+          "U'",
+          "L'",
+          "R",
+          "U",
+          "B",
+          "U'",
+          "B'",
+          "R'"
+        ]
       }
     ]
   },
@@ -1029,7 +1706,24 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L'",
+          "R2",
+          "B",
+          "R'",
+          "B",
+          "L",
+          "U2",
+          "L'",
+          "B",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       },
       {
         "id": "oll-3-2",
@@ -1038,7 +1732,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "U",
+          "B",
+          "U'",
+          "B'",
+          "R'",
+          "U",
+          "R",
+          "B",
+          "U",
+          "B'",
+          "U'",
+          "R'"
+        ]
       },
       {
         "id": "oll-3-3",
@@ -1047,7 +1756,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "R",
+          "U",
+          "B",
+          "U'",
+          "B'",
+          "R'",
+          "U'",
+          "L",
+          "F",
+          "U",
+          "F'",
+          "U'",
+          "L'"
+        ]
       }
     ]
   },
@@ -1066,7 +1790,23 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "L'",
+          "B'",
+          "L",
+          "U2",
+          "L'",
+          "B'",
+          "R",
+          "B'",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       },
       {
         "id": "oll-4-2",
@@ -1075,7 +1815,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "U",
+          "B",
+          "U'",
+          "B'",
+          "R'",
+          "U'",
+          "R",
+          "B",
+          "U",
+          "B'",
+          "U'",
+          "R'"
+        ]
       },
       {
         "id": "oll-4-3",
@@ -1084,7 +1839,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "R",
+          "U",
+          "B",
+          "U'",
+          "B'",
+          "R'",
+          "U",
+          "L",
+          "F",
+          "U",
+          "F'",
+          "U'",
+          "L'"
+        ]
       }
     ]
   },
@@ -1103,7 +1873,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "F2",
+          "L",
+          "F",
+          "L'",
+          "F",
+          "R"
+        ]
       },
       {
         "id": "oll-5-2",
@@ -1112,7 +1891,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R'",
+          "F2",
+          "L",
+          "F",
+          "L'",
+          "F",
+          "R"
+        ]
       }
     ]
   },
@@ -1131,7 +1919,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L",
+          "F2",
+          "R'",
+          "F'",
+          "R",
+          "F'",
+          "L'"
+        ]
       }
     ]
   },
@@ -1150,7 +1947,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L",
+          "F",
+          "R'",
+          "F",
+          "R",
+          "F2",
+          "L'"
+        ]
       }
     ]
   },
@@ -1169,7 +1975,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "F'",
+          "L",
+          "F'",
+          "L'",
+          "F2",
+          "R"
+        ]
       },
       {
         "id": "oll-8-2",
@@ -1178,7 +1993,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "U2",
+          "R'",
+          "U2",
+          "R'",
+          "F",
+          "R",
+          "F'"
+        ]
       },
       {
         "id": "oll-8-3",
@@ -1187,7 +2012,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "R'",
+          "F'",
+          "L",
+          "F'",
+          "L'",
+          "F2",
+          "R"
+        ]
       }
     ]
   },
@@ -1206,7 +2040,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R'",
+          "F",
+          "R2",
+          "U",
+          "R'",
+          "U'",
+          "F'"
+        ]
       }
     ]
   },
@@ -1225,7 +2072,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U",
+          "R'",
+          "F",
+          "R",
+          "F'",
+          "R",
+          "U2",
+          "R'"
+        ]
       },
       {
         "id": "oll-10-2",
@@ -1234,7 +2094,23 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "B",
+          "L'",
+          "B",
+          "L",
+          "B'",
+          "L'",
+          "B'",
+          "R'",
+          "L",
+          "U",
+          "L",
+          "U'",
+          "L'"
+        ]
       }
     ]
   },
@@ -1253,7 +2129,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L",
+          "F",
+          "R'",
+          "F",
+          "R'",
+          "D",
+          "R",
+          "D'",
+          "R",
+          "F2",
+          "L'"
+        ]
       },
       {
         "id": "oll-11-2",
@@ -1262,7 +2151,24 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R'",
+          "L2",
+          "F",
+          "L'",
+          "F",
+          "L",
+          "F2",
+          "L'",
+          "F",
+          "L",
+          "R'",
+          "L",
+          "R'",
+          "L",
+          "R'"
+        ]
       }
     ]
   },
@@ -1281,7 +2187,25 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R'",
+          "F'",
+          "R",
+          "F'",
+          "R'",
+          "F2",
+          "R",
+          "F'",
+          "R",
+          "L'"
+        ]
       }
     ]
   },
@@ -1300,7 +2224,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F",
+          "U",
+          "R",
+          "U'",
+          "R2",
+          "F'",
+          "R",
+          "U",
+          "R",
+          "U'",
+          "R'"
+        ]
       },
       {
         "id": "oll-13-2",
@@ -1309,7 +2246,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "L",
+          "F'",
+          "L'",
+          "U'",
+          "L",
+          "F",
+          "L'",
+          "F'",
+          "U",
+          "F"
+        ]
       }
     ]
   },
@@ -1328,7 +2277,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "F",
+          "R",
+          "U",
+          "R'",
+          "F'",
+          "R",
+          "F",
+          "U'",
+          "F'"
+        ]
       }
     ]
   },
@@ -1347,7 +2308,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "F'",
+          "R",
+          "L'",
+          "U'",
+          "L",
+          "U",
+          "R'",
+          "F",
+          "R"
+        ]
       },
       {
         "id": "oll-15-2",
@@ -1356,7 +2329,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R'",
+          "F'",
+          "R",
+          "L'",
+          "U'",
+          "L",
+          "U",
+          "R'",
+          "F",
+          "R"
+        ]
       }
     ]
   },
@@ -1375,7 +2360,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L",
+          "F",
+          "L'",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "L",
+          "F'",
+          "L'"
+        ]
       }
     ]
   },
@@ -1394,7 +2391,25 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F",
+          "R'",
+          "F'",
+          "R2",
+          "L'",
+          "B",
+          "R",
+          "B'",
+          "R'",
+          "B'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       },
       {
         "id": "oll-17-2",
@@ -1403,7 +2418,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "L",
+          "U",
+          "L'",
+          "U",
+          "L'",
+          "B",
+          "L",
+          "B'",
+          "U2",
+          "L'",
+          "B",
+          "L",
+          "B'"
+        ]
       }
     ]
   },
@@ -1422,7 +2452,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L",
+          "F",
+          "R'",
+          "F",
+          "R",
+          "F2",
+          "L2",
+          "B'",
+          "R",
+          "B'",
+          "R'",
+          "B2",
+          "L"
+        ]
       },
       {
         "id": "oll-18-2",
@@ -1431,7 +2476,26 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "B",
+          "U2",
+          "B2",
+          "R",
+          "B",
+          "R'",
+          "U2",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "R",
+          "B",
+          "R'",
+          "F'"
+        ]
       }
     ]
   },
@@ -1450,7 +2514,26 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L'",
+          "R",
+          "B",
+          "R",
+          "B",
+          "R'",
+          "B'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R'",
+          "F",
+          "R",
+          "F'"
+        ]
       }
     ]
   },
@@ -1469,7 +2552,28 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L",
+          "F",
+          "R'",
+          "F'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "B",
+          "R",
+          "B'",
+          "R'",
+          "B'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       },
       {
         "id": "oll-20-2",
@@ -1478,7 +2582,24 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "L'",
+          "R",
+          "B",
+          "R",
+          "B",
+          "R'",
+          "B'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "F",
+          "R",
+          "F'",
+          "L'"
+        ]
       }
     ]
   },
@@ -1497,7 +2618,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U2",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R",
+          "U'",
+          "R'"
+        ]
       },
       {
         "id": "oll-21-2",
@@ -1506,7 +2640,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "B",
+          "U",
+          "B'",
+          "U",
+          "B",
+          "U'",
+          "B'",
+          "U",
+          "B",
+          "U2",
+          "B'"
+        ]
       }
     ]
   },
@@ -1525,7 +2672,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U2",
+          "R2",
+          "U'",
+          "R2",
+          "U'",
+          "R2",
+          "U2",
+          "R"
+        ]
       }
     ]
   },
@@ -1544,7 +2702,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R2",
+          "D'",
+          "R",
+          "U2",
+          "R'",
+          "D",
+          "R",
+          "U2",
+          "R"
+        ]
       },
       {
         "id": "oll-23-2",
@@ -1553,7 +2722,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "L2",
+          "D",
+          "L'",
+          "U2",
+          "L",
+          "D'",
+          "L'",
+          "U2",
+          "L'"
+        ]
       }
     ]
   },
@@ -1572,7 +2752,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L",
+          "F",
+          "R'",
+          "F'",
+          "L'",
+          "F",
+          "R",
+          "F'"
+        ]
       },
       {
         "id": "oll-24-2",
@@ -1581,7 +2771,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "B",
+          "U",
+          "B",
+          "D",
+          "B'",
+          "U'",
+          "B",
+          "D'",
+          "B2"
+        ]
       }
     ]
   },
@@ -1600,7 +2801,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F'",
+          "L",
+          "F",
+          "R'",
+          "F'",
+          "L'",
+          "F",
+          "R"
+        ]
       },
       {
         "id": "oll-25-2",
@@ -1609,7 +2820,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F'",
+          "L",
+          "F",
+          "R'",
+          "F'",
+          "L'",
+          "F",
+          "R"
+        ]
       }
     ]
   },
@@ -1628,7 +2849,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U2",
+          "R'",
+          "U'",
+          "R",
+          "U'",
+          "R'"
+        ]
       },
       {
         "id": "oll-26-2",
@@ -1637,7 +2867,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F'",
+          "U'",
+          "F",
+          "U'",
+          "F'",
+          "U2",
+          "F"
+        ]
       }
     ]
   },
@@ -1656,7 +2895,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U",
+          "R",
+          "U2",
+          "R'"
+        ]
       },
       {
         "id": "oll-27-2",
@@ -1665,7 +2913,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F'",
+          "U2",
+          "F",
+          "U",
+          "F'",
+          "U",
+          "F"
+        ]
       }
     ]
   },
@@ -1684,7 +2941,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L",
+          "F",
+          "R'",
+          "F'",
+          "L'",
+          "R",
+          "U",
+          "R",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -1703,7 +2972,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R",
+          "U'",
+          "R'",
+          "F'",
+          "U'",
+          "F",
+          "R",
+          "U",
+          "R'"
+        ]
       }
     ]
   },
@@ -1722,7 +3006,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F",
+          "R'",
+          "F",
+          "R2",
+          "U'",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "F2"
+        ]
       },
       {
         "id": "oll-30-2",
@@ -1731,7 +3028,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F",
+          "U",
+          "R",
+          "U2",
+          "R'",
+          "U'",
+          "R",
+          "U2",
+          "R'",
+          "U'",
+          "F'"
+        ]
       }
     ]
   },
@@ -1750,7 +3060,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "U'",
+          "F",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "F'",
+          "R"
+        ]
       }
     ]
   },
@@ -1769,7 +3090,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L",
+          "U",
+          "F'",
+          "U'",
+          "L'",
+          "U",
+          "L",
+          "F",
+          "L'"
+        ]
       }
     ]
   },
@@ -1788,7 +3120,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R'",
+          "F",
+          "R",
+          "F'"
+        ]
       }
     ]
   },
@@ -1807,7 +3149,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R2",
+          "U'",
+          "R'",
+          "F",
+          "R",
+          "U",
+          "R",
+          "U'",
+          "F'"
+        ]
       },
       {
         "id": "oll-34-2",
@@ -1816,7 +3171,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "B'",
+          "R'",
+          "F",
+          "R",
+          "F'",
+          "B"
+        ]
       }
     ]
   },
@@ -1835,7 +3202,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U2",
+          "R2",
+          "F",
+          "R",
+          "F'",
+          "R",
+          "U2",
+          "R'"
+        ]
       }
     ]
   },
@@ -1854,7 +3232,21 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L'",
+          "U'",
+          "L",
+          "U'",
+          "L'",
+          "U",
+          "L",
+          "U",
+          "L",
+          "F'",
+          "L'",
+          "F"
+        ]
       },
       {
         "id": "oll-36-2",
@@ -1863,7 +3255,21 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "L'",
+          "U'",
+          "L",
+          "U'",
+          "L'",
+          "U",
+          "L",
+          "U",
+          "L",
+          "F'",
+          "L'",
+          "F"
+        ]
       }
     ]
   },
@@ -1882,7 +3288,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F",
+          "R'",
+          "F'",
+          "R",
+          "U",
+          "R",
+          "U'",
+          "R'"
+        ]
       },
       {
         "id": "oll-37-2",
@@ -1891,7 +3307,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F",
+          "R",
+          "U'",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "F'"
+        ]
       }
     ]
   },
@@ -1910,7 +3337,21 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "U'",
+          "R'",
+          "F",
+          "R",
+          "F'"
+        ]
       }
     ]
   },
@@ -1929,7 +3370,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L",
+          "F'",
+          "L'",
+          "U'",
+          "L",
+          "U",
+          "F",
+          "U'",
+          "L'"
+        ]
       },
       {
         "id": "oll-39-2",
@@ -1938,7 +3390,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "L",
+          "F'",
+          "L'",
+          "U'",
+          "L",
+          "U",
+          "F",
+          "U'",
+          "L'"
+        ]
       }
     ]
   },
@@ -1957,7 +3420,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "F",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "F'",
+          "U",
+          "R"
+        ]
       }
     ]
   },
@@ -1976,7 +3450,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U",
+          "R",
+          "U2",
+          "R'",
+          "F",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "F'"
+        ]
       }
     ]
   },
@@ -1995,7 +3484,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "U'",
+          "R",
+          "U'",
+          "R'",
+          "U2",
+          "R",
+          "F",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "F'"
+        ]
       }
     ]
   },
@@ -2014,7 +3518,15 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F'",
+          "U'",
+          "L'",
+          "U",
+          "L",
+          "F"
+        ]
       },
       {
         "id": "oll-43-2",
@@ -2023,7 +3535,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R'",
+          "U'",
+          "F",
+          "R'",
+          "F'",
+          "R",
+          "U",
+          "R"
+        ]
       }
     ]
   },
@@ -2042,7 +3564,15 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "F'"
+        ]
       },
       {
         "id": "oll-44-2",
@@ -2051,7 +3581,15 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "F'"
+        ]
       }
     ]
   },
@@ -2070,7 +3608,15 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "F'"
+        ]
       }
     ]
   },
@@ -2089,7 +3635,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "U'",
+          "R'",
+          "F",
+          "R",
+          "F'",
+          "U",
+          "R"
+        ]
       }
     ]
   },
@@ -2108,7 +3664,21 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "U'",
+          "R'",
+          "F",
+          "R",
+          "F'",
+          "R'",
+          "F",
+          "R",
+          "F'",
+          "U",
+          "R"
+        ]
       },
       {
         "id": "oll-47-2",
@@ -2117,7 +3687,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F'",
+          "L'",
+          "U'",
+          "L",
+          "U",
+          "L'",
+          "U'",
+          "L",
+          "U",
+          "F"
+        ]
       },
       {
         "id": "oll-47-3",
@@ -2126,7 +3708,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "L",
+          "U",
+          "F",
+          "U'",
+          "F'",
+          "L'",
+          "F",
+          "U",
+          "F'",
+          "U",
+          "F",
+          "U2",
+          "F'"
+        ]
       }
     ]
   },
@@ -2145,7 +3742,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "F'"
+        ]
       }
     ]
   },
@@ -2164,7 +3773,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L",
+          "F'",
+          "L2",
+          "B",
+          "L2",
+          "F",
+          "L2",
+          "B'",
+          "L"
+        ]
       }
     ]
   },
@@ -2183,7 +3803,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L'",
+          "B",
+          "L2",
+          "F'",
+          "L2",
+          "B'",
+          "L2",
+          "F",
+          "L'"
+        ]
       }
     ]
   },
@@ -2202,7 +3833,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "F'"
+        ]
       },
       {
         "id": "oll-51-2",
@@ -2211,7 +3854,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "F'"
+        ]
       }
     ]
   },
@@ -2230,7 +3885,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "B",
+          "U'",
+          "B'",
+          "R'"
+        ]
       },
       {
         "id": "oll-52-2",
@@ -2239,7 +3906,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R'",
+          "F'",
+          "U'",
+          "F",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "U",
+          "R"
+        ]
       },
       {
         "id": "oll-52-3",
@@ -2248,7 +3927,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "B",
+          "U'",
+          "B'",
+          "R'"
+        ]
       }
     ]
   },
@@ -2267,7 +3958,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "F2",
+          "L",
+          "F",
+          "L'",
+          "F'",
+          "L",
+          "F",
+          "L'",
+          "F",
+          "R"
+        ]
       },
       {
         "id": "oll-53-2",
@@ -2276,7 +3980,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R'",
+          "F2",
+          "L",
+          "F",
+          "L'",
+          "F'",
+          "L",
+          "F",
+          "L'",
+          "F",
+          "R"
+        ]
       },
       {
         "id": "oll-53-3",
@@ -2285,7 +4002,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "F'",
+          "L'",
+          "B",
+          "L'",
+          "B'",
+          "L",
+          "B",
+          "L'",
+          "B'",
+          "L2",
+          "F"
+        ]
       }
     ]
   },
@@ -2304,7 +4034,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L",
+          "F2",
+          "R'",
+          "F'",
+          "R",
+          "F",
+          "R'",
+          "F'",
+          "R",
+          "F'",
+          "L'"
+        ]
       },
       {
         "id": "oll-54-2",
@@ -2313,7 +4056,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F",
+          "R",
+          "B'",
+          "R",
+          "B",
+          "R'",
+          "B'",
+          "R",
+          "B",
+          "R2",
+          "F'"
+        ]
       }
     ]
   },
@@ -2332,7 +4088,24 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "F",
+          "R",
+          "U",
+          "R",
+          "U'",
+          "R2",
+          "F'",
+          "R2",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U",
+          "R'"
+        ]
       },
       {
         "id": "oll-55-2",
@@ -2341,7 +4114,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "B",
+          "U2",
+          "B2",
+          "U'",
+          "B",
+          "U'",
+          "B'",
+          "U2",
+          "R",
+          "B",
+          "R'"
+        ]
       }
     ]
   },
@@ -2360,7 +4146,23 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L'",
+          "B'",
+          "L",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "L'",
+          "B",
+          "L"
+        ]
       },
       {
         "id": "oll-56-2",
@@ -2369,7 +4171,23 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "L",
+          "F",
+          "L'",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "L",
+          "F'",
+          "L'"
+        ]
       },
       {
         "id": "oll-56-3",
@@ -2378,7 +4196,27 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "L",
+          "F",
+          "L'",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "F'",
+          "L'"
+        ]
       }
     ]
   },
@@ -2397,7 +4235,23 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "F",
+          "R",
+          "F'",
+          "L'"
+        ]
       }
     ]
   },
@@ -2416,7 +4270,28 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "U2",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       },
       {
         "id": "pll-H-2",
@@ -2425,7 +4300,28 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "U2",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D'",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       }
     ]
   },
@@ -2444,7 +4340,37 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "F",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "B",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "F",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D2",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       },
       {
         "id": "pll-Z-2",
@@ -2453,7 +4379,37 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "R'",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "L'",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "R'",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "D2",
+          "B",
+          "F'",
+          "B",
+          "F'"
+        ]
       },
       {
         "id": "pll-Z-3",
@@ -2462,7 +4418,37 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "D",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "U",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "R2",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "L2",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "B",
+          "F'"
+        ]
       },
       {
         "id": "pll-Z-4",
@@ -2471,7 +4457,37 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 4
+        "sourceOrder": 4,
+        "physicalTurns": [
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "U'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "F2",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "B2",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       }
     ]
   },
@@ -2490,7 +4506,28 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D",
+          "R",
+          "L'",
+          "F2",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       },
       {
         "id": "pll-Ua-2",
@@ -2499,7 +4536,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "U'",
+          "R",
+          "U",
+          "R",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "U'",
+          "R2"
+        ]
       },
       {
         "id": "pll-Ua-3",
@@ -2508,7 +4558,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "L2",
+          "U'",
+          "L'",
+          "U'",
+          "L",
+          "U",
+          "L",
+          "U",
+          "L",
+          "U'",
+          "L"
+        ]
       }
     ]
   },
@@ -2527,7 +4590,28 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D'",
+          "R",
+          "L'",
+          "F2",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D'",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       },
       {
         "id": "pll-Ub-2",
@@ -2536,7 +4620,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R2",
+          "U",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R'",
+          "U'",
+          "R'",
+          "U",
+          "R'"
+        ]
       },
       {
         "id": "pll-Ub-3",
@@ -2545,7 +4642,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "L'",
+          "U",
+          "L'",
+          "U'",
+          "L'",
+          "U'",
+          "L'",
+          "U",
+          "L",
+          "U",
+          "L2"
+        ]
       },
       {
         "id": "pll-Ub-4",
@@ -2554,7 +4664,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 4
+        "sourceOrder": 4,
+        "physicalTurns": [
+          "L'",
+          "U",
+          "L'",
+          "U'",
+          "L'",
+          "U'",
+          "L'",
+          "U",
+          "L",
+          "U",
+          "L2"
+        ]
       }
     ]
   },
@@ -2573,7 +4696,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L2",
+          "B2",
+          "L'",
+          "F'",
+          "L",
+          "B2",
+          "L'",
+          "F",
+          "L'"
+        ]
       },
       {
         "id": "pll-Aa-2",
@@ -2582,7 +4716,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "B'",
+          "R",
+          "B'",
+          "L2",
+          "B",
+          "R'",
+          "B'",
+          "L2",
+          "B2"
+        ]
       },
       {
         "id": "pll-Aa-3",
@@ -2591,7 +4736,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "B'",
+          "R",
+          "B'",
+          "L2",
+          "B",
+          "R'",
+          "B'",
+          "L2",
+          "B2"
+        ]
       },
       {
         "id": "pll-Aa-4",
@@ -2600,7 +4756,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 4
+        "sourceOrder": 4,
+        "physicalTurns": [
+          "L2",
+          "B2",
+          "L'",
+          "F'",
+          "L",
+          "B2",
+          "L'",
+          "F",
+          "L'"
+        ]
       }
     ]
   },
@@ -2619,7 +4786,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L2",
+          "F2",
+          "L",
+          "B",
+          "L'",
+          "F2",
+          "L",
+          "B'",
+          "L"
+        ]
       },
       {
         "id": "pll-Ab-2",
@@ -2628,7 +4806,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F",
+          "R'",
+          "F",
+          "L2",
+          "F'",
+          "R",
+          "F",
+          "L2",
+          "F2"
+        ]
       },
       {
         "id": "pll-Ab-3",
@@ -2637,7 +4826,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "L2",
+          "F2",
+          "L",
+          "B",
+          "L'",
+          "F2",
+          "L",
+          "B'",
+          "L"
+        ]
       },
       {
         "id": "pll-Ab-4",
@@ -2646,7 +4846,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 4
+        "sourceOrder": 4,
+        "physicalTurns": [
+          "F",
+          "R'",
+          "F",
+          "L2",
+          "F'",
+          "R",
+          "F",
+          "L2",
+          "F2"
+        ]
       }
     ]
   },
@@ -2665,7 +4876,25 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L'",
+          "B",
+          "L",
+          "F'",
+          "L'",
+          "B'",
+          "L",
+          "F",
+          "L'",
+          "B'",
+          "L",
+          "F'",
+          "L'",
+          "B",
+          "L",
+          "F"
+        ]
       },
       {
         "id": "pll-E-2",
@@ -2674,7 +4903,25 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "B'",
+          "R'",
+          "F",
+          "R",
+          "B",
+          "R'",
+          "F'",
+          "R",
+          "B",
+          "R'",
+          "F",
+          "R",
+          "B'",
+          "R'",
+          "F'"
+        ]
       }
     ]
   },
@@ -2693,7 +4940,27 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "U'",
+          "F'",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R'",
+          "F",
+          "R2",
+          "U'",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "U",
+          "R"
+        ]
       }
     ]
   },
@@ -2712,7 +4979,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R2",
+          "D",
+          "R",
+          "D'",
+          "R",
+          "F2",
+          "L'",
+          "U",
+          "L",
+          "F2"
+        ]
       },
       {
         "id": "pll-Ja-2",
@@ -2721,7 +5000,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R'",
+          "U'",
+          "R",
+          "B",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R",
+          "B'",
+          "R2",
+          "U",
+          "R"
+        ]
       },
       {
         "id": "pll-Ja-3",
@@ -2730,7 +5024,19 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "F'",
+          "U",
+          "B'",
+          "U2",
+          "F",
+          "U'",
+          "F'",
+          "U2",
+          "F",
+          "B"
+        ]
       }
     ]
   },
@@ -2749,7 +5055,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "F'",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R'",
+          "F",
+          "R2",
+          "U'",
+          "R'"
+        ]
       }
     ]
   },
@@ -2768,7 +5089,24 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U'",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R",
+          "D",
+          "R'",
+          "U'",
+          "R",
+          "D'",
+          "R'",
+          "U2",
+          "R'"
+        ]
       },
       {
         "id": "pll-Ra-2",
@@ -2777,7 +5115,24 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "F'",
+          "R",
+          "U2",
+          "R'",
+          "U2",
+          "R'",
+          "F",
+          "R",
+          "U",
+          "R",
+          "U2",
+          "R'"
+        ]
       },
       {
         "id": "pll-Ra-3",
@@ -2786,7 +5141,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "B",
+          "U2",
+          "B'",
+          "U2",
+          "B",
+          "L'",
+          "B'",
+          "U'",
+          "B",
+          "U",
+          "B",
+          "L",
+          "B2"
+        ]
       }
     ]
   },
@@ -2805,7 +5175,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R2",
+          "F",
+          "R",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "F'",
+          "R",
+          "U2",
+          "R'",
+          "U2",
+          "R"
+        ]
       },
       {
         "id": "pll-Rb-2",
@@ -2814,7 +5199,22 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F'",
+          "U2",
+          "F",
+          "U2",
+          "F'",
+          "L",
+          "F",
+          "U",
+          "F'",
+          "U'",
+          "F'",
+          "L'",
+          "F2"
+        ]
       },
       {
         "id": "pll-Rb-3",
@@ -2823,7 +5223,24 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "R'",
+          "U2",
+          "R'",
+          "D'",
+          "R",
+          "U'",
+          "R'",
+          "D",
+          "R",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "U'",
+          "R"
+        ]
       }
     ]
   },
@@ -2842,7 +5259,23 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R'",
+          "F",
+          "R2",
+          "U'",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "F'"
+        ]
       }
     ]
   },
@@ -2861,7 +5294,26 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F",
+          "R",
+          "U'",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "F'",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R'",
+          "F",
+          "R",
+          "F'"
+        ]
       },
       {
         "id": "pll-Y-2",
@@ -2870,7 +5322,25 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F",
+          "R'",
+          "F",
+          "R2",
+          "U'",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "F'",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "F'"
+        ]
       }
     ]
   },
@@ -2889,7 +5359,23 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "U",
+          "R'",
+          "U'",
+          "B'",
+          "R'",
+          "B2",
+          "U'",
+          "B'",
+          "U",
+          "B'",
+          "R",
+          "B",
+          "R"
+        ]
       },
       {
         "id": "pll-V-2",
@@ -2898,7 +5384,25 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R'",
+          "U",
+          "R'",
+          "U'",
+          "R",
+          "D'",
+          "R'",
+          "D",
+          "R'",
+          "U",
+          "D'",
+          "R2",
+          "U'",
+          "R2",
+          "D",
+          "R2"
+        ]
       },
       {
         "id": "pll-V-3",
@@ -2907,7 +5411,24 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "R'",
+          "U2",
+          "R",
+          "U2",
+          "L",
+          "U'",
+          "R'",
+          "U",
+          "L'",
+          "U",
+          "L",
+          "U'",
+          "R",
+          "U",
+          "L'"
+        ]
       },
       {
         "id": "pll-V-4",
@@ -2916,7 +5437,25 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 4
+        "sourceOrder": 4,
+        "physicalTurns": [
+          "R",
+          "U2",
+          "R'",
+          "D",
+          "R",
+          "U'",
+          "R",
+          "U'",
+          "R",
+          "U",
+          "R2",
+          "D",
+          "R'",
+          "U'",
+          "R",
+          "D2"
+        ]
       },
       {
         "id": "pll-V-5",
@@ -2925,7 +5464,26 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 5
+        "sourceOrder": 5,
+        "physicalTurns": [
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "B",
+          "R",
+          "B2",
+          "R'",
+          "B'",
+          "R",
+          "B'",
+          "R'",
+          "B2",
+          "R",
+          "B",
+          "R'",
+          "B'"
+        ]
       }
     ]
   },
@@ -2944,7 +5502,30 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U",
+          "R",
+          "U",
+          "R'",
+          "F'",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R'",
+          "F",
+          "R2",
+          "U'",
+          "R'",
+          "U2",
+          "R",
+          "U'",
+          "R'"
+        ]
       },
       {
         "id": "pll-Na-2",
@@ -2953,7 +5534,23 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "L",
+          "U'",
+          "R",
+          "U2",
+          "L'",
+          "U",
+          "R'",
+          "L",
+          "U'",
+          "R",
+          "U2",
+          "L'",
+          "U",
+          "R'"
+        ]
       }
     ]
   },
@@ -2972,7 +5569,26 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "F'",
+          "U'",
+          "F",
+          "R",
+          "U",
+          "R'",
+          "F",
+          "R'",
+          "F'",
+          "R",
+          "U'",
+          "R"
+        ]
       },
       {
         "id": "pll-Nb-2",
@@ -2981,7 +5597,23 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R'",
+          "U",
+          "L'",
+          "U2",
+          "R",
+          "U'",
+          "L",
+          "R'",
+          "U",
+          "L'",
+          "U2",
+          "R",
+          "U'",
+          "L"
+        ]
       }
     ]
   },
@@ -3000,7 +5632,24 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R2",
+          "U",
+          "R'",
+          "U",
+          "R'",
+          "U'",
+          "R",
+          "U'",
+          "R2",
+          "U'",
+          "D",
+          "R'",
+          "U",
+          "R",
+          "D'"
+        ]
       },
       {
         "id": "pll-Ga-2",
@@ -3009,7 +5658,21 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R2",
+          "D",
+          "B'",
+          "U",
+          "B'",
+          "U'",
+          "B",
+          "D'",
+          "R2",
+          "F'",
+          "U",
+          "F"
+        ]
       }
     ]
   },
@@ -3028,7 +5691,24 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "D'",
+          "R2",
+          "U",
+          "R'",
+          "U",
+          "R",
+          "U'",
+          "R",
+          "U'",
+          "R2",
+          "D"
+        ]
       },
       {
         "id": "pll-Gb-2",
@@ -3037,7 +5717,21 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R'",
+          "U'",
+          "R",
+          "B2",
+          "D",
+          "L'",
+          "U",
+          "L",
+          "U'",
+          "L",
+          "D'",
+          "B2"
+        ]
       }
     ]
   },
@@ -3056,7 +5750,24 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R2",
+          "U'",
+          "R",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "U",
+          "R2",
+          "U",
+          "D'",
+          "R",
+          "U'",
+          "R'",
+          "D"
+        ]
       },
       {
         "id": "pll-Gc-2",
@@ -3065,7 +5776,24 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "L2",
+          "B2",
+          "L",
+          "U2",
+          "L",
+          "U2",
+          "L'",
+          "B",
+          "L",
+          "U",
+          "L'",
+          "U'",
+          "L'",
+          "B",
+          "L2"
+        ]
       },
       {
         "id": "pll-Gc-3",
@@ -3074,7 +5802,21 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "R2",
+          "D'",
+          "F",
+          "U'",
+          "F",
+          "U",
+          "F'",
+          "D",
+          "R2",
+          "B",
+          "U'",
+          "B'"
+        ]
       }
     ]
   },
@@ -3093,7 +5835,24 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "D",
+          "R2",
+          "U'",
+          "R",
+          "U'",
+          "R'",
+          "U",
+          "R'",
+          "U",
+          "R2",
+          "D'"
+        ]
       },
       {
         "id": "pll-Gd-2",
@@ -3102,7 +5861,21 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "F2",
+          "D'",
+          "L",
+          "U'",
+          "L'",
+          "U",
+          "L'",
+          "D",
+          "F2"
+        ]
       }
     ]
   },
@@ -3122,7 +5895,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U",
+          "R",
+          "U2",
+          "R'"
+        ]
       },
       {
         "id": "2look-oll-27-2",
@@ -3131,7 +5913,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F'",
+          "U2",
+          "F",
+          "U",
+          "F'",
+          "U",
+          "F"
+        ]
       }
     ]
   },
@@ -3151,7 +5942,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U2",
+          "R'",
+          "U'",
+          "R",
+          "U'",
+          "R'"
+        ]
       },
       {
         "id": "2look-oll-26-2",
@@ -3160,7 +5960,16 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F'",
+          "U'",
+          "F",
+          "U'",
+          "F'",
+          "U2",
+          "F"
+        ]
       }
     ]
   },
@@ -3180,7 +5989,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U2",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R",
+          "U'",
+          "R'"
+        ]
       },
       {
         "id": "2look-oll-21-2",
@@ -3189,7 +6011,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "B",
+          "U",
+          "B'",
+          "U",
+          "B",
+          "U'",
+          "B'",
+          "U",
+          "B",
+          "U2",
+          "B'"
+        ]
       }
     ]
   },
@@ -3209,7 +6044,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U2",
+          "R2",
+          "U'",
+          "R2",
+          "U'",
+          "R2",
+          "U2",
+          "R"
+        ]
       }
     ]
   },
@@ -3229,7 +6075,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R2",
+          "D'",
+          "R",
+          "U2",
+          "R'",
+          "D",
+          "R",
+          "U2",
+          "R"
+        ]
       },
       {
         "id": "2look-oll-23-2",
@@ -3238,7 +6095,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "L2",
+          "D",
+          "L'",
+          "U2",
+          "L",
+          "D'",
+          "L'",
+          "U2",
+          "L'"
+        ]
       }
     ]
   },
@@ -3258,7 +6126,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "L",
+          "F",
+          "R'",
+          "F'",
+          "L'",
+          "F",
+          "R",
+          "F'"
+        ]
       },
       {
         "id": "2look-oll-24-2",
@@ -3267,7 +6145,18 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "B",
+          "U",
+          "B",
+          "D",
+          "B'",
+          "U'",
+          "B",
+          "D'",
+          "B2"
+        ]
       }
     ]
   },
@@ -3287,7 +6176,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F'",
+          "L",
+          "F",
+          "R'",
+          "F'",
+          "L'",
+          "F",
+          "R"
+        ]
       },
       {
         "id": "2look-oll-25-2",
@@ -3296,7 +6195,17 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F'",
+          "L",
+          "F",
+          "R'",
+          "F'",
+          "L'",
+          "F",
+          "R"
+        ]
       }
     ]
   },
@@ -3316,7 +6225,15 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "F'"
+        ]
       }
     ]
   },
@@ -3336,7 +6253,15 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "F'"
+        ]
       },
       {
         "id": "2look-oll-l-2",
@@ -3345,7 +6270,15 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "F'"
+        ]
       }
     ]
   },
@@ -3364,7 +6297,21 @@
         "sourceIds": [
           "cube-coach"
         ],
-        "sourceRecommendation": "catalog-composition"
+        "sourceRecommendation": "catalog-composition",
+        "physicalTurns": [
+          "F",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "F'",
+          "B",
+          "U",
+          "L",
+          "U'",
+          "L'",
+          "B'"
+        ]
       }
     ]
   },
@@ -3384,7 +6331,23 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R'",
+          "F",
+          "R2",
+          "U'",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "F'"
+        ]
       }
     ]
   },
@@ -3404,7 +6367,26 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "F",
+          "R",
+          "U'",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "F'",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R'",
+          "F",
+          "R",
+          "F'"
+        ]
       },
       {
         "id": "2look-pll-Y-2",
@@ -3413,7 +6395,25 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "F",
+          "R'",
+          "F",
+          "R2",
+          "U'",
+          "R'",
+          "U'",
+          "R",
+          "U",
+          "R'",
+          "F'",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "F'"
+        ]
       }
     ]
   },
@@ -3433,7 +6433,28 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D",
+          "R",
+          "L'",
+          "F2",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       },
       {
         "id": "2look-pll-Ua-2",
@@ -3442,7 +6463,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "U'",
+          "R",
+          "U",
+          "R",
+          "U",
+          "R",
+          "U'",
+          "R'",
+          "U'",
+          "R2"
+        ]
       },
       {
         "id": "2look-pll-Ua-3",
@@ -3451,7 +6485,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "L2",
+          "U'",
+          "L'",
+          "U'",
+          "L",
+          "U",
+          "L",
+          "U",
+          "L",
+          "U'",
+          "L"
+        ]
       }
     ]
   },
@@ -3471,7 +6518,28 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D'",
+          "R",
+          "L'",
+          "F2",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D'",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       },
       {
         "id": "2look-pll-Ub-2",
@@ -3480,7 +6548,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R2",
+          "U",
+          "R",
+          "U",
+          "R'",
+          "U'",
+          "R'",
+          "U'",
+          "R'",
+          "U",
+          "R'"
+        ]
       },
       {
         "id": "2look-pll-Ub-3",
@@ -3489,7 +6570,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "L'",
+          "U",
+          "L'",
+          "U'",
+          "L'",
+          "U'",
+          "L'",
+          "U",
+          "L",
+          "U",
+          "L2"
+        ]
       },
       {
         "id": "2look-pll-Ub-4",
@@ -3498,7 +6592,20 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 4
+        "sourceOrder": 4,
+        "physicalTurns": [
+          "L'",
+          "U",
+          "L'",
+          "U'",
+          "L'",
+          "U'",
+          "L'",
+          "U",
+          "L",
+          "U",
+          "L2"
+        ]
       }
     ]
   },
@@ -3518,7 +6625,28 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "U2",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       },
       {
         "id": "2look-pll-H-2",
@@ -3527,7 +6655,28 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "U2",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D'",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       }
     ]
   },
@@ -3547,7 +6696,37 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 1
+        "sourceOrder": 1,
+        "physicalTurns": [
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "F",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "B",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "F",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D2",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       },
       {
         "id": "2look-pll-Z-2",
@@ -3556,7 +6735,37 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 2
+        "sourceOrder": 2,
+        "physicalTurns": [
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "R'",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "L'",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "R'",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "D2",
+          "B",
+          "F'",
+          "B",
+          "F'"
+        ]
       },
       {
         "id": "2look-pll-Z-3",
@@ -3565,7 +6774,37 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 3
+        "sourceOrder": 3,
+        "physicalTurns": [
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "D",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "U",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "R2",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "L2",
+          "B",
+          "F'",
+          "B",
+          "F'",
+          "B",
+          "F'"
+        ]
       },
       {
         "id": "2look-pll-Z-4",
@@ -3574,7 +6813,37 @@
           "cube-coach"
         ],
         "sourceRecommendation": "not-stated",
-        "sourceOrder": 4
+        "sourceOrder": 4,
+        "physicalTurns": [
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "D'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "U'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "F2",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "B2",
+          "R",
+          "L'",
+          "R",
+          "L'",
+          "R",
+          "L'"
+        ]
       }
     ]
   }
