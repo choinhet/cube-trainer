@@ -39,6 +39,8 @@ test('physical completion saves exact precision and captured session, then survi
   await physical("R'", 15200);
   await expect(app.getByRole('timer')).toHaveText('0.00');
   await physical("R'", 16434.567);
+  await expect(app.getByRole('region', { name: 'CFOP phase timing' })).toContainText('orange Cross');
+  await expect(app.getByRole('region', { name: 'CFOP phase timing' })).toContainText('1.234566999999999 s');
   await expect(app.getByRole('region', { name: 'Saved timed results' }).locator('tbody tr')).toBeVisible();
   await expect(app.getByLabel('Actual setup moves')).toBeVisible();
   // Close the newly prepared attempt so reopening recovers only the saved solve.
@@ -62,5 +64,12 @@ test('physical completion saves exact precision and captured session, then survi
     open.onerror = () => reject(open.error);
   }));
   expect(records).toEqual([expect.objectContaining({ sessionId: firstSession, startedAt: 1791850000000, rawDurationMs: 1234.566999999999, penalty: '+2', status: 'completed', timingBasis: 'host-monotonic-receipt' })]);
+  await page.getByRole('region', { name: 'Saved timed results' }).getByRole('button', { name: '3.23 (+2)', exact: true }).click();
+  const breakdown = page.getByRole('dialog').getByRole('region', { name: 'CFOP phase timing' });
+  await expect(breakdown).toContainText('orange Cross');
+  await breakdown.getByRole('button', { name: /PLL:/ }).focus();
+  await expect(breakdown.getByRole('status')).toContainText('PLL');
+  await page.getByRole('button', { name: '+2', exact: true }).click();
+  await expect(breakdown).toContainText('1.234566999999999 s');
 });
 

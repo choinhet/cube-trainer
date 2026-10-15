@@ -10,6 +10,7 @@ import { HistoryTable } from './HistoryTable';
 import { Overlay } from '../../components/Overlay';
 import { SessionPicker } from '../settings/SessionPicker';
 import { resultTPS } from './result-tps';
+import { CFOPBreakdown } from '../solve/CFOPBreakdown';
 
 function HistoryRow({ result, sessionName, current, repository, timezone }: { result: TimedResult; sessionName: string; current: boolean; repository: LocalRepository; timezone?: string }) {
   const [busy, setBusy] = useState(false);
@@ -40,6 +41,7 @@ function HistoryRow({ result, sessionName, current, repository, timezone }: { re
         {result.reason && <TableRow><TableHead scope="row">Reason</TableHead><TableCell>{result.reason}</TableCell></TableRow>}
       </TableBody>
     </Table>
+    <CFOPBreakdown result={result} />
     <div className="solve-detail-actions">
       {result.status === 'completed' && <div className="penalty-toggles" role="group" aria-label="Solve penalty">{(['+2', 'dnf'] as const).map(penalty => <Button key={penalty} variant={result.penalty === penalty ? 'default' : 'outline'} aria-pressed={result.penalty === penalty} disabled={busy} onClick={() => void write('penalty', result.penalty === penalty ? 'none' : penalty)}>{penalty === 'dnf' ? 'DNF' : '+2'}</Button>)}</div>}
       <IconButton label="Delete result" className="delete-result" disabled={busy} onClick={() => void write('delete')}><Trash2 /></IconButton>

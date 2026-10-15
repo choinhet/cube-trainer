@@ -254,3 +254,17 @@ select[data-slot="native-select"], .app-shell select[data-slot="native-select"] 
 @media (max-width: 640px) {
   .workspace:has(.cross-controls:not([hidden])) .cube-view { height: 280px; }
 }
+
+.cfop-breakdown { width: 100%; max-width: 36rem; margin: .65rem auto; text-align: left; font-size: .8rem; }
+.cfop-breakdown > p { margin: .35rem 0; }
+.cfop-bar { display: flex; width: 100%; min-height: 1.8rem; overflow: hidden; border-radius: .4rem; }
+.cfop-segment { flex-basis: 0; min-width: 0; border: 0; padding: .25rem 0; color: #17202b; font-size: .7rem; overflow: hidden; cursor: pointer; }
+.cfop-segment:focus-visible { outline: 2px solid currentColor; outline-offset: -3px; }
+.cfop-cross { background: #8cbcf2; }
+.cfop-f2l { background: #79d6bb; }
+.cfop-oll { background: #eed475; }
+.cfop-pll { background: #d8a5ed; }
+.cfop-times { display: flex; flex-wrap: wrap; gap: .4rem 1rem; margin: .4rem 0; }
+.cfop-times > div { display: flex; flex-wrap: wrap; gap: .3rem; }
+.cfop-times dt { font-weight: 600; }
+.cfop-times dd { margin: 0; overflow-wrap: anywhere; }
