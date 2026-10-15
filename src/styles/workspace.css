@@ -273,3 +273,9 @@ select[data-slot="native-select"], .app-shell select[data-slot="native-select"] 
 .cfop-case-details ol { padding-left: 1.2rem; }
 .cfop-case-details li { padding: .25rem 0; }
 .cfop-case-details li span { display: block; overflow-wrap: anywhere; }
+.cfop-phase-group { display: flex; flex-basis: 0; min-width: 0; }
+.cfop-cross { --cfop-color: #8cbcf2; }
+.cfop-f2l { --cfop-color: #79d6bb; }
+.cfop-oll { --cfop-color: #eed475; }
+.cfop-pll { --cfop-color: #d8a5ed; }
+.cfop-recognition { background: color-mix(in srgb, var(--cfop-color) 50%, black); filter: none; color: white; }

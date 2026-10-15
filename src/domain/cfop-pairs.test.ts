@@ -55,5 +55,8 @@ it('includes setup U turns in execution and analyzes another Cross color', () =>
   const analysis = analyzeCFOP(rotated)!;
   expect(analysis.crossColor).toBe('orange');
   expect(analyzeF2LPairs(rotated, analysis).map(pair => pair.endIndex)).toEqual([3, 6, 9, 12]);
+  const rotatedSearch = trace("R U R' U U' L' U' L R' U' R L U L' U");
+  rotatedSearch.rawTurns!.forEach(move => { move.move = rotation[move.move[0]] + move.move.slice(1); });
+  expect(analyzeF2LPairs(rotatedSearch, analyzeCFOP(rotatedSearch)!)[1].recognitionMs).toBe(300);
 });
 
