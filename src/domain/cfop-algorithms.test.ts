@@ -111,3 +111,12 @@ test("rejects a transient F2L completion that returns through an unsupported ide
   const analysis = analyzeCFOP(input)!;
   expect(analysis.phases.map((p) => p.endIndex)).toEqual([0, 6, 13, 27]);
 });
+test("an alignment-only PLL interval is execution through the authoritative stop", () => {
+  const input = result(`${sune} U`);
+  const analysis = analyzeCFOP(input)!;
+  const alignment = analyzeLLAlgorithms(input, analysis).find(
+    (c) => c.phase === "PLL",
+  )!;
+  expect(alignment.recognitionMs).toBe(0);
+  expect(alignment.executionMs).toBe(analysis.phases[3].durationMs);
+});
