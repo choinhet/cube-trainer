@@ -1,5 +1,34 @@
 import { expect, test } from '@playwright/test';
 
+test('four physical F2L pairs remain accessible after offline saved-history reopening on a narrow screen', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
+  await page.evaluate(async () => {
+    const path = '/browser-tests/timed-harness.tsx';
+    const harness = await import(/* @vite-ignore */ path) as typeof import('./timed-harness');
+    (window as unknown as { timedPhysical: ReturnType<typeof harness.mount> }).timedPhysical = harness.mount(null, "U' L U' L' R' U R L' U L R U' R'");
+  });
+  await page.getByRole('button', { name: 'Connect Cube' }).click();
+  await expect(page.getByLabel('Actual setup moves')).toBeVisible({ timeout: 45_000 });
+  async function physical(move: string, ms: number) { await page.evaluate(({ move, ms }) => (window as unknown as { timedPhysical: (move: string, ms: number) => void }).timedPhysical(move, ms), { move, ms }); }
+  for (const [index, move] of "U' L U' L' R' U R L' U L R U' R'".split(' ').entries()) await physical(move, 100 + index * 100);
+  for (const [index, move] of "R U R' L' U' L R' U' R L U L' U".split(' ').entries()) await physical(move, 10000 + index * 100);
+  const current = page.getByRole('region', { name: 'CFOP phase timing' });
+  await current.getByText('F2L pair details').click();
+  await expect(current.getByText('Execution: 0.2 s')).toHaveCount(4);
+  await page.getByRole('button', { name: 'Connected', exact: true }).click();
+  await page.reload();
+  await page.context().setOffline(true);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole('region', { name: 'Saved timed results' }).getByRole('button', { name: '1.20', exact: true }).click();
+  const saved = page.getByRole('dialog').getByRole('region', { name: 'CFOP phase timing' });
+  await saved.getByText('F2L pair details').click();
+  await expect(saved.getByText('Recognition: 0.1 s')).toHaveCount(3);
+  await saved.getByRole('button', { name: /F2L pair 2 recognition:/ }).click();
+  await expect(saved.getByRole('status')).toContainText('F2L pair 2 recognition: 0.1 s');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
 test('physical completion saves exact precision and captured session, then survives browser reopening', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('region', { name: 'Saved timed results' }).getByLabel('History session')).toHaveValue(/.+/);
