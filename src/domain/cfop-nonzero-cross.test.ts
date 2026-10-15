@@ -61,7 +61,7 @@ test("normal nonzero Cross, four pairs, OLL and PLL have independently verified 
   const pairsSolved = (index: number) =>
     [4, 5, 6, 7].filter((corner) => {
       const data = states[index].patternData,
-        edge = corner + 4;
+        edge = [8, 9, 11, 10][corner - 4];
       return (
         data.CORNERS.pieces[corner] === corner &&
         data.CORNERS.orientation[corner] === 0 &&
